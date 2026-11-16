@@ -10,9 +10,8 @@
 ```text
 oci-start-site/
 ├── assets/
-│   ├── hero-sky-1x.jpg / 2x.jpg   # 首屏暮色云海背景图（1x/2x 多分辨率）
-│   └── hero-card-1x.jpg / 2x.jpg  # 首屏右侧磨砂边框云基础设施视觉卡图
-├── index.html                     # 主页面（分栏首屏、6 格能力矩阵、深海军蓝交互控制台、安全与部署区）
+│   └── hero-sky-1x.jpg / 2x.jpg   # 首屏暮色云海背景图（1x/2x 多分辨率）
+├── index.html                     # 主页面（甲骨文云分栏首屏 + 右侧实时 OCI 实例管控卡、6 格 OCI 能力矩阵、深蓝工作台预览）
 ├── styles.css                     # 视觉样式（#FFFFFF 独立白顶栏 + #08141F 深海军蓝 + #FF6B1F 活力橙 + #2EE59D 在线绿）
 ├── app.js                         # 交互脚本（自适应导航、无障碍标签页、Canvas 点阵区域地图、复制反馈、中英双语）
 ├── favicon.svg                    # OCI-Start 经线圆环品牌图标

@@ -177,7 +177,7 @@ button {
 .site-logo {
   display: inline-flex;
   align-items: center;
-  gap: 11px;
+  gap: 10px;
   color: var(--navy-900);
   font-family: var(--display);
   font-size: 20px;
@@ -189,6 +189,18 @@ button {
   inline-size: 26px;
   block-size: 26px;
   flex-shrink: 0;
+}
+
+.logo-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: 6px;
+  background: var(--accent-soft);
+  color: var(--accent-hover);
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
 }
 
 .site-nav {
@@ -577,7 +589,7 @@ button {
   white-space: nowrap;
 }
 
-/* Right Column: Tall Rounded Image Card with Thin Frosted-Glass Border & Deep Soft Shadow */
+/* Right Column: Tall Frosted-Glass Oracle Cloud Instance Panel Card */
 .hero-right {
   display: flex;
   justify-content: flex-end;
@@ -585,30 +597,220 @@ button {
 
 .hero-visual-card {
   position: relative;
-  inline-size: min(100%, 468px);
+  inline-size: min(100%, 492px);
   border-radius: var(--r-xl);
   padding: 7px;
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  background: rgba(255, 255, 255, 0.09);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(255, 255, 255, 0.24);
-  box-shadow: 0 34px 80px rgba(3, 8, 15, 0.62);
+  box-shadow: 0 34px 80px rgba(3, 8, 15, 0.64);
 }
 
-.hero-visual-inner {
-  position: relative;
+.oci-hero-panel {
   border-radius: 16px;
   overflow: hidden;
-  aspect-ratio: 3 / 3.75;
-  background: var(--navy-800);
+  background: linear-gradient(165deg, #0d1e2e 0%, #07121c 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
 }
 
-.hero-visual-inner img {
+.ohp-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 13px 16px;
+  background: rgba(5, 13, 21, 0.72);
+  border-block-end: 1px solid var(--navy-line);
+}
+
+.ohp-title {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--white);
+}
+
+.ohp-oci-badge {
+  padding: 2px 7px;
+  border-radius: 5px;
+  background: rgba(255, 107, 31, 0.2);
+  border: 1px solid rgba(255, 107, 31, 0.4);
+  color: #ff8c52;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.ohp-sdk {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--live-green);
+}
+
+.ohp-tenant-bar {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  padding: 12px 16px;
+  background: rgba(255, 255, 255, 0.025);
+  border-block-end: 1px solid var(--navy-line);
+}
+
+.ohp-metric span {
   display: block;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.52);
+}
+
+.ohp-metric strong {
+  display: block;
+  margin-block-start: 2px;
+  font-family: var(--mono);
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--white);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ohp-list {
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ohp-row {
   inline-size: 100%;
-  block-size: 100%;
-  object-fit: cover;
-  object-position: center 42%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 11px 13px;
+  border-radius: 11px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--white);
+  text-align: start;
+  cursor: pointer;
+  transition: border-color 0.15s, background-color 0.15s;
+}
+
+.ohp-row:hover {
+  border-color: rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.055);
+}
+
+.ohp-row[aria-pressed="true"] {
+  border-color: var(--accent);
+  background: rgba(255, 107, 31, 0.11);
+}
+
+.ohp-row-main b {
+  display: block;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--white);
+}
+
+.ohp-row-main small {
+  display: block;
+  margin-block-start: 3px;
+  font-family: var(--mono);
+  font-size: 11.5px;
+  color: rgba(255, 255, 255, 0.62);
+}
+
+.ohp-row-right {
+  text-align: end;
+  flex-shrink: 0;
+}
+
+.ohp-ip {
+  display: block;
+  margin-block-start: 4px;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.56);
+}
+
+.ohp-dock {
+  margin: 0 14px 12px;
+  padding: 12px 13px;
+  border-radius: 11px;
+  background: rgba(5, 13, 21, 0.78);
+  border: 1px solid var(--navy-line);
+}
+
+.ohp-dock-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 11.5px;
+  color: rgba(255, 255, 255, 0.68);
+  margin-block-end: 9px;
+}
+
+.ohp-dock-head code {
+  font-family: var(--mono);
+  color: var(--white);
+  font-weight: 600;
+}
+
+.ohp-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.ohp-chip {
+  padding: 4px 9px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  font-size: 11.5px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.ohp-chip.is-primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--white);
+}
+
+.ohp-boot-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 11px 16px;
+  background: rgba(255, 107, 31, 0.12);
+  border-block-start: 1px solid rgba(255, 107, 31, 0.28);
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.ohp-boot-bar strong {
+  color: #ff9a66;
+  font-weight: 700;
+}
+
+.ohp-boot-bar code {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--live-green);
 }
 
 @media (max-width: 1024px) {
@@ -624,10 +826,19 @@ button {
     justify-content: flex-start;
   }
   .hero-visual-card {
-    inline-size: min(100%, 520px);
+    inline-size: min(100%, 540px);
   }
-  .hero-visual-inner {
-    aspect-ratio: 16 / 11;
+}
+
+@media (max-width: 640px) {
+  .logo-tag {
+    display: none;
+  }
+  .ohp-tenant-bar {
+    grid-template-columns: 1fr 1fr;
+  }
+  .ohp-tenant-bar .ohp-metric:last-child {
+    display: none;
   }
 }
 

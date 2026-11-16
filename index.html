@@ -3,11 +3,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>OCI-Start — 开源自托管 Oracle Cloud 多租户运维工作台</title>
-  <meta name="description" content="OCI-Start 是基于 API 集成的开源自托管云端工作台，涵盖多租户并发开机、45+ 商业区域点阵地图、Web SSH / SFTP、双跳 noVNC 控制台、Cloudflare / EdgeOne DNS 与 VPS 三网质量监控，私钥 100% 本地 H2 存储。">
+  <title>OCI-Start — 开源自托管甲骨文云 (Oracle Cloud) 实例抢机与管理面板</title>
+  <meta name="description" content="OCI-Start 是专为甲骨文云 (Oracle Cloud / OCI) 打造的开源自托管实例管理面板，支持多租户 API 并发抢开 ARM/AMD 实例、一键换 IP/IPv6、VNIC 管理、引导卷 VPU 调优、Web SSH / SFTP 与双跳 noVNC 救援控制台，私钥 100% 本地 H2 存储。">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="OCI-Start — 每一个租户。每一台实例。尽在掌控。">
-  <meta property="og:description" content="开源自托管 Oracle Cloud 全生命周期管理平台：多租户并发开机、Web SSH / noVNC、双云 DNS 与三网探针实时可视。">
+  <meta property="og:title" content="OCI-Start — 甲骨文云实例。并发抢机与运维。一处全掌控。">
+  <meta property="og:description" content="专为 Oracle Cloud (OCI) 打造的开源自托管实例管理面板：ARM/AMD 并发抢机、换 IP/IPv6、Web SSH / 双跳 noVNC 与 DNS 联动。">
   <meta name="theme-color" content="#FFFFFF">
   <link rel="icon" type="image/svg+xml" href="./favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -28,6 +28,7 @@
             <line x1="13" y1="2" x2="13" y2="24" stroke="#FF6B1F" stroke-width="2.3" stroke-linecap="round"/>
           </svg>
           <span>OCI-Start</span>
+          <span class="logo-tag" data-i18n="nav.tag">甲骨文云面板</span>
         </a>
 
         <nav class="site-nav" id="siteNav" aria-label="主导航" data-i18n-aria="aria.nav">
@@ -47,10 +48,10 @@
 
           <ul id="site-menu" class="site-menu" popover="auto">
             <li><a href="#top" aria-current="true" data-i18n="nav.home">首页</a></li>
-            <li><a href="#capabilities" data-i18n="nav.cap">核心能力</a></li>
-            <li><a href="#console" data-i18n="nav.console">工作台预览</a></li>
-            <li><a href="#security" data-i18n="nav.security">隐私安全</a></li>
-            <li><a href="#deploy" data-i18n="nav.deploy">快速部署</a></li>
+            <li><a href="#capabilities" data-i18n="nav.cap">OCI 实例能力</a></li>
+            <li><a href="#console" data-i18n="nav.console">面板预览</a></li>
+            <li><a href="#security" data-i18n="nav.security">API 密钥安全</a></li>
+            <li><a href="#deploy" data-i18n="nav.deploy">一键部署</a></li>
           </ul>
         </nav>
       </div>
@@ -76,17 +77,17 @@
         <div class="hero-left">
           <div class="hero-eyebrow">
             <span class="live-dot" aria-hidden="true"></span>
-            <span data-i18n="hero.eyebrow">LIVE CLOUD ORCHESTRATION · 开源自托管</span>
+            <span data-i18n="hero.eyebrow">ORACLE CLOUD INSTANCE PANEL · 甲骨文云实例管理面板</span>
           </div>
 
           <h1>
-            <span class="hero-line" data-i18n="hero.l1">每一个租户。</span>
-            <span class="hero-line is-orange" data-i18n="hero.l2">每一台实例。</span>
-            <span class="hero-line" data-i18n="hero.l3">尽在掌控。</span>
+            <span class="hero-line" data-i18n="hero.l1">甲骨文云实例。</span>
+            <span class="hero-line is-orange" data-i18n="hero.l2">并发抢机与运维。</span>
+            <span class="hero-line" data-i18n="hero.l3">一处全掌控。</span>
           </h1>
 
           <p class="hero-sub" data-i18n="hero.sub">
-            集多租户并发开机、Web SSH / noVNC、双云 DNS 与三网探针于一体，私钥 100% 本地 H2 存储，从抢机到日常运维全链路实时可视。
+            专为 Oracle Cloud (OCI) 打造的开源自托管实例管理面板。多租户 API 并发抢开 ARM / AMD、一键换 IP / IPv6、引导卷调优、Web SSH 与双跳 noVNC 救援一应俱全。
           </p>
 
           <!-- Solid White Rounded Command Bar with Orange Action Button Inside Right -->
@@ -113,36 +114,107 @@
           <ul class="hero-stats">
             <li>
               <strong>45+</strong>
-              <span data-i18n="hero.s1">全球商业区域</span>
+              <span data-i18n="hero.s1">OCI 商业区域</span>
             </li>
             <li>
-              <strong>100%</strong>
-              <span data-i18n="hero.s2">本地私钥存储</span>
+              <strong>A1 / E2</strong>
+              <span data-i18n="hero.s2">多 API 并发抢机</span>
             </li>
             <li>
-              <strong data-i18n="hero.s3n">3 网</strong>
-              <span data-i18n="hero.s3">实时质量探针</span>
+              <strong>SSH/VNC</strong>
+              <span data-i18n="hero.s3">网页直连救援</span>
             </li>
             <li>
-              <strong>24/7</strong>
-              <span data-i18n="hero.s4">并发开机值守</span>
+              <strong data-i18n="hero.s4n">H2 本地</strong>
+              <span data-i18n="hero.s4">API 私钥零上传</span>
             </li>
           </ul>
         </div>
 
-        <!-- Right Column: Tall Rounded Image Card with Thin Frosted-Glass Border & Deep Shadow -->
+        <!-- Right Column: Tall Frosted-Glass Oracle Cloud Instance Control Panel Card -->
         <div class="hero-right">
           <div class="hero-visual-card">
-            <div class="hero-visual-inner">
-              <img
-                src="./assets/hero-card-2x.jpg"
-                srcset="./assets/hero-card-1x.jpg 450w, ./assets/hero-card-2x.jpg 896w"
-                sizes="(max-width: 1024px) 92vw, 454px"
-                width="896"
-                height="1200"
-                fetchpriority="high"
-                alt="Golden-hour coastal cloud infrastructure data center campus overlooking deep ocean horizon"
-              >
+            <div class="oci-hero-panel">
+              <div class="ohp-head">
+                <div class="ohp-title">
+                  <span class="ohp-oci-badge">ORACLE CLOUD</span>
+                  <span data-i18n="ohp.title">实例生命周期管控</span>
+                </div>
+                <span class="ohp-sdk">
+                  <span class="live-dot" aria-hidden="true"></span>
+                  <span>OCI SDK v3.92</span>
+                </span>
+              </div>
+
+              <div class="ohp-tenant-bar">
+                <div class="ohp-metric">
+                  <span data-i18n="ohp.m1k">当前 OCI 租户</span>
+                  <strong>tokyo-payg-01</strong>
+                </div>
+                <div class="ohp-metric">
+                  <span data-i18n="ohp.m2k">ARM A1 弹性配额</span>
+                  <strong>4 OCPU · 24 GB</strong>
+                </div>
+                <div class="ohp-metric">
+                  <span data-i18n="ohp.m3k">月度出站流量</span>
+                  <strong>312 GB / 10 TB</strong>
+                </div>
+              </div>
+
+              <div class="ohp-list">
+                <button type="button" class="ohp-row" aria-pressed="true" data-inst-name="jp-tokyo-arm-01" data-inst-spec="ap-tokyo-1 · 138.2.94.xx · 100GB (20 VPU)">
+                  <div class="ohp-row-main">
+                    <b>jp-tokyo-arm-01</b>
+                    <small>VM.Standard.A1.Flex · 4C / 24G · ap-tokyo-1</small>
+                  </div>
+                  <div class="ohp-row-right">
+                    <span class="badge-live">RUNNING</span>
+                    <span class="ohp-ip">138.2.94.xx · IPv6</span>
+                  </div>
+                </button>
+
+                <button type="button" class="ohp-row" aria-pressed="false" data-inst-name="kr-seoul-amd-02" data-inst-spec="ap-seoul-1 · 152.70.41.xx · VNIC × 2">
+                  <div class="ohp-row-main">
+                    <b>kr-seoul-amd-02</b>
+                    <small>VM.Standard.E2.1.Micro · 1C / 1G · ap-seoul-1</small>
+                  </div>
+                  <div class="ohp-row-right">
+                    <span class="badge-live">RUNNING</span>
+                    <span class="ohp-ip">152.70.41.xx · 双网卡</span>
+                  </div>
+                </button>
+
+                <button type="button" class="ohp-row" aria-pressed="false" data-inst-name="us-sjc-arm-boot" data-inst-spec="us-sanjose-1 · AD-1/2/3 自动轮询抢机中">
+                  <div class="ohp-row-main">
+                    <b>us-sjc-arm-boot</b>
+                    <small>VM.Standard.A1.Flex · 4C / 24G · us-sanjose-1</small>
+                  </div>
+                  <div class="ohp-row-right">
+                    <span class="badge-amber" data-i18n="ohp.booting">AD 抢机中</span>
+                    <span class="ohp-ip">Retry #18 · Proxy Pool</span>
+                  </div>
+                </button>
+              </div>
+
+              <div class="ohp-dock">
+                <div class="ohp-dock-head">
+                  <span><span data-i18n="ohp.sel">选中实例：</span><code id="ohpSelName">jp-tokyo-arm-01</code></span>
+                  <span class="mono" id="ohpSelSpec">ap-tokyo-1 · 138.2.94.xx · 100GB (20 VPU)</span>
+                </div>
+                <div class="ohp-actions">
+                  <span class="ohp-chip is-primary" data-i18n="ohp.a1">一键换 IPv4</span>
+                  <span class="ohp-chip" data-i18n="ohp.a2">开启 IPv6</span>
+                  <span class="ohp-chip" data-i18n="ohp.a3">附属 VNIC</span>
+                  <span class="ohp-chip">Web SSH / SFTP</span>
+                  <span class="ohp-chip" data-i18n="ohp.a5">双跳 noVNC</span>
+                  <span class="ohp-chip" data-i18n="ohp.a6">引导卷 VPU</span>
+                </div>
+              </div>
+
+              <div class="ohp-boot-bar">
+                <span><strong data-i18n="ohp.barStrong">ARM 自动抢机引擎：</strong><span data-i18n="ohp.barText">多租户并发轮询 · 成交通知推送 TG</span></span>
+                <code>Port :9856</code>
+              </div>
             </div>
           </div>
         </div>
@@ -154,11 +226,11 @@
       <div class="container">
         <div class="sec-head">
           <div class="sec-head-main">
-            <span class="sec-kicker" data-i18n="cap.kicker">CORE CAPABILITIES</span>
-            <h2 data-i18n="cap.title">一套自托管系统，打通云端全生命周期。</h2>
+            <span class="sec-kicker" data-i18n="cap.kicker">ORACLE CLOUD LIFECYCLE</span>
+            <h2 data-i18n="cap.title">围绕甲骨文云痛点打磨的全能实例面板。</h2>
           </div>
           <p class="sec-lead" data-i18n="cap.lead">
-            告别零散脚本与多窗口切换。围绕真实多租户运维场景构建高内聚的 Web 控制台与自动化引擎。
+            无需登录臃肿缓慢的甲骨文官方后台，也不用东拼西凑抢机脚本，一个自托管面板搞定全部 OCI 实例操作。
           </p>
         </div>
 
@@ -239,12 +311,12 @@
           <div class="sec-head-main">
             <span class="sec-kicker">
               <span class="live-dot" aria-hidden="true"></span>
-              <span data-i18n="con.kicker">INTERACTIVE WORKBENCH</span>
+              <span data-i18n="con.kicker">OCI-START WEB CONSOLE</span>
             </span>
-            <h2 data-i18n="con.title">实时全局视野，一屏纵览多云动态。</h2>
+            <h2 data-i18n="con.title">甲骨文云多租户与实例管理，一屏直达。</h2>
           </div>
           <p class="sec-lead" data-i18n="con.lead">
-            点击下方模块标签，体验新版 Vue 3 控制台的全球商业区域点阵图、并发抢机流、远程终端与三网监控界面。
+            点击下方标签，预览 OCI 商业区域点阵图、ARM 并发抢机实时流、双跳 noVNC 救援终端与换 IP 解析联动。
           </p>
         </div>
 
