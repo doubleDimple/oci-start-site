@@ -10,11 +10,11 @@
 ```text
 oci-start-site/
 ├── assets/
-│   └── hero-sky-1x.jpg / 2x.jpg   # 首屏暮色云海背景图（1x/2x 多分辨率）
-├── index.html                     # 主页面（甲骨文云分栏首屏 + 实时实例管控卡、6 模块功能浏览器、4 组交互数据图表、深蓝工作台预览）
-├── styles.css                     # 视觉样式（#FFFFFF 独立白顶栏 + #08141F 深海军蓝 + #FF6B1F 活力橙 + #2EE59D 在线绿）
-├── app.js                         # 交互脚本（自适应导航、无障碍标签页、24h 三网延迟曲线与月流量图表、Canvas 点阵区域地图、中英双语）
-├── favicon.svg                    # OCI-Start 经线圆环品牌图标
+│   └── shots/shot-1~7.png / -2x.png  # 面板界面截图（来自主项目 README，1x/2x 两档）
+├── index.html                     # 单页：首屏与安装命令、核心功能、界面截图、快速开始、完整功能清单、社区与赞助、FAQ
+├── styles.css                     # 样式（浅色 / 深色主题，主色 #FF6B1F，响应式布局）
+├── app.js                         # 交互（中英文切换、主题切换、截图与部署方式标签页、复制按钮、GitHub Star 与最新版本号）
+├── favicon.svg                    # OCI-Start 品牌图标
 ├── _headers                       # Cloudflare Pages 安全与缓存响应头配置
 ├── .nojekyll                      # GitHub Pages 免 Jekyll 构建标记
 └── README.md                      # 本地预览与 Cloudflare 域名绑定指南

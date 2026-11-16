@@ -860,6 +860,7 @@ pre {
 
 .steps {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: 28px;
   margin: 0;
   padding: 0;
@@ -1198,7 +1199,7 @@ pre {
     padding-block: 40px 64px;
   }
   .hero-inner {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: 8px;
   }
   .hero-image {
@@ -1222,7 +1223,7 @@ pre {
   }
   .start-grid,
   .community {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 
@@ -1232,7 +1233,7 @@ pre {
   }
   .features,
   .feature-list {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
   .sponsors {
     grid-template-columns: repeat(2, minmax(0, 1fr));
