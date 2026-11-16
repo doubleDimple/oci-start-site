@@ -1136,150 +1136,206 @@ button {
 }
 
 /* ==========================================================================
-   4B. Full Implemented Feature Directory (6 Domains · 36+ Verified Features)
+   4B. Interactive Module Feature Explorer (Master-Detail SaaS Layout)
    ========================================================================== */
 
-.gh-repo-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  min-block-size: 40px;
-  padding: 0 16px;
-  border-radius: var(--r-sm);
-  border: 1px solid var(--slate-300);
-  background: var(--white);
-  color: var(--navy-900);
-  font-size: 13.5px;
-  font-weight: 600;
-  transition: border-color 0.16s, color 0.16s;
-}
-
-.gh-repo-btn:hover {
-  border-color: var(--accent);
-  color: var(--accent-hover);
-}
-
-.gh-repo-btn svg {
-  inline-size: 16px;
-  block-size: 16px;
-  flex-shrink: 0;
-}
-
-.feat-domain-grid {
+.mod-explorer {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 22px;
-}
-
-.feat-domain-card {
+  grid-template-columns: 300px minmax(0, 1fr);
   background: var(--white);
   border: 1px solid var(--slate-200);
   border-radius: var(--r-lg);
-  padding: 28px 28px 26px;
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-  box-shadow: 0 4px 20px rgba(8, 20, 31, 0.03);
+  box-shadow: 0 12px 36px rgba(8, 20, 31, 0.05);
+  overflow: hidden;
 }
 
-.feat-domain-head {
+.mod-rail {
+  background: var(--navy-900);
+  padding: 16px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.mod-tab {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
-  padding-block-end: 14px;
-  border-block-end: 1px solid var(--slate-200);
+  gap: 10px;
+  padding: 13px 14px 13px 16px;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.65);
+  text-align: start;
+  cursor: pointer;
+  transition: background-color 0.15s, color 0.15s;
 }
 
-.feat-domain-title {
+.mod-tab:hover {
+  color: var(--white);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.mod-tab[aria-selected="true"] {
+  color: var(--white);
+  background: rgba(255, 107, 31, 0.14);
+}
+
+.mod-tab[aria-selected="true"]::after {
+  content: "";
+  position: absolute;
+  inset-block: 10px;
+  inset-inline-start: 0;
+  border-inline-start: 3px solid var(--accent);
+}
+
+.mod-tab-main {
   display: flex;
   align-items: center;
   gap: 10px;
+  min-inline-size: 0;
 }
 
-.feat-domain-idx {
-  display: inline-grid;
-  place-items: center;
-  inline-size: 28px;
-  block-size: 28px;
-  border-radius: 7px;
-  background: var(--navy-900);
-  color: var(--accent);
+.mod-tab-num {
   font-family: var(--mono);
-  font-size: 12px;
+  font-size: 11.5px;
   font-weight: 700;
+  color: var(--accent);
   flex-shrink: 0;
 }
 
-.feat-domain-title h3 {
+.mod-tab-label {
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.mod-tab-route {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  color: rgba(255, 255, 255, 0.42);
+  flex-shrink: 0;
+}
+
+.mod-panel-wrap {
+  padding: 26px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.mod-panel-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding-block-end: 16px;
+  border-block-end: 1px solid var(--slate-200);
+}
+
+.mod-panel-head h3 {
   margin: 0;
-  font-size: 17.5px;
-  font-weight: 700;
-  letter-spacing: -0.015em;
+  font-size: 19px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
   color: var(--navy-900);
 }
 
-.feat-domain-route {
+.mod-panel-badge {
   font-family: var(--mono);
-  font-size: 11.5px;
-  padding: 3px 8px;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 10px;
   border-radius: 6px;
-  background: var(--slate-100);
-  color: var(--slate-600);
-  white-space: nowrap;
+  background: var(--accent-soft);
+  color: var(--accent-hover);
 }
 
-.feat-list {
+.mod-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.mod-card {
+  padding: 16px 18px;
+  border-radius: var(--r-md);
+  border: 1px solid var(--slate-200);
+  background: var(--slate-50);
+  transition: border-color 0.16s, background-color 0.16s;
+}
+
+.mod-card:hover {
+  border-color: rgba(255, 107, 31, 0.4);
+  background: var(--white);
+}
+
+.mod-card b {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14.5px;
+  font-weight: 700;
+  color: var(--navy-900);
+  margin-block-end: 6px;
+}
+
+.mod-card b::before {
+  content: "";
+  inline-size: 6px;
+  block-size: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+}
+
+.mod-card p {
   margin: 0;
-  padding: 0;
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 11px;
-}
-
-.feat-list li {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  font-size: 13.8px;
-  line-height: 1.6;
+  font-size: 13.2px;
+  line-height: 1.58;
   color: var(--slate-600);
   text-wrap: pretty;
 }
 
-.feat-list li::before {
-  content: "✓";
-  display: inline-grid;
-  place-items: center;
-  inline-size: 18px;
-  block-size: 18px;
-  margin-block-start: 2px;
-  border-radius: 50%;
-  background: var(--accent-soft);
-  color: var(--accent);
-  font-size: 11px;
-  font-weight: 800;
-  flex-shrink: 0;
-}
-
-.feat-list b {
-  color: var(--navy-900);
-  font-weight: 600;
-}
-
-@media (max-width: 920px) {
-  .feat-domain-grid {
+@media (max-width: 960px) {
+  .mod-explorer {
     grid-template-columns: 1fr;
   }
+  .mod-rail {
+    flex-direction: row;
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding: 10px 12px;
+  }
+  .mod-rail::-webkit-scrollbar {
+    display: none;
+  }
+  .mod-tab {
+    flex: none;
+    padding: 10px 14px;
+  }
+  .mod-tab-route {
+    display: none;
+  }
+  .mod-tab[aria-selected="true"]::after {
+    inset-block: auto 0;
+    inset-inline: 10px;
+    border-inline-start: 0;
+    border-block-end: 2.5px solid var(--accent);
+  }
 }
 
-@media (max-width: 540px) {
-  .feat-domain-card {
-    padding: 22px 18px;
+@media (max-width: 640px) {
+  .mod-panel-wrap {
+    padding: 20px 16px;
   }
-  .feat-domain-route {
-    display: none;
+  .mod-cards-grid {
+    grid-template-columns: 1fr;
   }
 }
 
