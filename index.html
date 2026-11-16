@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="zh-CN" id="top">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>OCI-Start — 开源自托管 Oracle Cloud 实例与多云运维工作台</title>
+  <meta name="description" content="OCI-Start 是基于 API 集成的开源自托管云端工作台，涵盖多租户并发开机、45+ 商业区域点阵地图、Web SSH / SFTP、双跳 noVNC 控制台、VNIC/IPv6 管理、Cloudflare / EdgeOne DNS 与 VPS 三网质量监控，私钥 100% 本地 H2 存储。">
+  <meta name="keywords" content="OCI-Start, Oracle Cloud, OCI 面板, 甲骨文云, 自动开机, ARM 抢机, 多租户管理, Cloudflare DNS, EdgeOne DNS, VPS 探针, 三网监控">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="OCI-Start — 开源自托管 Oracle Cloud 实例与多云运维工作台">
+  <meta property="og:description" content="把分散在各个租户里的实例、网络、DNS 与探针监控，收进同一个清爽自托管控制台。私钥本地存储，零远端上传。">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main-content" data-i18n="skip">跳至主要内容</a>
+
+  <!-- ==================== 1. Sticky Header ==================== -->
+  <header class="site-header" id="siteHeader">
+    <div class="container header-inner">
+      <a class="site-logo" href="#top">
+        <img src="./favicon.svg" width="28" height="28" alt="">
+        <span>OCI-Start</span>
+        <span class="logo-badge">Apache-2.0</span>
+      </a>
+
+      <nav class="site-nav" id="siteNav" aria-label="主导航" data-i18n-aria="aria.nav">
+        <button
+          class="menu-button"
+          id="menuBtn"
+          type="button"
+          popovertarget="site-menu"
+          popovertargetaction="toggle"
+          aria-controls="site-menu"
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+            <path d="M4 7h16M4 12h16M4 17h16"/>
+          </svg>
+          <span data-i18n="nav.menu">菜单</span>
+        </button>
+
+        <ul id="site-menu" class="site-menu" popover="auto">
+          <li><a href="#preview" aria-current="true" data-i18n="nav.preview">控制台预览</a></li>
+          <li><a href="#features" data-i18n="nav.features">全景特性</a></li>
+          <li><a href="#security" data-i18n="nav.security">本地隐私</a></li>
+          <li><a href="#deploy" data-i18n="nav.deploy">快速部署</a></li>
+          <li><a href="#sponsors" data-i18n="nav.sponsors">赞助支持</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button type="button" class="lang-toggle" id="langBtn" aria-label="Switch language / 切换语言">EN</button>
+        <a class="gh-pill" href="https://github.com/doubleDimple/oci-start" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2.02c-3.2.7-3.88-1.38-3.88-1.38-.52-1.33-1.28-1.68-1.28-1.68-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.56-.29-5.25-1.28-5.25-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.47.11-3.06 0 0 .97-.31 3.18 1.18a11.02 11.02 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.77.12 3.06.74.81 1.18 1.84 1.18 3.1 0 4.43-2.69 5.4-5.26 5.69.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5z"/>
+          </svg>
+          <span>GitHub</span>
+        </a>
+        <a class="btn-primary btn-sm" href="#deploy" data-i18n="nav.cta">一键部署</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <!-- ==================== 2. Hero Section ==================== -->
+    <section class="hero">
+      <div class="container">
+        <div class="eyebrow">
+          <span class="eyebrow-dot" aria-hidden="true"></span>
+          <span data-i18n="hero.eyebrow">全新 Vue 3 工作台 · 100% 开源自托管</span>
+        </div>
+
+        <h1 data-i18n-html="hero.title">
+          所有云端资源，<span class="accent">一处清爽掌控。</span>
+        </h1>
+
+        <p class="hero-lead" data-i18n="hero.lead">
+          OCI-Start 是专为开发者与运维玩家打造的 Oracle Cloud 实例全生命周期管理平台。把分散在多个租户里的并发开机、区域测速、Web SSH / SFTP、双跳 noVNC 控制台、Cloudflare / EdgeOne DNS 与 VPS 三网质量监测，收进同一个自托管面板。
+        </p>
+
+        <div class="hero-cta-row">
+          <a class="btn-primary" href="#deploy">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M5 12h14M13 6l6 6-6 6"/>
+            </svg>
+            <span data-i18n="hero.ctaPrimary">立即开始部署</span>
+          </a>
+          <a class="btn-secondary" href="https://github.com/doubleDimple/oci-start" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2.02c-3.2.7-3.88-1.38-3.88-1.38-.52-1.33-1.28-1.68-1.28-1.68-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.56-.29-5.25-1.28-5.25-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.47.11-3.06 0 0 .97-.31 3.18 1.18a11.02 11.02 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.77.12 3.06.74.81 1.18 1.84 1.18 3.1 0 4.43-2.69 5.4-5.26 5.69.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5z"/>
+            </svg>
+            <span data-i18n="hero.ctaGithub">浏览 GitHub 源码</span>
+          </a>
+        </div>
+
+        <div class="hero-cmd-wrap">
+          <div class="hero-cmd-code">
+            <span class="hero-cmd-prefix">$</span><code id="cmd-hero">mkdir -p oci-start &amp;&amp; cd oci-start &amp;&amp; wget -O oci-start.sh https://raw.githubusercontent.com/doubleDimple/shell-tools/master/oci-start.sh &amp;&amp; chmod +x oci-start.sh &amp;&amp; ./oci-start.sh start</code>
+          </div>
+          <span class="copy">
+            <button type="button" class="copy-button" command="--copy" commandfor="cmd-hero">
+              <svg class="icon-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+              </svg>
+              <svg class="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M20 6 9 17l-5-5"/>
+              </svg>
+              <span data-i18n="copy.quick">复制命令</span>
+            </button>
+            <span class="tip" role="status"></span>
+          </span>
+        </div>
+
+        <ul class="hero-facts">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            <span data-i18n="hero.fact1">私钥本地 H2 存储 · 零远端上传</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            <span data-i18n="hero.fact2">45+ 公开商业区域点阵视图</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+            <span data-i18n="hero.fact3">内置 Web SSH · SFTP · 双跳 noVNC</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+            <span data-i18n="hero.fact4">一键脚本 / Docker · 默认端口 9856</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ==================== 3. Interactive Vue 3 Console Showcase ==================== -->
+    <section class="showcase-section" id="preview">
+      <div class="container">
+        <div class="tabs-bar-wrap">
+          <div class="tablist-scroller" id="consoleTabs" role="tablist" focusgroup="tablist nomemory" aria-label="控制台核心界面预览" data-i18n-aria="aria.consoleTabs">
+            <button type="button" role="tab" class="tab-btn" id="tab-overview" aria-selected="true" focusgroupstart>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10"/></svg>
+              <span data-i18n="preview.tab1">总览与全球区域地图</span>
+            </button>
+            <button type="button" role="tab" class="tab-btn" id="tab-tenants" aria-selected="false">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              <span data-i18n="preview.tab2">多租户与并发开机</span>
+            </button>
+            <button type="button" role="tab" class="tab-btn" id="tab-instances" aria-selected="false">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+              <span data-i18n="preview.tab3">实例运维 · SSH 与 noVNC</span>
+            </button>
+            <button type="button" role="tab" class="tab-btn" id="tab-dns" aria-selected="false">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+              <span data-i18n="preview.tab4">DNS 解析与三网探针</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="console-frame">
+          <div class="browser-bar">
+            <div class="browser-dots" aria-hidden="true">
+              <span></span><span></span><span></span>
+            </div>
+            <div class="browser-url">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              <span id="browserRoute">http://127.0.0.1:9856/resource/list</span>
+            </div>
+            <span class="browser-status" data-i18n="preview.badge">新版 Vue 3 实时仿真预览</span>
+          </div>
+
+          <div class="oci-shell">
+            <!-- Authentic Dark Sidebar (#1d1d1f) -->
+            <aside class="oci-sidebar" aria-hidden="true">
+              <div class="oci-sb-brand">
+                <svg viewBox="0 0 32 32" fill="none">
+                  <rect width="32" height="32" rx="8" fill="#0d2220"/>
+                  <path d="M16 7.2c3.4 3.2 5.6 7 5.6 10.4A5.6 5.6 0 0 1 16 23.2a5.6 5.6 0 0 1-5.6-5.6c0-3.4 2.2-7.2 5.6-10.4z" fill="#1b8a6a"/>
+                  <path d="M16 11.4c1.6 1.6 2.6 3.3 2.6 4.8a2.6 2.6 0 1 1-5.2 0c0-1.5 1-3.2 2.6-4.8z" fill="#ddf2ed"/>
+                </svg>
+                <div class="oci-sb-brand-text">
+                  <strong>OCI-START</strong>
+                  <span data-i18n="sb.sub">云资源工作台</span>
+                </div>
+              </div>
+
+              <div class="oci-sb-group">
+                <div class="oci-sb-group-label" data-i18n="sb.g1">服务管理</div>
+                <button type="button" class="oci-sb-item is-active" data-preview-target="tab-overview" tabindex="-1">
+                  <span class="oci-sb-dot"></span><span data-i18n="sb.m1">监控与区域地图</span>
+                </button>
+                <button type="button" class="oci-sb-item" data-preview-target="tab-tenants" tabindex="-1">
+                  <span class="oci-sb-dot"></span><span data-i18n="sb.m2">租户与并发开机</span>
+                </button>
+                <button type="button" class="oci-sb-item" data-preview-target="tab-instances" tabindex="-1">
+                  <span class="oci-sb-dot"></span><span data-i18n="sb.m3">OCI 实例与终端</span>
+                </button>
+              </div>
+
+              <div class="oci-sb-group">
+                <div class="oci-sb-group-label" data-i18n="sb.g2">解析与资源监控</div>
+                <button type="button" class="oci-sb-item" data-preview-target="tab-dns" tabindex="-1">
+                  <span class="oci-sb-dot"></span><span data-i18n="sb.m4">CF / EdgeOne &amp; 探针</span>
+                </button>
+              </div>
+
+              <div class="oci-sb-user">
+                <div class="oci-avatar">A</div>
+                <div class="oci-sb-user-meta">
+                  <b>admin</b>
+                  <span data-i18n="sb.role">本地加密会话 · H2</span>
+                </div>
+              </div>
+            </aside>
+
+            <!-- Workspace Main Area -->
+            <div class="oci-main">
+              <div class="oci-topbar">
+                <div class="oci-search-pill">
+                  <span data-i18n="preview.search">快速搜索菜单 / 区域 / 实例…</span>
+                  <kbd>⌘K</kbd>
+                </div>
+                <div class="oci-top-tools">
+                  <span class="oci-chip oci-chip-ok" data-i18n="preview.localDb">本地 H2 已加密</span>
+                </div>
+              </div>
+
+              <div class="tabpanels-stack">
+                <!-- Panel 1: Global Dashboard & Dot-Matrix World Map -->
+                <div role="tabpanel" id="panel-overview" aria-labelledby="tab-overview" tabindex="0">
+                  <div class="panel-inner">
+                    <div class="kpi-grid">
+                      <div class="kpi-card">
+                        <div class="kpi-meta">
+                          <span data-i18n="p1.kpi1">OCI 主租户</span>
+                          <strong>12</strong>
+                          <small data-i18n="p1.kpi1s">PAYG 5 · 普通号 7</small>
+                        </div>
+                        <div class="kpi-icon" aria-hidden="true">
+                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+                        </div>
+                      </div>
+                      <div class="kpi-card">
+                        <div class="kpi-meta">
+                          <span data-i18n="p1.kpi2">运行中实例</span>
+                          <strong>28</strong>
+                          <small data-i18n="p1.kpi2s">ARM A1 × 16 · AMD × 12</small>
+                        </div>
+                        <div class="kpi-icon" aria-hidden="true">
+                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/></svg>
+                        </div>
+                      </div>
+                      <div class="kpi-card">
+                        <div class="kpi-meta">
+                          <span data-i18n="p1.kpi3">公开商业区域</span>
+                          <strong>45</strong>
+                          <small data-i18n="p1.kpi3s">支持浏览器并发测速</small>
+                        </div>
+                        <div class="kpi-icon" aria-hidden="true">
+                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/></svg>
+                        </div>
+                      </div>
+                      <div class="kpi-card">
+                        <div class="kpi-meta">
+                          <span data-i18n="p1.kpi4">ARM 开机记录</span>
+                          <strong>19</strong>
+                          <small data-i18n="p1.kpi4s">Telegram 实时推送</small>
+                        </div>
+                        <div class="kpi-icon" aria-hidden="true">
+                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="ws-card">
+                      <div class="ws-toolbar">
+                        <div class="ws-toolbar-title">
+                          <span data-i18n="p1.mapTitle">全球区域分布与 ARM 开机记录（悬停节点查看区域代码）</span>
+                        </div>
+                        <div class="ws-toolbar-actions">
+                          <button type="button" class="ws-btn-outline" id="mapArcsBtn" data-i18n="p1.arcHide">隐藏连线</button>
+                          <button type="button" class="ws-btn-outline" id="mapMotionBtn" data-i18n="p1.pause">暂停动效</button>
+                          <span class="ws-btn-solid" data-i18n="p1.speedTest">OCI 延迟测试</span>
+                        </div>
+                      </div>
+
+                      <div class="map-stage" id="mapStage">
+                        <canvas id="worldCanvas" role="img" aria-label="Oracle Cloud 全球商业区域点阵分布图" data-i18n-aria="aria.map"></canvas>
+                        <div class="map-tooltip" id="mapTip"></div>
+                      </div>
+
+                      <div class="map-legend">
+                        <div class="map-legend-items">
+                          <span class="legend-dot"><i style="background:#1b8a6a"></i> <span data-i18n="p1.leg1">我的订阅区域 &amp; ARM 记录交集</span></span>
+                          <span class="legend-dot"><i style="background:#0071e3"></i> <span data-i18n="p1.leg2">公开商业区域参考节点</span></span>
+                        </div>
+                        <span data-i18n="p1.mapNote">Canvas 2D 原生渲染 · 零 WebGL 负担</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Panel 2: Multi-Tenant & Concurrent Auto-Boot -->
+                <div role="tabpanel" id="panel-tenants" aria-labelledby="tab-tenants" hidden="until-found">
+                  <div class="panel-inner">
+                    <div class="ws-card">
+                      <div class="ws-toolbar">
+                        <div class="ws-toolbar-title" data-i18n="p2.title">多租户 API 资产与账号画像</div>
+                        <div class="ws-toolbar-actions">
+                          <span class="ws-btn-outline" data-i18n="p2.import">一键导入配置</span>
+                          <span class="ws-btn-outline" data-i18n="p2.quota">配额与审计日志</span>
+                          <span class="ws-btn-solid" data-i18n="p2.newBoot">+ 新建并发开机</span>
+                        </div>
+                      </div>
+                      <div class="ws-table-wrap">
+                        <table class="ws-table">
+                          <thead>
+                            <tr>
+                              <th data-i18n="p2.th1">租户别名</th>
+                              <th data-i18n="p2.th2">主区域 / 订阅数</th>
+                              <th data-i18n="p2.th3">账号类型</th>
+                              <th data-i18n="p2.th4">实例状态</th>
+                              <th data-i18n="p2.th5">API 连通性</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td><b>tokyo-prod-01</b></td>
+                              <td class="mono-val">ap-tokyo-1 (3 regions)</td>
+                              <td><span class="oci-chip oci-chip-ok">PAYG 升级号</span></td>
+                              <td>4 Running · 24 GB ARM</td>
+                              <td><span class="oci-chip oci-chip-ok" data-i18n="common.normal">正常</span></td>
+                            </tr>
+                            <tr>
+                              <td><b>sg-edge-node</b></td>
+                              <td class="mono-val">ap-singapore-1 (2 regions)</td>
+                              <td><span class="oci-chip oci-chip-info">Free Tier</span></td>
+                              <td>2 Running · AMD Micro</td>
+                              <td><span class="oci-chip oci-chip-ok" data-i18n="common.normal">正常</span></td>
+                            </tr>
+                            <tr>
+                              <td><b>sjc-arm-hunter</b></td>
+                              <td class="mono-val">us-sanjose-1 (1 region)</td>
+                              <td><span class="oci-chip oci-chip-info">Free Tier</span></td>
+                              <td data-i18n="p2.queuing">并发抢机执行中…</td>
+                              <td><span class="oci-chip oci-chip-ok" data-i18n="common.normal">正常</span></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+
+                    <div class="terminal-mock">
+                      <div class="terminal-head">
+                        <span data-i18n="p2.logTitle">实时开机任务流 · Task #boot-a1-sjc (VM.Standard.A1.Flex · 4 OCPU / 24 GB)</span>
+                        <span class="term-ok">● SSE Live</span>
+                      </div>
+                      <div><span class="term-dim">[11:02:14]</span> <span class="term-info">[us-sanjose-1 · AD-1]</span> Trying shape VM.Standard.A1.Flex (4C/24G, 100GB Boot Volume)...</div>
+                      <div><span class="term-dim">[11:02:44]</span> <span class="term-warn">[OutOfHostCapacity]</span> AD-1 capacity busy, auto-switching backoff &amp; proxy pool #02...</div>
+                      <div><span class="term-dim">[11:03:15]</span> <span class="term-ok">[SUCCESS]</span> Instance created! Public IPv4: <span class="term-ok">144.24.xx.xx</span> · Telegram Bot notification pushed.</div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Panel 3: Instances, VNIC, Web SSH/SFTP & Dual-Hop noVNC -->
+                <div role="tabpanel" id="panel-instances" aria-labelledby="tab-instances" hidden="until-found">
+                  <div class="panel-inner">
+                    <div class="ws-split">
+                      <div class="ws-card">
+                        <div class="ws-toolbar">
+                          <div class="ws-toolbar-title" data-i18n="p3.instTitle">实例生命周期与多网卡管理</div>
+                          <span class="ws-btn-solid" data-i18n="p3.switchIp">一键换 IP / IPv6</span>
+                        </div>
+                        <div class="ws-table-wrap">
+                          <table class="ws-table">
+                            <thead>
+                              <tr>
+                                <th data-i18n="p3.c1">实例 / 规格</th>
+                                <th data-i18n="p3.c2">公网 IPv4 / IPv6</th>
+                                <th data-i18n="p3.c3">快捷运维</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td><b>tokyo-arm-gw</b><br><small class="mono-val">A1.Flex · 4C24G · 10 VPU</small></td>
+                                <td class="mono-val">138.2.xx.88<br><small>2603:c020:4003::a1</small></td>
+                                <td><span class="oci-chip oci-chip-ok">SSH · SFTP · VNC</span></td>
+                              </tr>
+                              <tr>
+                                <td><b>seoul-amd-01</b><br><small class="mono-val">E2.1.Micro · 1C1G</small></td>
+                                <td class="mono-val">152.70.xx.19<br><small>VNIC × 2 Attached</small></td>
+                                <td><span class="oci-chip oci-chip-info">VNIC · DD 重装</span></td>
+                              </tr>
+                              <tr>
+                                <td><b>fra-backup-db</b><br><small class="mono-val">A1.Flex · 2C12G · 20 VPU</small></td>
+                                <td class="mono-val">130.61.xx.42<br><small>Traffic: 312 GB / 10 TB</small></td>
+                                <td><span class="oci-chip oci-chip-ok">流量 · 引导卷调优</span></td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+
+                      <div class="terminal-mock">
+                        <div class="terminal-head">
+                          <span>Web SSH + SFTP &amp; Oracle noVNC</span>
+                          <span class="term-ok">RFB Connected</span>
+                        </div>
+                        <div><span class="term-ok">ubuntu@tokyo-arm-gw:~$</span> uname -a</div>
+                        <div class="term-dim">Linux tokyo-arm-gw 6.8.0-1014-oracle aarch64 GNU/Linux</div>
+                        <div><span class="term-ok">ubuntu@tokyo-arm-gw:~$</span> ip -6 addr show ens3 | grep global</div>
+                        <div class="term-info">inet6 2603:c020:4003::a1/128 scope global</div>
+                        <div class="term-dim">──────────────────────────────────────</div>
+                        <div><span class="term-ok">✓ SFTP:</span> uploaded <span class="term-info">nginx-prod.conf</span> (14.2 KB)</div>
+                        <div><span class="term-ok">✓ noVNC:</span> Dual-hop SSH tunnel bound on 127.0.0.1</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Panel 4: Cloudflare / EdgeOne DNS & Multi-Cloud VPS 3-ISP Probe -->
+                <div role="tabpanel" id="panel-dns" aria-labelledby="tab-dns" hidden="until-found">
+                  <div class="panel-inner">
+                    <div class="ws-card">
+                      <div class="ws-toolbar">
+                        <div class="ws-toolbar-title" data-i18n="p4.dnsTitle">Cloudflare &amp; Tencent EdgeOne 域名解析联动</div>
+                        <div class="ws-toolbar-actions">
+                          <span class="oci-chip oci-chip-ok">Cloudflare API</span>
+                          <span class="oci-chip oci-chip-info">Tencent EdgeOne</span>
+                          <span class="ws-btn-solid" data-i18n="p4.addRecord">+ 添加解析记录</span>
+                        </div>
+                      </div>
+                      <div class="ws-table-wrap">
+                        <table class="ws-table">
+                          <thead>
+                            <tr>
+                              <th data-i18n="p4.d1">服务商</th>
+                              <th data-i18n="p4.d2">主机记录</th>
+                              <th data-i18n="p4.d3">类型 / 记录值</th>
+                              <th data-i18n="p4.d4">代理与加速状态</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td><b>Cloudflare</b></td>
+                              <td class="mono-val">jp-node.example.com</td>
+                              <td class="mono-val">A → 138.2.xx.88</td>
+                              <td><span class="oci-chip oci-chip-warn">Proxied (CDN 开启)</span></td>
+                            </tr>
+                            <tr>
+                              <td><b>EdgeOne</b></td>
+                              <td class="mono-val">sg-v6.example.com</td>
+                              <td class="mono-val">AAAA → 2603:c020:4003::a1</td>
+                              <td><span class="oci-chip oci-chip-ok">全球边缘加速生效</span></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+
+                    <div class="ws-card">
+                      <div class="ws-toolbar">
+                        <div class="ws-toolbar-title" data-i18n="p4.vpsTitle">跨厂商 VPS 资源与电信 / 联通 / 移动三网质量监测</div>
+                        <span class="oci-chip oci-chip-ok" data-i18n="p4.probeLive">ICMP / TCP / HTTP 探针在线</span>
+                      </div>
+                      <div class="ws-table-wrap">
+                        <table class="ws-table">
+                          <thead>
+                            <tr>
+                              <th data-i18n="p4.v1">节点名称</th>
+                              <th data-i18n="p4.v2">CPU / 内存</th>
+                              <th data-i18n="p4.v3">中国电信 (CT)</th>
+                              <th data-i18n="p4.v4">中国联通 (CU)</th>
+                              <th data-i18n="p4.v5">中国移动 (CM)</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td><b>OCI · Tokyo ARM</b></td>
+                              <td class="mono-val">14% · 3.1 / 24 GiB</td>
+                              <td><span class="oci-chip oci-chip-ok">48 ms · 0.0%</span></td>
+                              <td><span class="oci-chip oci-chip-ok">53 ms · 0.0%</span></td>
+                              <td><span class="oci-chip oci-chip-ok">61 ms · 0.0%</span></td>
+                            </tr>
+                            <tr>
+                              <td><b>OCI · San Jose</b></td>
+                              <td class="mono-val">9% · 1.8 / 12 GiB</td>
+                              <td><span class="oci-chip oci-chip-ok">139 ms · 0.0%</span></td>
+                              <td><span class="oci-chip oci-chip-ok">132 ms · 0.0%</span></td>
+                              <td><span class="oci-chip oci-chip-warn">158 ms · 1.2%</span></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div><!-- /.tabpanels-stack -->
+            </div><!-- /.oci-main -->
+          </div><!-- /.oci-shell -->
+        </div><!-- /.console-frame -->
+      </div>
+    </section>
+
+    <!-- ==================== 4. Apple Bento Full Capability Grid ==================== -->
+    <section class="page-section bg-white" id="features">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag" data-i18n="feat.tag">Capabilities</span>
+          <h2 data-i18n="feat.title">从并发抢机到日常运维，一步到位。</h2>
+          <p class="section-lead" data-i18n="feat.lead">
+            告别零散脚本与多窗口切换。新版 OCI-Start 围绕真实云主机管理场景重新打磨了整套前后端能力，让复杂的多租户云操作变得像使用桌面软件一样直觉。
+          </p>
+        </div>
+
+        <div class="bento-grid">
+          <!-- Card 1 (Span 6) -->
+          <article class="bento-card span-6">
+            <div class="bento-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            </div>
+            <h3 data-i18n="feat.c1t">多租户资产透视与高并发开机</h3>
+            <p data-i18n="feat.c1d">
+              支持批量导入与管理多个 Oracle Cloud 租户 API，直观呈现 PAYG 升级号 / 普通号画像、订阅区域、服务配额、账单费用与审计日志；支持多 API 多实例并发开机与跨可用性域重试，实时流式查看开机日志。
+            </p>
+            <div class="bento-tags">
+              <span data-i18n="feat.c1b1">并发抢机调度</span>
+              <span data-i18n="feat.c1b2">配额与账单费用</span>
+              <span data-i18n="feat.c1b3">租户代理池绑定</span>
+            </div>
+          </article>
+
+          <!-- Card 2 (Span 6) -->
+          <article class="bento-card span-6">
+            <div class="bento-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+            </div>
+            <h3 data-i18n="feat.c2t">Web SSH、SFTP 与双跳 noVNC 救援控制台</h3>
+            <p data-i18n="feat.c2d">
+              内置流畅的浏览器 SSH 终端，支持 ANSI 色彩、窗口自适应缩放、命令收藏与 SFTP 文件直传下载；同时打通 Oracle Cloud 双跳 SSH 隧道与 Websockify 代理，机器失联或重装系统时可在网页端直接操控 VNC 画面。
+            </p>
+            <div class="bento-tags">
+              <span data-i18n="feat.c2b1">Web SSH + SFTP</span>
+              <span data-i18n="feat.c2b2">双跳 noVNC 画面</span>
+              <span data-i18n="feat.c2b3">一键 DD 重装</span>
+            </div>
+          </article>
+
+          <!-- Card 3 (Span 4) -->
+          <article class="bento-card">
+            <div class="bento-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+            </div>
+            <h3 data-i18n="feat.c3t">VNIC 多网卡与 IPv4 / IPv6 切换</h3>
+            <p data-i18n="feat.c3d">
+              可视化管理主辅虚拟网卡（VNIC）、安全列表放行规则，支持一键更换公网 IPv4、挂载 IPv6 地址以及在线修改引导卷容量与 VPU 性能档位。
+            </p>
+            <div class="bento-tags">
+              <span>VNIC</span>
+              <span>IPv4 / IPv6</span>
+              <span data-i18n="feat.c3b3">引导卷 VPU</span>
+            </div>
+          </article>
+
+          <!-- Card 4 (Span 4) -->
+          <article class="bento-card">
+            <div class="bento-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            </div>
+            <h3 data-i18n="feat.c4t">Cloudflare &amp; EdgeOne 双引擎 DNS</h3>
+            <p data-i18n="feat.c4d">
+              原生集成 Cloudflare 与腾讯云 EdgeOne 域名服务，支持全量分页同步、A/AAAA/CNAME 记录增删改与 CDN 代理开关，实例换 IP 后即刻更新解析。
+            </p>
+            <div class="bento-tags">
+              <span>Cloudflare</span>
+              <span>Tencent EdgeOne</span>
+            </div>
+          </article>
+
+          <!-- Card 5 (Span 4) -->
+          <article class="bento-card">
+            <div class="bento-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+            </div>
+            <h3 data-i18n="feat.c5t">VPS 探针与三网质量实时看盘</h3>
+            <p data-i18n="feat.c5d">
+              跨厂商统一纳管你的所有 VPS 主机，一键部署轻量探针，实时展示 CPU / 内存 / 磁盘 / 流量与电信、联通、移动三网 ICMP / TCP / HTTP 延迟丢包。
+            </p>
+            <div class="bento-tags">
+              <span data-i18n="feat.c5b1">电信 / 联通 / 移动</span>
+              <span data-i18n="feat.c5b2">趋势钻取</span>
+            </div>
+          </article>
+
+          <!-- Card 6 (Span 4) -->
+          <article class="bento-card">
+            <div class="bento-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4"/></svg>
+            </div>
+            <h3 data-i18n="feat.c6t">45+ 区域点阵图与浏览器测速</h3>
+            <p data-i18n="feat.c6d">
+              内置核对后的公开商业区域坐标目录，叠加历史 ARM 开机记录与我的订阅区域；支持从本地浏览器发起有界并发延迟实测，选区开服心中有数。
+            </p>
+            <div class="bento-tags">
+              <span data-i18n="feat.c6b1">点阵地图</span>
+              <span data-i18n="feat.c6b2">并发测速</span>
+            </div>
+          </article>
+
+          <!-- Card 7 (Span 4) -->
+          <article class="bento-card">
+            <div class="bento-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+            </div>
+            <h3 data-i18n="feat.c7t">对象存储、邮件与效率工具箱</h3>
+            <p data-i18n="feat.c7d">
+              一站式整合 OCI 对象存储桶浏览上传、电子邮件投递配置、TOTP 二步验证码备份与二维码查看、富文本备忘录及全库加密备份迁移。
+            </p>
+            <div class="bento-tags">
+              <span>Object Storage</span>
+              <span>MFA 备份</span>
+              <span data-i18n="feat.c7b3">加密迁移</span>
+            </div>
+          </article>
+
+          <!-- Card 8 (Span 4) -->
+          <article class="bento-card">
+            <div class="bento-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+            </div>
+            <h3 data-i18n="feat.c8t">Telegram 推送与开发者 OpenAPI</h3>
+            <p data-i18n="feat.c8d">
+              支持 Telegram 机器人与多渠道 Webhook 实时推送抢机与监控通知（不留存任何账号凭据）；内置细粒度 API Token 管理与交互式接口文档。
+            </p>
+            <div class="bento-tags">
+              <span>Telegram Bot</span>
+              <span>Webhook</span>
+              <span>OpenAPI</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 5. Local-First Privacy & Security ==================== -->
+    <section class="page-section" id="security">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag" data-i18n="sec.tag">Privacy &amp; Architecture</span>
+          <h2 data-i18n="sec.title">你的云端密钥，只留在你自己的服务器里。</h2>
+          <p class="section-lead" data-i18n="sec.lead">
+            云账号 API 私钥关乎核心资产安全。OCI-Start 坚持自托管本地优先架构，代码完全开源透明，拒绝任何黑盒云端代管。
+          </p>
+        </div>
+
+        <div class="arch-diagram">
+          <div class="arch-node">
+            <span class="arch-node-badge" data-i18n="sec.n1b">终端访问</span>
+            <strong data-i18n="sec.n1t">你的桌面或移动浏览器</strong>
+            <span data-i18n="sec.n1d">RSA 登录加密传输 · TOTP 多因素认证 · 自适应桌面与 iOS 移动布局</span>
+          </div>
+
+          <div class="arch-arrow" aria-hidden="true">
+            <span>HTTPS / WSS</span>
+            <span>───▶</span>
+          </div>
+
+          <div class="arch-node is-core">
+            <span class="arch-node-badge" data-i18n="sec.n2b">100% 自托管核心</span>
+            <strong data-i18n="sec.n2t">你的私有服务器 (OCI-Start + 本地 H2)</strong>
+            <span data-i18n="sec.n2d">API 私钥与配置仅持久化在本地 H2 数据库 · 支持可信反向代理与异常 IP 自动封禁</span>
+          </div>
+
+          <div class="arch-arrow" aria-hidden="true">
+            <span>Official SDK</span>
+            <span>───▶</span>
+          </div>
+
+          <div class="arch-node">
+            <span class="arch-node-badge" data-i18n="sec.n3b">官方直连</span>
+            <strong data-i18n="sec.n3t">Oracle Cloud / Cloudflare / EdgeOne</strong>
+            <span data-i18n="sec.n3d">直接请求云厂商官方 API 端点（可选配独立 SOCKS5 / HTTP 租户代理），零第三方中转</span>
+          </div>
+        </div>
+
+        <div class="security-grid">
+          <div class="security-card">
+            <h3 data-i18n="sec.c1t">私钥零上传承诺</h3>
+            <p data-i18n="sec.c1d">租户 `.pem` 私钥、DNS 密钥及备份材料全部保存在你部署机器的本地数据库中；Telegram 机器人仅用于推送开机结果消息，绝不上传或留存账号凭据。</p>
+          </div>
+          <div class="security-card">
+            <h3 data-i18n="sec.c2t">严格的反向代理与防爆破保护</h3>
+            <p data-i18n="sec.c2d">默认仅信任真实物理连接来源 IP，支持精细化配置 `client-ip.trusted-proxies` 从右向左剥离可信代理链，防止伪造 `X-Forwarded-For` 绕过登录封禁。</p>
+          </div>
+          <div class="security-card">
+            <h3 data-i18n="sec.c3t">加密迁移与完整性校验</h3>
+            <p data-i18n="sec.c3d">换机重装时可一键导出全量加密备份包，导入前自动执行结构与关联主键完整性预检，事务级原子恢复，杜绝半成品脏数据。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 6. Quick Deployment Section ==================== -->
+    <section class="page-section bg-white" id="deploy">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag" data-i18n="dep.tag">Quick Start</span>
+          <h2 data-i18n="dep.title">三分钟完成私有化部署。</h2>
+          <p class="section-lead" data-i18n="dep.lead">
+            提供官方一键维护脚本与 Docker 容器两种开箱即用方案。部署完成后浏览器访问 <code class="mono-val">http://your-ip:9856</code> 即可登录工作台。
+          </p>
+        </div>
+
+        <div class="req-pills">
+          <span class="req-pill"><b data-i18n="dep.r1k">运行环境：</b><span>Java 8+</span></span>
+          <span class="req-pill"><b data-i18n="dep.r2k">推荐系统：</b><span>Debian / Ubuntu Linux</span></span>
+          <span class="req-pill"><b data-i18n="dep.r3k">默认端口：</b><span class="mono-val">9856</span></span>
+          <span class="req-pill"><b data-i18n="dep.r4k">容器支持：</b><span>Docker Ready</span></span>
+        </div>
+
+        <div class="tabs-bar-wrap">
+          <div class="tablist-scroller" id="deployTabs" role="tablist" focusgroup="tablist nomemory" aria-label="部署方案选择" data-i18n-aria="aria.deployTabs">
+            <button type="button" role="tab" class="tab-btn" id="dtab-script" aria-selected="true" focusgroupstart data-i18n="dep.tab1">方式一：一键脚本部署（推荐）</button>
+            <button type="button" role="tab" class="tab-btn" id="dtab-docker" aria-selected="false" data-i18n="dep.tab2">方式二：Docker 容器部署</button>
+            <button type="button" role="tab" class="tab-btn" id="dtab-nginx" aria-selected="false" data-i18n="dep.tab3">进阶：Nginx 与 noVNC 反向代理</button>
+          </div>
+        </div>
+
+        <div class="tabpanels-stack">
+          <!-- Deploy Tab 1: Script -->
+          <div role="tabpanel" id="deploy-script" aria-labelledby="dtab-script" tabindex="0">
+            <div class="deploy-card-inner">
+              <div class="deploy-note">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+                <span data-i18n="dep.scriptNote">提示：若系统尚未安装 JDK，可先执行 sudo apt update &amp;&amp; sudo apt install default-jdk。新版本会自动检测并安装 Redis，如本机已有 Redis 请提前评估冲突。</span>
+              </div>
+
+              <div class="code-window">
+                <div class="code-window-bar">
+                  <span class="code-window-title">bash — install &amp; lifecycle</span>
+                  <span class="copy copy-dark">
+                    <button type="button" class="copy-button" command="--copy" commandfor="code-script">
+                      <svg class="icon-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                      <svg class="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                      <span data-i18n="copy.script">复制脚本</span>
+                    </button>
+                    <span class="tip" role="status"></span>
+                  </span>
+                </div>
+                <pre><code id="code-script"># 创建工作目录并下载安装脚本
+mkdir -p oci-start &amp;&amp; cd oci-start
+wget -O oci-start.sh https://raw.githubusercontent.com/doubleDimple/shell-tools/master/oci-start.sh
+chmod +x oci-start.sh
+
+# 一键安装并启动（默认监听 9856 端口）
+./oci-start.sh start
+
+# 日常运维常用命令：
+# ./oci-start.sh status  | restart | update | stop | uninstall</code></pre>
+              </div>
+            </div>
+          </div>
+
+          <!-- Deploy Tab 2: Docker -->
+          <div role="tabpanel" id="deploy-docker" aria-labelledby="dtab-docker" hidden="until-found">
+            <div class="deploy-card-inner">
+              <div class="deploy-note">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+                <span data-i18n="dep.dockerNote">容器化隔离部署，安装完成后同样通过 http://your-ip:9856 访问控制台。</span>
+              </div>
+
+              <div class="code-window">
+                <div class="code-window-bar">
+                  <span class="code-window-title">bash — docker.sh</span>
+                  <span class="copy copy-dark">
+                    <button type="button" class="copy-button" command="--copy" commandfor="code-docker">
+                      <svg class="icon-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                      <svg class="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                      <span data-i18n="copy.docker">复制 Docker 命令</span>
+                    </button>
+                    <span class="tip" role="status"></span>
+                  </span>
+                </div>
+                <pre><code id="code-docker">mkdir -p oci-start-docker &amp;&amp; cd oci-start-docker
+
+wget -O docker.sh https://raw.githubusercontent.com/doubleDimple/shell-tools/master/docker.sh
+chmod +x docker.sh
+
+# 一键安装容器
+./docker.sh install
+
+# 查看容器状态与实时日志：
+# docker ps -a
+# docker logs -f oci-start</code></pre>
+              </div>
+            </div>
+          </div>
+
+          <!-- Deploy Tab 3: Nginx + noVNC WebSocket -->
+          <div role="tabpanel" id="deploy-nginx" aria-labelledby="dtab-nginx" hidden="until-found">
+            <div class="deploy-card-inner">
+              <div class="deploy-note">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+                <span data-i18n="dep.nginxNote">使用同机 Nginx / 宝塔绑定 HTTPS 域名时，请在应用配置中设置 server.forward-headers-strategy: none 与 client-ip.trusted-proxies: "127.0.0.1/32,::1/128"，并补齐下方 WebSocket 规则以支持 noVNC 控制台。</span>
+              </div>
+
+              <div class="code-window">
+                <div class="code-window-bar">
+                  <span class="code-window-title">nginx.conf — HTTPS &amp; noVNC Websockify</span>
+                  <span class="copy copy-dark">
+                    <button type="button" class="copy-button" command="--copy" commandfor="code-nginx">
+                      <svg class="icon-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                      <svg class="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                      <span data-i18n="copy.nginx">复制 Nginx 配置</span>
+                    </button>
+                    <span class="tip" role="status"></span>
+                  </span>
+                </div>
+                <pre><code id="code-nginx">location / {
+    proxy_pass http://127.0.0.1:9856;
+    proxy_set_header Host $host;
+    proxy_set_header X-Forwarded-For $remote_addr;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-Proto $scheme;
+}
+
+# VNC 控制台 WebSocket 转发规则
+location ~ ^/websockify/(\d+)$ {
+    proxy_pass http://127.0.0.1:$1;
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection "upgrade";
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_read_timeout 86400;
+}</code></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 7. Sponsors & Compliance Disclaimer ==================== -->
+    <section class="page-section" id="sponsors">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag" data-i18n="sp.tag">Sponsors &amp; Community</span>
+          <h2 data-i18n="sp.title">感谢生态伙伴与开源社区的持续支持。</h2>
+          <p class="section-lead" data-i18n="sp.lead">
+            欢迎前往 GitHub 提交 Issue、PR 或点亮一颗 Star，共同完善这款开源云端运维工具。
+          </p>
+        </div>
+
+        <div class="sponsors-grid">
+          <a class="sponsor-card" href="https://sponsorship.forztn.com/github/doubleDimple/oci-start" target="_blank" rel="noopener noreferrer">
+            <strong>ForZTN</strong>
+            <span data-i18n="sp.s1">项目赞助支持</span>
+          </a>
+          <a class="sponsor-card" href="https://yxvm.com/aff.php?aff=762" target="_blank" rel="noopener noreferrer">
+            <strong>YxVM</strong>
+            <span data-i18n="sp.s2">服务器资源支持</span>
+          </a>
+          <a class="sponsor-card" href="https://github.com/NodeSeekDev/NodeSupport" target="_blank" rel="noopener noreferrer">
+            <strong>NodeSeek</strong>
+            <span data-i18n="sp.s3">开发者与主机社区论坛</span>
+          </a>
+          <a class="sponsor-card" href="https://dartnode.com" target="_blank" rel="noopener noreferrer">
+            <strong>DartNode</strong>
+            <span data-i18n="sp.s4">VPS 基础设施提供商</span>
+          </a>
+        </div>
+
+        <a class="sponsor-featured" href="https://edgeone.ai/zh?from=github" target="_blank" rel="noopener noreferrer">
+          <div class="sponsor-featured-meta">
+            <strong>Tencent EdgeOne</strong>
+            <span data-i18n="sp.eo">CDN 边缘加速与安全防护能力支持 · 同时已在 OCI-Start 解析管理模块原生集成</span>
+          </div>
+          <span class="edgeone-badge">
+            <span data-i18n="sp.visitEo">了解 Tencent EdgeOne →</span>
+          </span>
+        </a>
+
+        <div class="disclaimer-box">
+          <h3>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            <span data-i18n="disc.title">开源操守与免责声明</span>
+          </h3>
+          <p data-i18n="disc.body">
+            本项目完全开源，仅用于技术测试、学习与研究。严禁任何人在修改本项目后引导他人部署以窃取云账号信息。使用者须自行遵守所在地区法律法规及云服务商条款，一切使用后果由使用者自行承担，维护者对使用本项目或相关脚本可能引发的任何问题（包括但不限于数据或资产损失）概不负责。
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==================== 8. Footer ==================== -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>
+        <strong>OCI-Start</strong> · Made with care by
+        <a href="https://github.com/doubleDimple" target="_blank" rel="noopener noreferrer">@doubleDimple</a>
+        · Apache-2.0 License
+      </div>
+      <div class="footer-links">
+        <a href="https://github.com/doubleDimple/oci-start" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://github.com/doubleDimple/oci-start/releases" target="_blank" rel="noopener noreferrer">Releases</a>
+        <a href="https://github.com/doubleDimple/oci-start/issues" target="_blank" rel="noopener noreferrer">Issues</a>
+        <a href="https://github.com/doubleDimple/oci-start/blob/master/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer" data-i18n="foot.contrib">参与贡献</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="./app.js" defer></script>
+</body>
+</html>
