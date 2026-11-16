@@ -29,6 +29,7 @@
       "nav.home": "首页",
       "nav.cap": "核心亮点",
       "nav.all": "功能说明",
+      "nav.charts": "数据图表",
       "nav.console": "面板预览",
       "nav.security": "密钥安全",
       "nav.deploy": "一键部署",
@@ -162,6 +163,43 @@
       "dir.d6c5d": "提供宿主机 CPU/温度/内存/磁盘/网卡监控、SSE 实时系统日志流、细粒度开发者 API Token 配置与在线接口文档。",
       "dir.d6c6t": "自定义换肤引擎与手机 iOS 适配",
       "dir.d6c6d": "支持深浅色模式、侧栏与内容区独立取色换肤、中英双语切换，以及针对手机端专门设计的 iOS 分组列表交互界面。",
+      "ch.kicker": "VISUAL TELEMETRY & ANALYTICS",
+      "ch.title": "多维数据图表，让每一份配额与延迟一目了然。",
+      "ch.lead": "还原面板内置的真实图表能力：三网延迟历史钻取、10TB 月流量预警柱状图、OCI 主租户画像环形图与商业区域实测对比。",
+      "ch.c1t": "VPS 电信 / 联通 / 移动 24h 延迟曲线",
+      "ch.c1d": "移动鼠标查看各时段三网实测耗时，支持切换区域节点",
+      "ch.n1": "东京 A1",
+      "ch.n2": "圣何塞 A1",
+      "ch.n3": "法兰克福",
+      "ch.ct": "电信",
+      "ch.cu": "联通",
+      "ch.cm": "移动",
+      "ch.c2t": "OCI 租户月度出入站流量与预警阈值",
+      "ch.c2d": "对照每月 10 TB 免费出站额度，支持自定义预警与超额自动关机",
+      "ch.c2badge": "预警线: 8.5 TB",
+      "ch.out": "出站",
+      "ch.in": "入站",
+      "ch.rem": "免费余量",
+      "ch.m6": "06月",
+      "ch.m7": "07月",
+      "ch.m8": "08月",
+      "ch.m9": "09月",
+      "ch.m10": "10月",
+      "ch.m11": "11月",
+      "ch.c3t": "OCI 主租户账号画像与存活天数统计",
+      "ch.c3d": "对应面板「业务总览 → 租户画像」：升级号/免费号占比与老号分布",
+      "ch.c3badge": "多区号: 37.5%",
+      "ch.c3total": "OCI 主租户",
+      "ch.p1": "PAYG 升级账号",
+      "ch.p2": "Free Tier 普通免费号",
+      "ch.p3": "存活 > 1 年稳态老号",
+      "ch.c4t": "热门甲骨文区域浏览器延迟与抢机热度",
+      "ch.c4d": "结合面板「OCI 延迟测试」实测耗时与区域历史 ARM 开机记录",
+      "ch.r1": "日本 · 东京",
+      "ch.r2": "日本 · 大阪",
+      "ch.r3": "韩国 · 首尔",
+      "ch.r4": "新加坡",
+      "ch.r5": "美国 · 圣何塞",
       "con.kicker": "OCI-START WEB CONSOLE",
       "con.title": "甲骨文云多租户与实例管理，一屏直达。",
       "con.lead": "点击下方标签，预览 OCI 商业区域点阵图、ARM 并发抢机实时流、双跳 noVNC 救援终端与换 IP 解析联动。",
@@ -237,6 +275,7 @@
       "nav.home": "Home",
       "nav.cap": "Highlights",
       "nav.all": "All Features",
+      "nav.charts": "Analytics",
       "nav.console": "Live Panel",
       "nav.security": "Key Safety",
       "nav.deploy": "Deploy",
@@ -370,6 +409,43 @@
       "dir.d6c5d": "Server CPU/temp/RAM/disk/NIC dashboard, real-time SSE system logs, scoped developer API tokens, and interactive API docs.",
       "dir.d6c6t": "Theme Engine & Mobile iOS Layout",
       "dir.d6c6d": "Light/dark modes, custom sidebar & content palettes, EN/ZH i18n, and an iOS-style grouped mobile interface.",
+      "ch.kicker": "VISUAL TELEMETRY & ANALYTICS",
+      "ch.title": "Rich built-in charts across quotas, traffic, and ISP latency.",
+      "ch.lead": "Mirrors OCI-Start's built-in analytics: 24h tri-ISP latency drill-downs, 10TB traffic auto-stop bars, primary tenant profile rings, and regional benchmarks.",
+      "ch.c1t": "24h Tri-ISP Latency Trend (CT / CU / CM)",
+      "ch.c1d": "Scrub across hours to inspect carrier latency and switch OCI nodes",
+      "ch.n1": "Tokyo A1",
+      "ch.n2": "San Jose A1",
+      "ch.n3": "Frankfurt",
+      "ch.ct": "CT",
+      "ch.cu": "CU",
+      "ch.cm": "CM",
+      "ch.c2t": "Monthly OCI Bandwidth & Auto-Stop Threshold",
+      "ch.c2d": "Grouped outbound/inbound bars against OCI's 10 TB monthly free tier",
+      "ch.c2badge": "Alert: 8.5 TB",
+      "ch.out": "Outbound",
+      "ch.in": "Inbound",
+      "ch.rem": "Free Left",
+      "ch.m6": "Jun",
+      "ch.m7": "Jul",
+      "ch.m8": "Aug",
+      "ch.m9": "Sep",
+      "ch.m10": "Oct",
+      "ch.m11": "Nov",
+      "ch.c3t": "Primary OCI Tenant Profile & Account Age",
+      "ch.c3d": "Mirrors Business Overview: PAYG vs. Free Tier & >1yr survival share",
+      "ch.c3badge": "Multi-Region: 37.5%",
+      "ch.c3total": "Primary Tenants",
+      "ch.p1": "PAYG Upgraded",
+      "ch.p2": "Free Tier Accounts",
+      "ch.p3": "Active > 1 Year",
+      "ch.c4t": "Popular OCI Regions: Browser Latency & ARM Boots",
+      "ch.c4d": "Combines bounded browser speed-test latency with historical ARM boot records",
+      "ch.r1": "Japan · Tokyo",
+      "ch.r2": "Japan · Osaka",
+      "ch.r3": "Korea · Seoul",
+      "ch.r4": "Singapore",
+      "ch.r5": "US · San Jose",
       "con.kicker": "OCI-START WEB CONSOLE",
       "con.title": "Every Oracle Cloud tenant and VM in one view.",
       "con.lead": "Explore the OCI commercial region dot-map, live ARM auto-boot stream, dual-hop noVNC rescue shell, and DNS sync.",
@@ -502,7 +578,7 @@
   }
 
   if (navLinks.length && "IntersectionObserver" in window) {
-    var trackedIds = ["#capabilities", "#features-all", "#console", "#security", "#deploy"];
+    var trackedIds = ["#capabilities", "#features-all", "#analytics", "#console", "#deploy"];
     var spyObs = new IntersectionObserver(function (entries) {
       if (window.scrollY < 240) {
         setActiveNavHref("#top");
@@ -1062,6 +1138,159 @@
       if (ohpSelSpec) ohpSelSpec.textContent = row.getAttribute("data-inst-spec") || "";
     });
   });
+
+  /* 6B. Interactive Telemetry Charts (24h Tri-ISP Spline + Monthly Traffic Bars) */
+  var ISP_DATA = {
+    tokyo: {
+      min: 30, max: 120,
+      hours: ["00:00","02:00","04:00","06:00","08:00","10:00","12:00","14:00","16:00","18:00","20:00","22:00","24:00"],
+      ct: [45, 43, 42, 43, 45, 46, 47, 48, 50, 52, 56, 51, 46],
+      cu: [50, 49, 48, 48, 50, 51, 52, 53, 55, 58, 63, 57, 51],
+      cm: [58, 56, 55, 56, 58, 59, 60, 62, 65, 69, 75, 67, 60]
+    },
+    sjc: {
+      min: 110, max: 230,
+      hours: ["00:00","02:00","04:00","06:00","08:00","10:00","12:00","14:00","16:00","18:00","20:00","22:00","24:00"],
+      ct: [136, 133, 131, 132, 135, 138, 140, 142, 148, 158, 172, 154, 139],
+      cu: [130, 128, 127, 128, 130, 131, 133, 135, 139, 146, 156, 143, 132],
+      cm: [152, 148, 146, 147, 150, 154, 156, 160, 168, 182, 198, 176, 158]
+    },
+    fra: {
+      min: 130, max: 250,
+      hours: ["00:00","02:00","04:00","06:00","08:00","10:00","12:00","14:00","16:00","18:00","20:00","22:00","24:00"],
+      ct: [158, 154, 152, 153, 156, 159, 162, 165, 172, 184, 198, 179, 161],
+      cu: [166, 162, 160, 161, 164, 167, 170, 173, 180, 191, 206, 186, 169],
+      cm: [178, 174, 171, 173, 176, 180, 183, 187, 196, 212, 228, 204, 182]
+    }
+  };
+
+  var ispSvg = document.getElementById("ispChartSvg");
+  if (ispSvg) {
+    var activeNodeKey = "tokyo";
+    var activeIdx = 10;
+    var X_START = 36, X_END = 508, Y_TOP = 20, Y_BOT = 155;
+    var lineCt = document.getElementById("ispLineCt");
+    var lineCu = document.getElementById("ispLineCu");
+    var lineCm = document.getElementById("ispLineCm");
+    var areaCt = document.getElementById("ispAreaCt");
+    var cross = document.getElementById("ispCrosshair");
+    var dotCt = document.getElementById("ispDotCt");
+    var dotCu = document.getElementById("ispDotCu");
+    var dotCm = document.getElementById("ispDotCm");
+    var timeLbl = document.getElementById("ispTimeLabel");
+    var valCt = document.getElementById("ispValCt");
+    var valCu = document.getElementById("ispValCu");
+    var valCm = document.getElementById("ispValCm");
+    var yMaxEl = document.getElementById("ispYMax");
+    var yMid1El = document.getElementById("ispYMid1");
+    var yMid2El = document.getElementById("ispYMid2");
+    var yMinEl = document.getElementById("ispYMin");
+
+    function xForIdx(i, total) {
+      return X_START + (i / (total - 1)) * (X_END - X_START);
+    }
+
+    function yForVal(v, min, max) {
+      return Y_BOT - ((v - min) / (max - min)) * (Y_BOT - Y_TOP);
+    }
+
+    function buildSmoothPath(vals, min, max) {
+      var pts = vals.map(function (v, i) {
+        return [xForIdx(i, vals.length), yForVal(v, min, max)];
+      });
+      var d = "M " + pts[0][0].toFixed(1) + " " + pts[0][1].toFixed(1);
+      for (var i = 0; i < pts.length - 1; i++) {
+        var cx = ((pts[i][0] + pts[i + 1][0]) / 2).toFixed(1);
+        d += " C " + cx + " " + pts[i][1].toFixed(1) + ", " + cx + " " + pts[i + 1][1].toFixed(1) + ", " + pts[i + 1][0].toFixed(1) + " " + pts[i + 1][1].toFixed(1);
+      }
+      return { path: d, pts: pts };
+    }
+
+    function updateIspPointer(idx) {
+      var ds = ISP_DATA[activeNodeKey];
+      activeIdx = Math.max(0, Math.min(ds.hours.length - 1, idx));
+      var px = xForIdx(activeIdx, ds.hours.length).toFixed(1);
+      var y1 = yForVal(ds.ct[activeIdx], ds.min, ds.max).toFixed(1);
+      var y2 = yForVal(ds.cu[activeIdx], ds.min, ds.max).toFixed(1);
+      var y3 = yForVal(ds.cm[activeIdx], ds.min, ds.max).toFixed(1);
+      if (cross) { cross.setAttribute("x1", px); cross.setAttribute("x2", px); }
+      if (dotCt) { dotCt.setAttribute("cx", px); dotCt.setAttribute("cy", y1); }
+      if (dotCu) { dotCu.setAttribute("cx", px); dotCu.setAttribute("cy", y2); }
+      if (dotCm) { dotCm.setAttribute("cx", px); dotCm.setAttribute("cy", y3); }
+      if (timeLbl) timeLbl.textContent = ds.hours[activeIdx];
+      if (valCt) valCt.textContent = ds.ct[activeIdx] + " ms";
+      if (valCu) valCu.textContent = ds.cu[activeIdx] + " ms";
+      if (valCm) valCm.textContent = ds.cm[activeIdx] + " ms";
+    }
+
+    function renderIspNode(nodeKey) {
+      activeNodeKey = ISP_DATA[nodeKey] ? nodeKey : "tokyo";
+      var ds = ISP_DATA[activeNodeKey];
+      var step = Math.round((ds.max - ds.min) / 3);
+      if (yMaxEl) yMaxEl.textContent = ds.max + "ms";
+      if (yMid1El) yMid1El.textContent = (ds.min + step * 2) + "ms";
+      if (yMid2El) yMid2El.textContent = (ds.min + step) + "ms";
+      if (yMinEl) yMinEl.textContent = ds.min + "ms";
+
+      var ctObj = buildSmoothPath(ds.ct, ds.min, ds.max);
+      var cuObj = buildSmoothPath(ds.cu, ds.min, ds.max);
+      var cmObj = buildSmoothPath(ds.cm, ds.min, ds.max);
+      if (lineCt) lineCt.setAttribute("d", ctObj.path);
+      if (lineCu) lineCu.setAttribute("d", cuObj.path);
+      if (lineCm) lineCm.setAttribute("d", cmObj.path);
+      if (areaCt) {
+        areaCt.setAttribute("d", ctObj.path + " L " + X_END + " " + Y_BOT + " L " + X_START + " " + Y_BOT + " Z");
+      }
+      updateIspPointer(activeIdx);
+    }
+
+    ispSvg.addEventListener("pointermove", function (e) {
+      var rect = ispSvg.getBoundingClientRect();
+      var relX = ((e.clientX - rect.left) / rect.width) * 520;
+      var ratio = (relX - X_START) / (X_END - X_START);
+      var idx = Math.round(ratio * (ISP_DATA[activeNodeKey].hours.length - 1));
+      updateIspPointer(idx);
+    });
+
+    document.querySelectorAll("[data-isp-node]").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var key = btn.getAttribute("data-isp-node");
+        document.querySelectorAll("[data-isp-node]").forEach(function (b) {
+          b.setAttribute("aria-pressed", b === btn ? "true" : "false");
+        });
+        renderIspNode(key);
+      });
+    });
+
+    renderIspNode("tokyo");
+  }
+
+  /* Monthly Traffic Grouped Bar Hover Inspection */
+  var trafMonthEl = document.getElementById("trafMonthLabel");
+  var trafOutEl = document.getElementById("trafValOut");
+  var trafInEl = document.getElementById("trafValIn");
+  var trafRemEl = document.getElementById("trafValRem");
+  var trafGroups = Array.from(document.querySelectorAll(".traf-group"));
+  trafGroups.forEach(function (grp) {
+    function activateMonth() {
+      trafGroups.forEach(function (g) {
+        g.style.opacity = g === grp ? "1" : "0.62";
+      });
+      if (trafMonthEl) trafMonthEl.textContent = grp.getAttribute("data-month") || "";
+      if (trafOutEl) trafOutEl.textContent = grp.getAttribute("data-out") || "";
+      if (trafInEl) trafInEl.textContent = grp.getAttribute("data-in") || "";
+      if (trafRemEl) trafRemEl.textContent = grp.getAttribute("data-rem") || "";
+    }
+    grp.addEventListener("pointerenter", activateMonth);
+    grp.addEventListener("click", activateMonth);
+  });
+
+  var trafficSvg = document.getElementById("trafficChartSvg");
+  if (trafficSvg) {
+    trafficSvg.addEventListener("pointerleave", function () {
+      trafGroups.forEach(function (g) { g.style.opacity = "1"; });
+    });
+  }
 
   /* 7. Language Toggle */
   var langBtn = document.getElementById("langBtn");

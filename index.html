@@ -13,7 +13,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./styles.css?v=5">
+  <link rel="stylesheet" href="./styles.css?v=7">
 </head>
 <body>
   <a class="skip-link" href="#main-content" data-i18n="skip">跳至主要内容</a>
@@ -50,8 +50,8 @@
             <li><a href="#top" aria-current="true" data-i18n="nav.home">首页</a></li>
             <li><a href="#capabilities" data-i18n="nav.cap">核心亮点</a></li>
             <li><a href="#features-all" data-i18n="nav.all">功能说明</a></li>
+            <li><a href="#analytics" data-i18n="nav.charts">数据图表</a></li>
             <li><a href="#console" data-i18n="nav.console">面板预览</a></li>
-            <li><a href="#security" data-i18n="nav.security">密钥安全</a></li>
             <li><a href="#deploy" data-i18n="nav.deploy">一键部署</a></li>
           </ul>
         </nav>
@@ -151,14 +151,17 @@
                 <div class="ohp-metric">
                   <span data-i18n="ohp.m1k">当前 OCI 租户</span>
                   <strong>tokyo-payg-01</strong>
+                  <div class="ohp-meter is-green" aria-hidden="true"><i style="width:100%"></i></div>
                 </div>
                 <div class="ohp-metric">
                   <span data-i18n="ohp.m2k">ARM A1 弹性配额</span>
                   <strong>4 OCPU · 24 GB</strong>
+                  <div class="ohp-meter" aria-hidden="true"><i style="width:100%"></i></div>
                 </div>
                 <div class="ohp-metric">
                   <span data-i18n="ohp.m3k">月度出站流量</span>
-                  <strong>312 GB / 10 TB</strong>
+                  <strong>3.12 / 10 TB</strong>
+                  <div class="ohp-meter is-green" aria-hidden="true"><i style="width:31.2%"></i></div>
                 </div>
               </div>
 
@@ -475,6 +478,313 @@
             </div>
           </div><!-- /.tabpanels-stack -->
         </div><!-- /.mod-explorer -->
+      </div>
+    </section>
+
+    <!-- ==================== 3C. Interactive Visual Analytics & Telemetry Charts ==================== -->
+    <section class="section-light" id="analytics">
+      <div class="container">
+        <div class="sec-head">
+          <div class="sec-head-main">
+            <span class="sec-kicker" data-i18n="ch.kicker">VISUAL TELEMETRY &amp; ANALYTICS</span>
+            <h2 data-i18n="ch.title">多维数据图表，让每一份配额与延迟一目了然。</h2>
+          </div>
+          <p class="sec-lead" data-i18n="ch.lead">
+            还原面板内置的真实图表能力：三网延迟历史钻取、10TB 月流量预警柱状图、OCI 主租户画像环形图与商业区域实测对比。
+          </p>
+        </div>
+
+        <div class="charts-grid">
+          <!-- Chart 1: Interactive 24h Tri-ISP Latency Line Chart -->
+          <article class="chart-card">
+            <div class="chart-head">
+              <div class="chart-head-title">
+                <h3 data-i18n="ch.c1t">VPS 电信 / 联通 / 移动 24h 延迟曲线</h3>
+                <p data-i18n="ch.c1d">移动鼠标查看各时段三网实测耗时，支持切换区域节点</p>
+              </div>
+              <div class="chart-pills" id="ispNodePills">
+                <button type="button" class="chart-pill" data-isp-node="tokyo" aria-pressed="true" data-i18n="ch.n1">东京 A1</button>
+                <button type="button" class="chart-pill" data-isp-node="sjc" aria-pressed="false" data-i18n="ch.n2">圣何塞 A1</button>
+                <button type="button" class="chart-pill" data-isp-node="fra" aria-pressed="false" data-i18n="ch.n3">法兰克福</button>
+              </div>
+            </div>
+
+            <div class="chart-readout">
+              <span class="mono" id="ispTimeLabel">20:00</span>
+              <div class="chart-readout-series">
+                <span class="series-tag" style="color:#FF6B1F"><i class="series-line" aria-hidden="true"></i><span data-i18n="ch.ct">电信</span> <b id="ispValCt">48 ms</b></span>
+                <span class="series-tag" style="color:#0284C7"><i class="series-line is-dashed" aria-hidden="true"></i><span data-i18n="ch.cu">联通</span> <b id="ispValCu">53 ms</b></span>
+                <span class="series-tag" style="color:#059669"><i class="series-line is-dotted" aria-hidden="true"></i><span data-i18n="ch.cm">移动</span> <b id="ispValCm">61 ms</b></span>
+              </div>
+            </div>
+
+            <div class="chart-svg-box">
+              <svg class="chart-svg" id="ispChartSvg" width="520" height="190" viewBox="0 0 520 190" aria-hidden="true">
+                <defs>
+                  <linearGradient id="ctAreaGrad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#FF6B1F" stop-opacity="0.22"/>
+                    <stop offset="100%" stop-color="#FF6B1F" stop-opacity="0.0"/>
+                  </linearGradient>
+                </defs>
+                <!-- Horizontal Gridlines -->
+                <g stroke="#E5E7EB" stroke-width="1">
+                  <line x1="36" y1="20" x2="508" y2="20"/>
+                  <line x1="36" y1="65" x2="508" y2="65"/>
+                  <line x1="36" y1="110" x2="508" y2="110"/>
+                  <line x1="36" y1="155" x2="508" y2="155"/>
+                </g>
+                <!-- Y-Axis Labels -->
+                <g fill="#6B7280" font-size="10.5" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" text-anchor="end">
+                  <text id="ispYMax" x="30" y="24">120ms</text>
+                  <text id="ispYMid1" x="30" y="69">90ms</text>
+                  <text id="ispYMid2" x="30" y="114">60ms</text>
+                  <text id="ispYMin" x="30" y="159">30ms</text>
+                </g>
+                <!-- X-Axis Labels -->
+                <g fill="#6B7280" font-size="10.5" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" text-anchor="middle">
+                  <text x="36" y="178">00:00</text>
+                  <text x="154" y="178">06:00</text>
+                  <text x="272" y="178">12:00</text>
+                  <text x="390" y="178">18:00</text>
+                  <text x="508" y="178">24:00</text>
+                </g>
+                <!-- Dynamic Paths -->
+                <path id="ispAreaCt" fill="url(#ctAreaGrad)" d=""/>
+                <path id="ispLineCm" fill="none" stroke="#10B981" stroke-width="2.2" stroke-dasharray="2 4" stroke-linecap="round" d=""/>
+                <path id="ispLineCu" fill="none" stroke="#0284C7" stroke-width="2.2" stroke-dasharray="6 4" stroke-linecap="round" d=""/>
+                <path id="ispLineCt" fill="none" stroke="#FF6B1F" stroke-width="2.5" stroke-linecap="round" d=""/>
+                <!-- Interactive Hover Crosshair & Points -->
+                <line id="ispCrosshair" x1="429" y1="18" x2="429" y2="155" stroke="#08141F" stroke-width="1" stroke-dasharray="3 3" opacity="0.45"/>
+                <circle id="ispDotCm" cx="429" cy="95" r="4" fill="#10B981" stroke="#FFFFFF" stroke-width="1.8"/>
+                <circle id="ispDotCu" cx="429" cy="85" r="4" fill="#0284C7" stroke="#FFFFFF" stroke-width="1.8"/>
+                <circle id="ispDotCt" cx="429" cy="75" r="4.5" fill="#FF6B1F" stroke="#FFFFFF" stroke-width="1.8"/>
+              </svg>
+              <table class="sr-only">
+                <caption>24 小时三网延迟参考数据（东京节点）</caption>
+                <thead><tr><th scope="col">时间</th><th scope="col">电信</th><th scope="col">联通</th><th scope="col">移动</th></tr></thead>
+                <tbody>
+                  <tr><td>00:00</td><td>45 ms</td><td>50 ms</td><td>58 ms</td></tr>
+                  <tr><td>12:00</td><td>47 ms</td><td>52 ms</td><td>60 ms</td></tr>
+                  <tr><td>20:00</td><td>54 ms</td><td>61 ms</td><td>72 ms</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </article>
+
+          <!-- Chart 2: Monthly OCI Traffic Grouped Bar Chart + 8.5TB Auto-Shutdown Line -->
+          <article class="chart-card">
+            <div class="chart-head">
+              <div class="chart-head-title">
+                <h3 data-i18n="ch.c2t">OCI 租户月度出入站流量与预警阈值</h3>
+                <p data-i18n="ch.c2d">对照每月 10 TB 免费出站额度，支持自定义预警与超额自动关机</p>
+              </div>
+              <span class="mod-panel-badge" data-i18n="ch.c2badge">预警线: 8.5 TB</span>
+            </div>
+
+            <div class="chart-readout">
+              <span class="mono" id="trafMonthLabel">2026-11</span>
+              <div class="chart-readout-series">
+                <span class="series-tag" style="color:#FF6B1F"><i class="dl-dot" style="background:#FF6B1F" aria-hidden="true"></i><span data-i18n="ch.out">出站</span> <b id="trafValOut">6.4 TB</b></span>
+                <span class="series-tag" style="color:#08141F"><i class="dl-dot" style="background:#08141F" aria-hidden="true"></i><span data-i18n="ch.in">入站</span> <b id="trafValIn">1.9 TB</b></span>
+                <span class="series-tag" style="color:#059669"><span data-i18n="ch.rem">免费余量</span> <b id="trafValRem">3.6 TB</b></span>
+              </div>
+            </div>
+
+            <div class="chart-svg-box">
+              <svg class="chart-svg" id="trafficChartSvg" width="520" height="190" viewBox="0 0 520 190" aria-hidden="true">
+                <g stroke="#E5E7EB" stroke-width="1">
+                  <line x1="38" y1="20" x2="508" y2="20"/>
+                  <line x1="38" y1="65" x2="508" y2="65"/>
+                  <line x1="38" y1="110" x2="508" y2="110"/>
+                  <line x1="38" y1="155" x2="508" y2="155"/>
+                </g>
+                <!-- 8.5 TB Auto-Shutdown Threshold Line -->
+                <line x1="38" y1="40.25" x2="508" y2="40.25" stroke="#FF6B1F" stroke-width="1.5" stroke-dasharray="5 4"/>
+                <text x="504" y="35" fill="#E85A10" font-size="10" font-weight="700" text-anchor="end">8.5 TB Auto-Stop</text>
+
+                <g fill="#6B7280" font-size="10.5" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" text-anchor="end">
+                  <text x="32" y="24">10T</text>
+                  <text x="32" y="69">6.6T</text>
+                  <text x="32" y="114">3.3T</text>
+                  <text x="32" y="159">0</text>
+                </g>
+
+                <!-- 6 Monthly Grouped Bars (06–11) -->
+                <g class="traf-group" data-month="2026-06" data-out="3.8 TB" data-in="1.1 TB" data-rem="6.2 TB" style="cursor:pointer">
+                  <rect x="58" y="103.7" width="16" height="51.3" rx="3" fill="#FF6B1F"/>
+                  <rect x="77" y="140.1" width="16" height="14.9" rx="3" fill="#08141F"/>
+                  <text x="75.5" y="178" fill="#6B7280" font-size="10.5" font-family="ui-monospace, monospace" text-anchor="middle" data-i18n="ch.m6">06月</text>
+                </g>
+                <g class="traf-group" data-month="2026-07" data-out="4.9 TB" data-in="1.5 TB" data-rem="5.1 TB" style="cursor:pointer">
+                  <rect x="134" y="88.8" width="16" height="66.2" rx="3" fill="#FF6B1F"/>
+                  <rect x="153" y="134.7" width="16" height="20.3" rx="3" fill="#08141F"/>
+                  <text x="151.5" y="178" fill="#6B7280" font-size="10.5" font-family="ui-monospace, monospace" text-anchor="middle" data-i18n="ch.m7">07月</text>
+                </g>
+                <g class="traf-group" data-month="2026-08" data-out="7.2 TB" data-in="2.1 TB" data-rem="2.8 TB" style="cursor:pointer">
+                  <rect x="210" y="57.8" width="16" height="97.2" rx="3" fill="#FF6B1F"/>
+                  <rect x="229" y="126.6" width="16" height="28.4" rx="3" fill="#08141F"/>
+                  <text x="227.5" y="178" fill="#6B7280" font-size="10.5" font-family="ui-monospace, monospace" text-anchor="middle" data-i18n="ch.m8">08月</text>
+                </g>
+                <g class="traf-group" data-month="2026-09" data-out="5.6 TB" data-in="1.7 TB" data-rem="4.4 TB" style="cursor:pointer">
+                  <rect x="286" y="79.4" width="16" height="75.6" rx="3" fill="#FF6B1F"/>
+                  <rect x="305" y="132.0" width="16" height="23.0" rx="3" fill="#08141F"/>
+                  <text x="303.5" y="178" fill="#6B7280" font-size="10.5" font-family="ui-monospace, monospace" text-anchor="middle" data-i18n="ch.m9">09月</text>
+                </g>
+                <g class="traf-group" data-month="2026-10" data-out="8.1 TB" data-in="2.4 TB" data-rem="1.9 TB" style="cursor:pointer">
+                  <rect x="362" y="45.6" width="16" height="109.4" rx="3" fill="#FF6B1F"/>
+                  <rect x="381" y="122.6" width="16" height="32.4" rx="3" fill="#08141F"/>
+                  <text x="379.5" y="178" fill="#6B7280" font-size="10.5" font-family="ui-monospace, monospace" text-anchor="middle" data-i18n="ch.m10">10月</text>
+                </g>
+                <g class="traf-group" data-month="2026-11" data-out="6.4 TB" data-in="1.9 TB" data-rem="3.6 TB" style="cursor:pointer">
+                  <rect x="438" y="68.6" width="16" height="86.4" rx="3" fill="#FF6B1F"/>
+                  <rect x="457" y="129.3" width="16" height="25.7" rx="3" fill="#08141F"/>
+                  <text x="455.5" y="178" fill="#6B7280" font-size="10.5" font-family="ui-monospace, monospace" text-anchor="middle" data-i18n="ch.m11">11月</text>
+                </g>
+              </svg>
+              <table class="sr-only">
+                <caption>租户月度出入站流量统计</caption>
+                <thead><tr><th scope="col">月份</th><th scope="col">出站流量</th><th scope="col">入站流量</th></tr></thead>
+                <tbody>
+                  <tr><td>2026-06</td><td>3.8 TB</td><td>1.1 TB</td></tr>
+                  <tr><td>2026-08</td><td>7.2 TB</td><td>2.1 TB</td></tr>
+                  <tr><td>2026-10</td><td>8.1 TB</td><td>2.4 TB</td></tr>
+                  <tr><td>2026-11</td><td>6.4 TB</td><td>1.9 TB</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </article>
+
+          <!-- Chart 3: OCI Tenant Profile Donut Chart & Survival Age Bars -->
+          <article class="chart-card">
+            <div class="chart-head">
+              <div class="chart-head-title">
+                <h3 data-i18n="ch.c3t">OCI 主租户账号画像与存活天数统计</h3>
+                <p data-i18n="ch.c3d">对应面板「业务总览 → 租户画像」：升级号/免费号占比与老号分布</p>
+              </div>
+              <span class="mod-panel-badge" data-i18n="ch.c3badge">多区号: 37.5%</span>
+            </div>
+
+            <div class="donut-split">
+              <div class="donut-figure">
+                <svg class="chart-svg" width="168" height="168" viewBox="0 0 168 168" aria-hidden="true">
+                  <circle cx="84" cy="84" r="62" fill="none" stroke="#F1F5F9" stroke-width="18"/>
+                  <!-- Segment 1: Free Tier 46% (circumference 389.56 -> 179.2) -->
+                  <circle cx="84" cy="84" r="62" fill="none" stroke="#08141F" stroke-width="18"
+                    stroke-dasharray="177 390" stroke-dashoffset="0" transform="rotate(-90 84 84)"/>
+                  <!-- Segment 2: PAYG Upgraded 42% (163.6) -->
+                  <circle cx="84" cy="84" r="62" fill="none" stroke="#FF6B1F" stroke-width="18"
+                    stroke-dasharray="161 390" stroke-dashoffset="-179.2" transform="rotate(-90 84 84)"/>
+                  <!-- Segment 3: Corporate Multi-Region 12% (46.7) -->
+                  <circle cx="84" cy="84" r="62" fill="none" stroke="#10B981" stroke-width="18"
+                    stroke-dasharray="45 390" stroke-dashoffset="-342.8" transform="rotate(-90 84 84)"/>
+                </svg>
+                <div class="donut-center">
+                  <strong>24</strong>
+                  <span data-i18n="ch.c3total">OCI 主租户</span>
+                </div>
+              </div>
+
+              <div class="donut-legend-bars">
+                <div>
+                  <div class="dl-row-top">
+                    <span class="dl-label"><i class="dl-dot" style="background:#FF6B1F" aria-hidden="true"></i><span data-i18n="ch.p1">PAYG 升级账号</span></span>
+                    <span class="dl-val">10 · 42%</span>
+                  </div>
+                  <div class="dl-track"><div class="dl-fill" style="width:42%;background:#FF6B1F"></div></div>
+                </div>
+                <div>
+                  <div class="dl-row-top">
+                    <span class="dl-label"><i class="dl-dot" style="background:#08141F" aria-hidden="true"></i><span data-i18n="ch.p2">Free Tier 普通免费号</span></span>
+                    <span class="dl-val">11 · 46%</span>
+                  </div>
+                  <div class="dl-track"><div class="dl-fill" style="width:46%;background:#08141F"></div></div>
+                </div>
+                <div>
+                  <div class="dl-row-top">
+                    <span class="dl-label"><i class="dl-dot" style="background:#10B981" aria-hidden="true"></i><span data-i18n="ch.p3">存活 &gt; 1 年稳态老号</span></span>
+                    <span class="dl-val">15 · 62.5%</span>
+                  </div>
+                  <div class="dl-track"><div class="dl-fill" style="width:62.5%;background:#10B981"></div></div>
+                </div>
+              </div>
+
+              <table class="sr-only">
+                <caption>OCI 主租户画像分布（共 24 个）</caption>
+                <thead><tr><th scope="col">分类</th><th scope="col">数量与占比</th></tr></thead>
+                <tbody>
+                  <tr><td>PAYG 升级账号</td><td>10 (42%)</td></tr>
+                  <tr><td>Free Tier 普通免费号</td><td>11 (46%)</td></tr>
+                  <tr><td>企业多区号</td><td>3 (12%)</td></tr>
+                  <tr><td>存活超过 1 年</td><td>15 (62.5%)</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </article>
+
+          <!-- Chart 4: Top 5 OCI Regions Latency & ARM Boot Record Ranking -->
+          <article class="chart-card">
+            <div class="chart-head">
+              <div class="chart-head-title">
+                <h3 data-i18n="ch.c4t">热门甲骨文区域浏览器延迟与抢机热度</h3>
+                <p data-i18n="ch.c4d">结合面板「OCI 延迟测试」实测耗时与区域历史 ARM 开机记录</p>
+              </div>
+              <span class="mod-panel-badge">6-Way Bounded</span>
+            </div>
+
+            <div class="region-chart-list" aria-hidden="true">
+              <div>
+                <div class="rc-item-head">
+                  <span class="rc-name"><span data-i18n="ch.r1">日本 · 东京</span> <span class="rc-code">ap-tokyo-1</span></span>
+                  <span class="rc-metrics"><span class="rc-ms">42 ms</span><span class="rc-boots">ARM × 18</span></span>
+                </div>
+                <div class="rc-dual-bar"><div class="rc-bar-track"><div class="rc-bar-fill" style="width:92%"></div></div></div>
+              </div>
+
+              <div>
+                <div class="rc-item-head">
+                  <span class="rc-name"><span data-i18n="ch.r2">日本 · 大阪</span> <span class="rc-code">ap-osaka-1</span></span>
+                  <span class="rc-metrics"><span class="rc-ms">47 ms</span><span class="rc-boots">ARM × 14</span></span>
+                </div>
+                <div class="rc-dual-bar"><div class="rc-bar-track"><div class="rc-bar-fill" style="width:80%"></div></div></div>
+              </div>
+
+              <div>
+                <div class="rc-item-head">
+                  <span class="rc-name"><span data-i18n="ch.r3">韩国 · 首尔</span> <span class="rc-code">ap-seoul-1</span></span>
+                  <span class="rc-metrics"><span class="rc-ms">54 ms</span><span class="rc-boots">ARM × 11</span></span>
+                </div>
+                <div class="rc-dual-bar"><div class="rc-bar-track"><div class="rc-bar-fill" style="width:68%"></div></div></div>
+              </div>
+
+              <div>
+                <div class="rc-item-head">
+                  <span class="rc-name"><span data-i18n="ch.r4">新加坡</span> <span class="rc-code">ap-singapore-1</span></span>
+                  <span class="rc-metrics"><span class="rc-ms">76 ms</span><span class="rc-boots">ARM × 9</span></span>
+                </div>
+                <div class="rc-dual-bar"><div class="rc-bar-track"><div class="rc-bar-fill" style="width:56%"></div></div></div>
+              </div>
+
+              <div>
+                <div class="rc-item-head">
+                  <span class="rc-name"><span data-i18n="ch.r5">美国 · 圣何塞</span> <span class="rc-code">us-sanjose-1</span></span>
+                  <span class="rc-metrics"><span class="rc-ms is-mid">136 ms</span><span class="rc-boots">ARM × 16</span></span>
+                </div>
+                <div class="rc-dual-bar"><div class="rc-bar-track"><div class="rc-bar-fill" style="width:86%"></div></div></div>
+              </div>
+            </div>
+            <table class="sr-only">
+              <caption>热门甲骨文商业区域浏览器实测延迟与历史 ARM 开机记录</caption>
+              <thead><tr><th scope="col">区域</th><th scope="col">区域代码</th><th scope="col">浏览器延迟</th><th scope="col">ARM 记录</th></tr></thead>
+              <tbody>
+                <tr><td>日本 · 东京</td><td>ap-tokyo-1</td><td>42 ms</td><td>18</td></tr>
+                <tr><td>日本 · 大阪</td><td>ap-osaka-1</td><td>47 ms</td><td>14</td></tr>
+                <tr><td>韩国 · 首尔</td><td>ap-seoul-1</td><td>54 ms</td><td>11</td></tr>
+                <tr><td>新加坡</td><td>ap-singapore-1</td><td>76 ms</td><td>9</td></tr>
+                <tr><td>美国 · 圣何塞</td><td>us-sanjose-1</td><td>136 ms</td><td>16</td></tr>
+              </tbody>
+            </table>
+          </article>
+        </div>
       </div>
     </section>
 
@@ -901,6 +1211,6 @@ location ~ ^/websockify/(\d+)$ {
     </div>
   </footer>
 
-  <script src="./app.js?v=5" defer></script>
+  <script src="./app.js?v=7" defer></script>
 </body>
 </html>

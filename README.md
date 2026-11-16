@@ -11,9 +11,9 @@
 oci-start-site/
 ├── assets/
 │   └── hero-sky-1x.jpg / 2x.jpg   # 首屏暮色云海背景图（1x/2x 多分辨率）
-├── index.html                     # 主页面（甲骨文云分栏首屏 + 右侧实时 OCI 实例管控卡、6 格 OCI 能力矩阵、深蓝工作台预览）
+├── index.html                     # 主页面（甲骨文云分栏首屏 + 实时实例管控卡、6 模块功能浏览器、4 组交互数据图表、深蓝工作台预览）
 ├── styles.css                     # 视觉样式（#FFFFFF 独立白顶栏 + #08141F 深海军蓝 + #FF6B1F 活力橙 + #2EE59D 在线绿）
-├── app.js                         # 交互脚本（自适应导航、无障碍标签页、Canvas 点阵区域地图、复制反馈、中英双语）
+├── app.js                         # 交互脚本（自适应导航、无障碍标签页、24h 三网延迟曲线与月流量图表、Canvas 点阵区域地图、中英双语）
 ├── favicon.svg                    # OCI-Start 经线圆环品牌图标
 ├── _headers                       # Cloudflare Pages 安全与缓存响应头配置
 ├── .nojekyll                      # GitHub Pages 免 Jekyll 构建标记
