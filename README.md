@@ -9,13 +9,16 @@
 
 ```text
 oci-start-site/
-├── index.html     # 主页面（含新版 Vue 3 控制台交互预览、全景特性、一键复制部署、赞助商）
-├── styles.css     # Apple Store 清爽浅色产品视觉样式表（#f5f5f7 + #ffffff + #1b8a6a）
-├── app.js         # 交互脚本（自适应导航、无障碍标签页、Canvas 点阵区域地图、复制反馈、中英双语）
-├── favicon.svg    # OCI-Start 品牌图标
-├── _headers       # Cloudflare Pages 安全与缓存响应头配置
-├── .nojekyll      # GitHub Pages 免 Jekyll 构建标记
-└── README.md      # 本地预览与 Cloudflare 域名绑定指南
+├── assets/
+│   ├── hero-sky-1x.jpg / 2x.jpg   # 首屏暮色云海背景图（1x/2x 多分辨率）
+│   └── hero-card-1x.jpg / 2x.jpg  # 首屏右侧磨砂边框云基础设施视觉卡图
+├── index.html                     # 主页面（分栏首屏、6 格能力矩阵、深海军蓝交互控制台、安全与部署区）
+├── styles.css                     # 视觉样式（#FFFFFF 独立白顶栏 + #08141F 深海军蓝 + #FF6B1F 活力橙 + #2EE59D 在线绿）
+├── app.js                         # 交互脚本（自适应导航、无障碍标签页、Canvas 点阵区域地图、复制反馈、中英双语）
+├── favicon.svg                    # OCI-Start 经线圆环品牌图标
+├── _headers                       # Cloudflare Pages 安全与缓存响应头配置
+├── .nojekyll                      # GitHub Pages 免 Jekyll 构建标记
+└── README.md                      # 本地预览与 Cloudflare 域名绑定指南
 ```
 
 ## 本地预览
@@ -31,8 +34,6 @@ python3 -m http.server 8080
 
 ### 方案 A：Cloudflare Pages 直连本仓库（推荐，全球与国内边缘访问更快）
 
-因为域名已在 Cloudflare，直接使用 Cloudflare Pages 无需手工维护 `CNAME` 校验，每次 `git push` 自动秒级发布：
-
 1. 登录 [Cloudflare Dashboard](https://dash.cloudflare.com/) → 进入 **Workers & Pages** → 点击 **Create** → **Pages** → **Connect to Git**。
 2. 选择 `doubleDimple/oci-start-site` 仓库。
 3. 构建设置保持默认（零构建）：
@@ -44,8 +45,6 @@ python3 -m http.server 8080
 5. 进入该 Pages 项目的 **Custom domains（自定义域）** → **Set up a custom domain** → 填入你在 Cloudflare 托管的域名（如 `oci.yourdomain.com` 或根域名），Cloudflare 会自动添加 DNS 记录并签发 HTTPS 证书。
 
 ### 方案 B：GitHub Pages + Cloudflare DNS 解析
-
-如果直接复用当前仓库已开启的 GitHub Pages：
 
 1. 在本仓库根目录新建 `CNAME` 文件（无后缀），写入你的自定义域名（如 `oci.yourdomain.com`），提交并推送到 `main` 分支。
 2. 打开 Cloudflare Dashboard → 选择对应域名 → **DNS → Records**，添加记录：
