@@ -48,9 +48,10 @@
 
           <ul id="site-menu" class="site-menu" popover="auto">
             <li><a href="#top" aria-current="true" data-i18n="nav.home">首页</a></li>
-            <li><a href="#capabilities" data-i18n="nav.cap">OCI 实例能力</a></li>
+            <li><a href="#capabilities" data-i18n="nav.cap">核心亮点</a></li>
+            <li><a href="#features-all" data-i18n="nav.all">功能说明</a></li>
             <li><a href="#console" data-i18n="nav.console">面板预览</a></li>
-            <li><a href="#security" data-i18n="nav.security">API 密钥安全</a></li>
+            <li><a href="#security" data-i18n="nav.security">密钥安全</a></li>
             <li><a href="#deploy" data-i18n="nav.deploy">一键部署</a></li>
           </ul>
         </nav>
@@ -297,8 +298,141 @@
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
               </div>
             </div>
-            <h3 data-i18n="cap.c6t">工具箱 · Telegram 通知与 OpenAPI</h3>
-            <p data-i18n="cap.c6d">内置 45+ 区域浏览器并发测速、对象存储、邮件投递、TOTP MFA 备份、加密迁移，支持 Telegram 抢机推送与细粒度开发者 API Token。</p>
+            <h3 data-i18n="cap.c6t">45+ OCI 区域测速 · 对象存储与备份</h3>
+            <p data-i18n="cap.c6d">内置 45+ 甲骨文商业区域浏览器并发测速、OCI 对象存储桶管理、邮件服务、一键 DD 重装、TOTP MFA 备份与全库加密迁移。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 3B. Full Implemented Feature Directory ==================== -->
+    <section class="section-slate" id="features-all">
+      <div class="container">
+        <div class="sec-head">
+          <div class="sec-head-main">
+            <span class="sec-kicker" data-i18n="dir.kicker">IMPLEMENTED FEATURE DIRECTORY</span>
+            <h2 data-i18n="dir.title">面板已实现功能全景说明。</h2>
+          </div>
+          <a class="gh-repo-btn" href="https://github.com/doubleDimple/oci-start" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2.02c-3.2.7-3.88-1.38-3.88-1.38-.52-1.33-1.28-1.68-1.28-1.68-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.56-.29-5.25-1.28-5.25-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.47.11-3.06 0 0 .97-.31 3.18 1.18a11.02 11.02 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.77.12 3.06.74.81 1.18 1.84 1.18 3.1 0 4.43-2.69 5.4-5.26 5.69.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5z"/>
+            </svg>
+            <span data-i18n="dir.ghBtn">查看 doubleDimple/oci-start 源码 →</span>
+          </a>
+        </div>
+
+        <div class="feat-domain-grid">
+          <!-- Domain 1: OCI Tenant & IAM Governance -->
+          <article class="feat-domain-card">
+            <div class="feat-domain-head">
+              <div class="feat-domain-title">
+                <span class="feat-domain-idx">A</span>
+                <h3 data-i18n="dir.d1t">OCI 租户与账号安全治理</h3>
+              </div>
+              <span class="feat-domain-route">/tenants/list</span>
+            </div>
+            <ul class="feat-list">
+              <li data-i18n-html="dir.d1i1"><b>双模式 API 导入与一键降权：</b>支持粘贴 OCI 配置自动解析；可按勾选权限创建专用受限用户（不持久化高危主 API），存量租户支持一键降权。</li>
+              <li data-i18n-html="dir.d1i2"><b>租户画像与批量测活：</b>一键批量检测全部主账号有效性，识别个人/企业、免费号/试用号/PAYG 升级号/多区号，统计存活天数并记录账号成本。</li>
+              <li data-i18n-html="dir.d1i3"><b>IAM 用户、密码策略与社媒登录：</b>管理租户身份域用户增删启停、重置临时密码、修改密码过期天数、开启/重置邮箱 MFA、配置社交登录与通知收件人。</li>
+              <li data-i18n-html="dir.d1i4"><b>区域订阅、配额、费用与审计：</b>在线订阅新区域、查看云端服务配额，按分类汇总/趋势/明细查询真实账单费用，独立游标分页检索 OCI 审计日志。</li>
+              <li data-i18n-html="dir.d1i5"><b>月度流量预警与超额自动关机：</b>按月统计租户出入站流量，设置 GB 预警阈值，支持达到阈值自动关闭该租户实例以防超额扣费。</li>
+              <li data-i18n-html="dir.d1i6"><b>验证码保护导出与转让锁定：</b>导出单/全量租户 JSON 备份须经通知终端验证码核验；支持记录账号转让金额并自动锁定高危操作。</li>
+            </ul>
+          </article>
+
+          <!-- Domain 2: OCI Concurrent Auto-Boot & Tasks -->
+          <article class="feat-domain-card">
+            <div class="feat-domain-head">
+              <div class="feat-domain-title">
+                <span class="feat-domain-idx">B</span>
+                <h3 data-i18n="dir.d2t">OCI 多租户并发开机与抢机调度</h3>
+              </div>
+              <span class="feat-domain-route">/boot/fullBootList</span>
+            </div>
+            <ul class="feat-list">
+              <li data-i18n-html="dir.d2i1"><b>快速开机与自定义模板双模式：</b>内置 ARM 基础/标准/高性能/A2 与 AMD 基础/E3/E4/E5 等规格模板，支持最多多台并发抢开。</li>
+              <li data-i18n-html="dir.d2i2"><b>实时按量参考价格估算：</b>选择 OCPU、内存与引导卷容量时，自动按 OCI 商业区单价预估每小时与每月参考成本。</li>
+              <li data-i18n-html="dir.d2i3"><b>系统镜像与版本自选：</b>按所选区域和实例架构动态拉取可用操作系统与版本镜像，也可一键交由系统匹配默认镜像。</li>
+              <li data-i18n-html="dir.d2i4"><b>自定义间隔与每日抢机时段：</b>支持自定义秒级重试间隔（后台保底防过快保护），可指定每日开机时间窗口（如 1-8 点）并自动生成初始密码。</li>
+              <li data-i18n-html="dir.d2i5"><b>开机风控显式确认保护：</b>内置 Oracle API 创机风控提示确认机制，任务提交状态防重复核对，避免误创建重复抢机任务。</li>
+              <li data-i18n-html="dir.d2i6"><b>SSE 实时开机流与历史日志：</b>全局统计总抢机次数与成功/失败分布，支持按子任务实时追踪开机日志流及检索历史开服记录。</li>
+            </ul>
+          </article>
+
+          <!-- Domain 3: OCI Instance Lifecycle, Multi-VNIC & Web Shell -->
+          <article class="feat-domain-card">
+            <div class="feat-domain-head">
+              <div class="feat-domain-title">
+                <span class="feat-domain-idx">C</span>
+                <h3 data-i18n="dir.d3t">OCI 实例运维、多网卡与远程救援</h3>
+              </div>
+              <span class="feat-domain-route">/oci/list</span>
+            </div>
+            <ul class="feat-list">
+              <li data-i18n-html="dir.d3i1"><b>实例生命周期与热变配：</b>启动、停止、Telegram 验证码保护终止（可选保留启动盘）、在线热改 CPU 核数（1–24C）与内存（1–256G）、同步改名及一键 DD 重装系统。</li>
+              <li data-i18n-html="dir.d3i2"><b>引导卷无损扩容与 VPU 调优：</b>在线扩展实例引导卷容量（GB），支持在 0–120 区间按 10 的倍数动态调整磁盘 VPUs/GB 性能档位。</li>
+              <li data-i18n-html="dir.d3i3"><b>主辅 VNIC 与指定网段换 IP：</b>单次批量挂载 1–31 张辅助网卡或一键清理辅助网卡；更换公网 IPv4 支持填入多个目标 CIDR 网段定向刷选。</li>
+              <li data-i18n-html="dir.d3i4"><b>原生 IPv6 与 NLB 负载均衡编排：</b>单张网卡支持批量添加/移除 1–32 个 IPv6 地址；支持 AMD 实例一键配置 NAT 网关 + 路由表 + NLB 网络负载均衡及网络还原。</li>
+              <li data-i18n-html="dir.d3i5"><b>Web SSH 终端与 SFTP 传输：</b>浏览器内置全彩 ANSI 终端（自适应 PTY 尺寸、命令收藏、搜索、日志下载），支持 SFTP 文件直传与按路径下载。</li>
+              <li data-i18n-html="dir.d3i6"><b>自动双跳 SSH 隧道 noVNC 控制台：</b>自动解析并建立甲骨文两层 SSH 控制台隧道与本地 Websockify 代理，网页直连 RFB 图形画面、发送按键文本与异步硬重启。</li>
+            </ul>
+          </article>
+
+          <!-- Domain 4: OCI Cloud Services & Region Tools -->
+          <article class="feat-domain-card">
+            <div class="feat-domain-head">
+              <div class="feat-domain-title">
+                <span class="feat-domain-idx">D</span>
+                <h3 data-i18n="dir.d4t">OCI 原生云服务、区域地图与测速</h3>
+              </div>
+              <span class="feat-domain-route">/resource/list</span>
+            </div>
+            <ul class="feat-list">
+              <li data-i18n-html="dir.d4i1"><b>45+ 商业区域平铺点阵地图：</b>内置核对后的 Oracle 官方商业区域城市级坐标目录，同屏叠加「历史 ARM 开机记录」与「我的订阅区域」交集及动态航线。</li>
+              <li data-i18n-html="dir.d4i2"><b>浏览器有界并发延迟测速：</b>从本机浏览器直接向各 OCI 区域端点发起有界并发实测，真实反映本地到各机房区域的网络响应耗时。</li>
+              <li data-i18n-html="dir.d4i3"><b>OCI 对象存储桶管理：</b>按租户与区域浏览 Object Storage 存储桶，支持在线上传文件、预览对象内容、分页检索与文件下载。</li>
+              <li data-i18n-html="dir.d4i4"><b>OCI 电子邮件投递服务：</b>支持在线为租户配置发件域名验证、生成 SMTP 登录凭据，并提供在线邮件编写与发送管理界面。</li>
+              <li data-i18n-html="dir.d4i5"><b>安全放行规则可视化编辑：</b>直接查看并新增、修改、删除租户虚拟云网络（VCN）的安全列表出入站协议与端口放行规则。</li>
+              <li data-i18n-html="dir.d4i6"><b>Google Cloud (GCP) 扩展接入：</b>除核心甲骨文云外，已支持导入 GCP 服务账号 JSON 凭据并统一查看管理 GCP 虚拟机实例。</li>
+            </ul>
+          </article>
+
+          <!-- Domain 5: Dual DNS & Multi-Vendor VPS Probe -->
+          <article class="feat-domain-card">
+            <div class="feat-domain-head">
+              <div class="feat-domain-title">
+                <span class="feat-domain-idx">E</span>
+                <h3 data-i18n="dir.d5t">CF / EdgeOne 域名解析与三网探针</h3>
+              </div>
+              <span class="feat-domain-route">/vps/instances/list</span>
+            </div>
+            <ul class="feat-list">
+              <li data-i18n-html="dir.d5i1"><b>Cloudflare DNS 全量同步管理：</b>配置 CF 凭据并在线测通，支持全量分页拉取同步域名记录、按名称/内容搜索、编辑 A/AAAA/CNAME/MX、TTL 与小黄云代理状态。</li>
+              <li data-i18n-html="dir.d5i2"><b>腾讯云 EdgeOne 解析与加速管理：</b>原生集成 EdgeOne SDK，支持完整同步云端解析记录、保留线路权重状态更新及加速域名管理。</li>
+              <li data-i18n-html="dir.d5i3"><b>跨厂商 VPS 统一纳管与探针下发：</b>不限云厂商汇总全部 VPS 资源，支持在面板内通过 SSH 一键安装、升级或卸载轻量级监控探针。</li>
+              <li data-i18n-html="dir.d5i4"><b>主机负载与全量 OCI Ping 巡检：</b>实时回报主机 CPU、内存、磁盘、累计与瞬时流量；支持开启全部 OCI 实例自动定时 Ping 或手动一键全量 Ping 检测。</li>
+              <li data-i18n-html="dir.d5i5"><b>电信 / 联通 / 移动三网质量看盘：</b>每台被监控 VPS 主动探测配置目标，列表直出三网延迟、ICMP 丢包率或 TCP/HTTP 失败率，支持整页历史趋势钻取。</li>
+            </ul>
+          </article>
+
+          <!-- Domain 6: System Security, Proxy Pool, Notifications & Tools -->
+          <article class="feat-domain-card">
+            <div class="feat-domain-head">
+              <div class="feat-domain-title">
+                <span class="feat-domain-idx">F</span>
+                <h3 data-i18n="dir.d6t">系统安全、代理池、多端通知与工具</h3>
+              </div>
+              <span class="feat-domain-route">/system/settings</span>
+            </div>
+            <ul class="feat-list">
+              <li data-i18n-html="dir.d6i1"><b>全局代理池与单租户绑定：</b>集中管理 HTTP/HTTPS 代理节点并支持分页全量连通性测试，可为单个 OCI 租户指定强制/可选专属代理以隔离请求 IP。</li>
+              <li data-i18n-html="dir.d6i2"><b>四大通知渠道与每日定时任务：</b>支持 Telegram 机器人（可配独立代理）、Bark、钉钉、飞书签名 Webhook；支持每日定时执行账号测活、抢机统计与费用检测。</li>
+              <li data-i18n-html="dir.d6i3"><b>OAuth / Turnstile / MFA 登录加固：</b>支持账密 RSA 加密、指定单账号 GitHub / Google OAuth 登录、Cloudflare Turnstile 人机验证、系统登录 TOTP 二验与异常 IP 封禁管理。</li>
+              <li data-i18n-html="dir.d6i4"><b>MFA 备份仓、备忘录与加密迁移：</b>内置共享 TOTP 验证码账户备份（支持二维码识别与 CSV 导出）、富文本笔记管理，以及带关联完整性预检的全库加密备份恢复。</li>
+              <li data-i18n-html="dir.d6i5"><b>宿主机监控、实时日志与开放接口：</b>提供面板宿主机 CPU/温度/内存/磁盘/网卡监控、SSE 实时系统日志、开发者 API Token 签发与在线交互式 API 文档。</li>
+              <li data-i18n-html="dir.d6i6"><b>自定义主题换肤与移动端适配：</b>支持亮/暗模式、侧栏与内容区独立调色盘换肤、中英双语国际化，以及针对手机屏幕优化的 iOS 分组列表交互体验。</li>
+            </ul>
           </article>
         </div>
       </div>
