@@ -6,10 +6,14 @@
   <meta name="text-scale" content="scale">
   <meta name="color-scheme" content="light dark">
   <script>
-    try { document.querySelector('meta[name="color-scheme"]').content = localStorage.getItem("color-scheme") || "light dark"; } catch (_) {}
+    try {
+      const theme = localStorage.getItem("color-scheme");
+      document.querySelector('meta[name="color-scheme"]').content = theme || "light dark";
+      document.documentElement.dataset.theme = theme || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    } catch (_) {}
   </script>
-  <meta name="theme-color" id="themeColorLight" media="(prefers-color-scheme: light)" content="#ffffff">
-  <meta name="theme-color" id="themeColorDark" media="(prefers-color-scheme: dark)" content="#1b1b1f">
+  <meta name="theme-color" id="themeColorLight" media="(prefers-color-scheme: light)" content="#f8f8f5">
+  <meta name="theme-color" id="themeColorDark" media="(prefers-color-scheme: dark)" content="#191b19">
   <title>OCI-Start | 开源的甲骨文云 (Oracle Cloud) 实例管理面板</title>
   <meta name="description" content="OCI-Start 是一个开源、可自托管的 Oracle Cloud (OCI) 实例管理面板：多租户 API 管理、ARM/AMD 并发开机、换 IP / IPv6、VNIC、引导卷调整、Web SSH 与 VNC 控制台，私钥只保存在你自己的服务器。">
   <link rel="canonical" href="https://oci.objboy.com/">
@@ -42,66 +46,43 @@
     }
   </script>
   <link rel="icon" type="image/svg+xml" href="./favicon.svg">
-  <link rel="stylesheet" href="./styles.css?v=11">
+  <link rel="stylesheet" href="./styles.css?v=12">
+  <link rel="stylesheet" href="./sections.css?v=12">
 </head>
 <body>
   <a class="skip-link" href="#main" data-i18n="skip">跳到主要内容</a>
-  <div class="nav-sentinel" id="navSentinel" aria-hidden="true"></div>
-
-  <!-- ========== Nav ========== -->
   <header class="nav" id="nav">
-    <div class="nav-bar">
-      <div class="nav-inner">
-        <a class="nav-logo" href="#top" aria-label="OCI-Start 首页" data-i18n-aria="aria.home">
-          <svg width="26" height="26" viewBox="0 0 32 32" fill="none" aria-hidden="true">
-            <rect width="32" height="32" rx="8" fill="#08141F"/>
-            <circle cx="16" cy="16" r="9.2" stroke="#FF6B1F" stroke-width="2.4"/>
-            <line x1="16" y1="4.8" x2="16" y2="27.2" stroke="#FF6B1F" stroke-width="2.4" stroke-linecap="round"/>
-          </svg>
-          <span>OCI-Start</span>
-        </a>
-
-        <nav class="nav-links" aria-label="主导航" data-i18n-aria="aria.nav">
-          <a href="#features" data-i18n="nav.features">功能</a>
-          <a href="#screenshots" data-i18n="nav.shots">截图</a>
-          <a href="#quick-start" data-i18n="nav.start">快速开始</a>
-          <a href="#all-features" data-i18n="nav.all">功能清单</a>
-          <a href="#faq" data-i18n="nav.faq">常见问题</a>
-          <a href="https://github.com/doubleDimple/oci-start#readme" target="_blank" rel="noopener noreferrer" data-i18n="nav.docs">文档</a>
-          <a href="https://github.com/doubleDimple/oci-start/releases" target="_blank" rel="noopener noreferrer" data-i18n="nav.releases">更新日志</a>
-        </nav>
-
-        <div class="nav-tools">
-          <button type="button" class="tool-btn lang-btn" id="langBtn" lang="en">EN</button>
-          <button type="button" class="tool-btn theme-btn" id="themeBtn">
+    <div class="container nav-inner">
+      <a class="nav-logo" href="#top" aria-label="OCI-Start 首页" data-i18n-aria="aria.home">
+        <img src="./favicon.svg" alt="" width="34" height="34"><span>OCI-Start</span>
+      </a>
+      <nav class="nav-links" aria-label="主导航" data-i18n-aria="aria.nav">
+        <a href="#features" data-i18n="nav.features">功能概览</a>
+        <a href="#screenshots" data-i18n="nav.shots">界面预览</a>
+        <a href="#quick-start" data-i18n="nav.start">快速开始</a>
+        <a href="https://github.com/doubleDimple/oci-start#readme" target="_blank" rel="noopener noreferrer"><span data-i18n="nav.docs">文档</span> <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></a>
+      </nav>
+      <div class="nav-tools">
+        <button type="button" class="tool-btn lang-btn" id="langBtn" lang="en" aria-label="Switch to English">EN</button>
+        <button type="button" class="tool-btn theme-btn" id="themeBtn">
             <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
             <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
             <span class="sr-only label-to-dark" data-i18n="theme.toDark">切换到深色主题</span>
             <span class="sr-only label-to-light" data-i18n="theme.toLight">切换到浅色主题</span>
           </button>
-          <a class="gh-btn" href="https://github.com/doubleDimple/oci-start" target="_blank" rel="noopener noreferrer">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56v-2.15c-3.2.7-3.87-1.37-3.87-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.42-2.69 5.39-5.26 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>
-            <span class="gh-label">GitHub</span>
-            <span class="gh-count" id="navStars" hidden></span>
-          </a>
-          <button type="button" class="tool-btn menu-btn" id="drawerOpenBtn" aria-label="打开导航菜单" data-i18n-aria="aria.openMenu" aria-expanded="false" aria-controls="navDrawer">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
-          </button>
-        </div>
+        <a class="gh-btn" href="https://github.com/doubleDimple/oci-start" target="_blank" rel="noopener noreferrer">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56v-2.15c-3.2.7-3.87-1.37-3.87-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.42-2.69 5.39-5.26 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg> <span class="gh-label">GitHub</span><span class="gh-count" id="navStars" hidden></span>
+        </a>
+        <button type="button" class="tool-btn menu-btn" id="drawerOpenBtn" aria-label="打开导航菜单" data-i18n-aria="aria.openMenu" aria-expanded="false" aria-controls="navDrawer"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
       </div>
     </div>
   </header>
-
   <dialog class="nav-drawer" id="navDrawer" aria-label="导航菜单" data-i18n-aria="aria.drawer">
     <div class="nav-drawer-scroller">
       <nav class="nav-drawer-sheet" aria-label="移动导航" data-i18n-aria="aria.mobileNav">
         <div class="nav-drawer-head">
           <span class="nav-logo">
-            <svg width="24" height="24" viewBox="0 0 32 32" fill="none" aria-hidden="true">
-              <rect width="32" height="32" rx="8" fill="#08141F"/>
-              <circle cx="16" cy="16" r="9.2" stroke="#FF6B1F" stroke-width="2.4"/>
-              <line x1="16" y1="4.8" x2="16" y2="27.2" stroke="#FF6B1F" stroke-width="2.4" stroke-linecap="round"/>
-            </svg>
+            <img src="./favicon.svg" alt="" width="30" height="30">
             <span>OCI-Start</span>
           </span>
           <button type="button" class="tool-btn" id="drawerCloseBtn" aria-label="关闭导航菜单" data-i18n-aria="aria.closeMenu" autofocus>
@@ -109,8 +90,8 @@
           </button>
         </div>
         <ul class="nav-drawer-list">
-          <li><a href="#features" data-i18n="nav.features">功能</a></li>
-          <li><a href="#screenshots" data-i18n="nav.shots">截图</a></li>
+          <li><a href="#features" data-i18n="nav.features">功能概览</a></li>
+          <li><a href="#screenshots" data-i18n="nav.shots">界面预览</a></li>
           <li><a href="#quick-start" data-i18n="nav.start">快速开始</a></li>
           <li><a href="#all-features" data-i18n="nav.all">功能清单</a></li>
           <li><a href="#community" data-i18n="com.title">社区与贡献者</a></li>
@@ -125,268 +106,87 @@
     </div>
   </dialog>
 
-  <main id="main">
-    <!-- ========== Hero ========== -->
-    <section class="hero" id="top" tabindex="-1">
-      <div class="hero-bg" aria-hidden="true">
-        <div class="hero-grid-mesh"></div>
-        <div class="hero-orb hero-orb-1"></div>
-        <div class="hero-orb hero-orb-2"></div>
-        <div class="hero-orb hero-orb-3"></div>
-        <div class="hero-beam hero-beam-1"></div>
-        <div class="hero-beam hero-beam-2"></div>
-      </div>
-      <div class="container hero-inner">
-        <div class="hero-main">
-          <a class="release-pill" id="releasePill" href="https://github.com/doubleDimple/oci-start/releases" target="_blank" rel="noopener noreferrer">
-            <span class="release-dot" aria-hidden="true"></span>
-            <span id="releaseText" data-i18n="hero.release">查看最新版本</span>
-            <span aria-hidden="true">→</span>
-          </a>
-          <h1 class="hero-title">
-            <span class="hero-name">OCI-Start</span>
-            <span class="hero-text" data-i18n="hero.text">开源的甲骨文云实例管理面板</span>
-          </h1>
-          <p class="hero-tagline" data-i18n="hero.tagline">多租户 API 管理、ARM / AMD 并发开机、换 IP、Web SSH 与 VNC 控制台。部署在你自己的服务器上，私钥不会离开本机。</p>
 
+  <main id="main" tabindex="-1">
+    <section class="hero" id="top" aria-labelledby="hero-title" tabindex="-1">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <div class="hero-kicker"><span class="open-label"><i aria-hidden="true"></i>OPEN SOURCE</span><span class="kicker-rule" aria-hidden="true"></span><span data-i18n="hero.kicker">自托管云管理面板</span></div>
+          <h1 id="hero-title"><span data-i18n="hero.headline">掌控你的</span><span class="hero-product">Oracle Cloud<span class="accent-dot">.</span></span></h1>
+          <p class="hero-summary" data-i18n="hero.tagline">在自己的服务器上运行 OCI-Start，集中管理多租户、云实例与网络资源。从并发开机到日常监控，私钥始终保存在本机。</p>
           <div class="hero-actions">
-            <a class="btn btn-brand" href="#quick-start" data-i18n="hero.start">快速开始</a>
-            <a class="btn btn-alt" href="#screenshots" data-i18n="hero.shots">查看截图</a>
-            <a class="btn btn-alt" href="https://github.com/doubleDimple/oci-start" target="_blank" rel="noopener noreferrer">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 17.27 6.18 3.73-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-              <span data-i18n="hero.star">Star on GitHub</span>
-            </a>
+            <a class="action action-primary" href="#quick-start"><span data-i18n="hero.start">快速部署</span> <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></a>
+            <a class="action action-secondary" href="#screenshots"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8m-4-3v3M3 8h18"/></svg> <span data-i18n="hero.shots">界面预览</span></a>
           </div>
-
-          <div class="install-box">
-            <span class="install-prompt" aria-hidden="true">$</span>
-            <code id="heroCmd">wget -O oci-start.sh https://raw.githubusercontent.com/doubleDimple/shell-tools/master/oci-start.sh &amp;&amp; chmod +x oci-start.sh &amp;&amp; ./oci-start.sh start</code>
-            <span class="copy">
-              <button type="button" class="copy-btn" command="--copy" commandfor="heroCmd" aria-label="复制安装命令" data-i18n-aria="copy.install">
-                <svg class="i-copy" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-                <svg class="i-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
-              </button>
-              <span class="copy-tip" role="status"></span>
-            </span>
-          </div>
-
-          <ul class="hero-meta">
-            <li><span class="meta-k" data-i18n="meta.license">开源协议</span><b>Apache-2.0</b></li>
-            <li><span class="meta-k" data-i18n="meta.stars">Stars</span><b id="metaStars">—</b></li>
-            <li><span class="meta-k" data-i18n="meta.runtime">运行环境</span><b>Java 8+ / Docker</b></li>
-            <li><span class="meta-k" data-i18n="meta.port">默认端口</span><b>9856</b></li>
-          </ul>
+          <a class="release-link" href="https://github.com/doubleDimple/oci-start/releases" target="_blank" rel="noopener noreferrer"><span class="release-mark" aria-hidden="true"></span><span id="releaseText" data-i18n="hero.release">查看最新版本</span> <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></a>
         </div>
-
-        <div class="hero-stage">
-          <svg class="stage-orbit" viewBox="0 0 600 600" fill="none" aria-hidden="true">
-            <circle cx="300" cy="300" r="286" stroke="currentColor" stroke-opacity="0.14" stroke-width="1.2" stroke-dasharray="6 10"/>
-            <circle cx="300" cy="300" r="222" stroke="currentColor" stroke-opacity="0.2" stroke-width="1.2"/>
-            <circle cx="300" cy="300" r="154" stroke="currentColor" stroke-opacity="0.16" stroke-width="1.2" stroke-dasharray="3 8"/>
-          </svg>
-
-          <div class="stage-chip stage-chip-top">
-            <span class="chip-dot chip-dot-green" aria-hidden="true"></span>
-            <span data-i18n="stage.chip1">私钥本机 H2 存储 · 零远端上传</span>
+        <figure class="hero-figure" aria-label="计算、网络与存储的分层示意" data-i18n-aria="aria.stack">
+          <span class="draft-corner top-left" aria-hidden="true"></span><span class="draft-corner top-right" aria-hidden="true"></span>
+          <div class="stack-stage">
+            <picture>
+              <source id="darkStack" media="(prefers-color-scheme: dark)" srcset="./assets/hero/server-stack-dark.webp">
+              <img class="stack-art" src="./assets/hero/server-stack.webp" width="1200" height="960" fetchpriority="high" alt="">
+            </picture>
           </div>
-
-          <div class="live-console">
-            <div class="live-console-bar">
-              <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
-              <span class="live-console-title">
-                <i class="live-pulse" aria-hidden="true"></i>
-                <span data-i18n="stage.title">OCI-Start 实时控制台 · :9856</span>
-              </span>
-              <button type="button" class="console-motion-btn" id="motionBtn">
-                <span class="i-pause" aria-hidden="true">⏸</span>
-                <span class="i-play" aria-hidden="true">▶</span>
-                <span id="motionBtnText" data-i18n="motion.pause">暂停动态</span>
-              </button>
-            </div>
-
-            <div class="live-stats">
-              <div class="live-stat">
-                <span data-i18n="stage.m1k">多租户 API</span>
-                <strong>12 <small>9 Free · 3 PAYG</small></strong>
-              </div>
-              <div class="live-stat">
-                <span data-i18n="stage.m2k">在线实例</span>
-                <strong>28 <small>ARM A1 + AMD</small></strong>
-              </div>
-              <div class="live-stat">
-                <span data-i18n="stage.m3k">并发抢机</span>
-                <strong data-i18n="stage.m3v">3 区域运行中</strong>
-              </div>
-              <div class="live-stat">
-                <span data-i18n="stage.m4k">三网平均延迟</span>
-                <strong>36 ms <small>ap-tokyo-1</small></strong>
-              </div>
-            </div>
-
-            <ul class="live-nodes">
-              <li class="live-node">
-                <div class="live-node-info">
-                  <b>ap-tokyo-1</b>
-                  <small>VM.Standard.A1.Flex · 4 OCPU / 24 GB</small>
-                </div>
-                <div class="live-node-meta">
-                  <span class="node-badge is-live">RUNNING</span>
-                  <span class="node-metric">36 ms</span>
-                </div>
-              </li>
-              <li class="live-node">
-                <div class="live-node-info">
-                  <b>ap-seoul-1</b>
-                  <small>VM.Standard.A1.Flex · 2 OCPU / 12 GB</small>
-                </div>
-                <div class="live-node-meta">
-                  <span class="node-badge is-boot">PROVISIONING</span>
-                  <span class="node-metric" data-i18n="stage.retry">重试 #18</span>
-                </div>
-              </li>
-              <li class="live-node">
-                <div class="live-node-info">
-                  <b>ap-singapore-1</b>
-                  <small>VM.Standard.E2.1.Micro · IPv4 + IPv6</small>
-                </div>
-                <div class="live-node-meta">
-                  <span class="node-badge is-sync">DNS SYNCED</span>
-                  <span class="node-metric">52 ms</span>
-                </div>
-              </li>
-              <li class="live-node">
-                <div class="live-node-info">
-                  <b>us-sanjose-1</b>
-                  <small>Boot Volume 100 GB · 20 VPU · Web SSH</small>
-                </div>
-                <div class="live-node-meta">
-                  <span class="node-badge is-live">RUNNING</span>
-                  <span class="node-metric">128 ms</span>
-                </div>
-              </li>
-            </ul>
-
-            <div class="live-log">
-              <span class="live-log-prompt" aria-hidden="true">$</span>
-              <code id="liveLogText" data-i18n="stage.log1">[ap-tokyo-1] A1.Flex (4C/24G) 开机成功 · 已推送 Telegram 与飞书通知</code>
-            </div>
-          </div>
-
-          <div class="stage-chip stage-chip-bottom">
-            <span class="chip-dot chip-dot-brand" aria-hidden="true"></span>
-            <span data-i18n="stage.chip2">Cloudflare / EdgeOne 换 IP 自动联动</span>
-          </div>
-        </div>
+          <span class="diagram-tag tag-compute" aria-hidden="true">COMPUTE</span>
+          <span class="diagram-tag tag-network" aria-hidden="true">NETWORK</span>
+          <span class="diagram-tag tag-storage" aria-hidden="true">STORAGE</span>
+          <span class="draft-corner bottom-left" aria-hidden="true"></span><span class="draft-corner bottom-right" aria-hidden="true"></span>
+        </figure>
       </div>
+      <dl class="container spec-strip">
+        <div><svg width="27" height="27" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m8 8-4 4 4 4m8-8 4 4-4 4m-3-11-2 14"/></svg><dt data-i18n="meta.license">开源协议</dt><dd>Apache 2.0</dd></div>
+        <div><svg width="27" height="27" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="5" width="14" height="14" rx="2"/><rect x="9" y="9" width="6" height="6" rx=".7"/><path d="M9 2v3m6-3v3m-6 14v3m6-3v3M2 9h3m-3 6h3m14-6h3m-3 6h3"/></svg><dt data-i18n="meta.arch">计算架构</dt><dd>ARM / AMD</dd></div>
+        <div><svg width="27" height="27" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 2 9 5v10l-9 5-9-5V7l9-5Zm0 10L3 7m9 5 9-5m-9 5v10M7.5 4.5l9 5"/></svg><dt data-i18n="meta.runtime">部署方式</dt><dd>Script / Docker</dd></div>
+        <div><svg width="27" height="27" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 4 16 4 16 0V5M4 12c0 4 16 4 16 0"/></svg><dt data-i18n="meta.storage">私钥存储</dt><dd data-i18n="meta.local">本地 H2</dd></div>
+      </dl>
     </section>
-
-    <!-- ========== Capabilities Marquee ========== -->
-    <div class="marquee-band" aria-label="核心能力速览" data-i18n-aria="aria.marquee">
-      <div class="marquee-track">
-        <ul class="marquee-list">
-          <li data-i18n="mq.m1">多租户 API 批量测活</li>
-          <li data-i18n="mq.m2">ARM A1.Flex 并发抢机</li>
-          <li data-i18n="mq.m3">一键更换公网 IPv4 / IPv6</li>
-          <li data-i18n="mq.m4">Web SSH &amp; SFTP 终端</li>
-          <li data-i18n="mq.m5">VNC 救援控制台</li>
-          <li data-i18n="mq.m6">引导卷扩容 &amp; 0–120 VPU</li>
-          <li data-i18n="mq.m7">Cloudflare &amp; EdgeOne DNS</li>
-          <li data-i18n="mq.m8">电信 · 联通 · 移动三网探针</li>
-          <li data-i18n="mq.m9">Telegram · Bark · 钉钉 · 飞书</li>
-          <li data-i18n="mq.m10">45+ 甲骨文商业区域测速</li>
-        </ul>
-        <ul class="marquee-list" aria-hidden="true">
-          <li data-i18n="mq.m1">多租户 API 批量测活</li>
-          <li data-i18n="mq.m2">ARM A1.Flex 并发抢机</li>
-          <li data-i18n="mq.m3">一键更换公网 IPv4 / IPv6</li>
-          <li data-i18n="mq.m4">Web SSH &amp; SFTP 终端</li>
-          <li data-i18n="mq.m5">VNC 救援控制台</li>
-          <li data-i18n="mq.m6">引导卷扩容 &amp; 0–120 VPU</li>
-          <li data-i18n="mq.m7">Cloudflare &amp; EdgeOne DNS</li>
-          <li data-i18n="mq.m8">电信 · 联通 · 移动三网探针</li>
-          <li data-i18n="mq.m9">Telegram · Bark · 钉钉 · 飞书</li>
-          <li data-i18n="mq.m10">45+ 甲骨文商业区域测速</li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- ========== Features ========== -->
-    <section class="section" id="features" tabindex="-1" aria-labelledby="features-title">
+    <section id="features" class="capabilities" aria-labelledby="features-title" tabindex="-1">
       <div class="container">
-        <div class="section-head">
-          <h2 id="features-title" data-i18n="feat.title">为甲骨文云日常运维而做</h2>
-          <p data-i18n="feat.lead">不用反复登录官方控制台，也不用拼凑各种脚本。常用的 OCI 操作都可以在一个面板里完成。</p>
+        <div class="eyebrow">CAPABILITIES</div>
+        <div class="cap-head">
+          <h2 id="features-title" data-i18n="feat.title">一个面板，管理云上日常</h2>
+          <a class="text-link" href="#all-features"><span data-i18n="feat.all">完整功能清单</span> <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></a>
         </div>
-
-        <div class="features">
-          <article class="feature">
-            <div class="feature-icon" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
-            <h3 data-i18n="feat.f1t">多租户 API 管理</h3>
-            <p data-i18n="feat.f1d">粘贴配置即可导入多个 OCI 账号。批量测活，识别免费号与升级号，查看配额、账单和审计日志，订阅新区域。</p>
-          </article>
-          <article class="feature">
-            <div class="feature-icon" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
-            <h3 data-i18n="feat.f2t">ARM / AMD 并发开机</h3>
-            <p data-i18n="feat.f2d">内置 A1.Flex、E2.1.Micro 等规格模板。多个 API 同时开机，可设置重试间隔和每日时段，成功后推送通知。</p>
-          </article>
-          <article class="feature">
-            <div class="feature-icon" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="8" rx="2"/><rect x="2" y="13" width="20" height="8" rx="2"/><path d="M6 7h.01M6 17h.01"/></svg></div>
-            <h3 data-i18n="feat.f3t">实例全生命周期</h3>
-            <p data-i18n="feat.f3d">启动、停止、终止、同步和改名。在线调整 CPU 与内存，扩容引导卷并修改 VPU，一键 DD 重装系统。</p>
-          </article>
-          <article class="feature">
-            <div class="feature-icon" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
-            <h3 data-i18n="feat.f4t">IP、IPv6 与网卡</h3>
-            <p data-i18n="feat.f4d">一键更换公网 IPv4，可指定目标网段。添加 IPv6、附属 VNIC，可视化管理安全列表规则。</p>
-          </article>
-          <article class="feature">
-            <div class="feature-icon" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m4 17 6-6-6-6"/><path d="M12 19h8"/></svg></div>
-            <h3 data-i18n="feat.f5t">Web SSH 与 VNC 控制台</h3>
-            <p data-i18n="feat.f5d">浏览器内的 SSH 终端，支持 SFTP 上传下载。实例失联时可直接打开 OCI 控制台连接进行救援。</p>
-          </article>
-          <article class="feature">
-            <div class="feature-icon" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></div>
-            <h3 data-i18n="feat.f6t">DNS 解析联动</h3>
-            <p data-i18n="feat.f6d">接入 Cloudflare 与腾讯云 EdgeOne。换 IP 后可直接在面板里更新域名解析记录。</p>
-          </article>
-          <article class="feature">
-            <div class="feature-icon" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
-            <h3 data-i18n="feat.f7t">流量与网络质量监控</h3>
-            <p data-i18n="feat.f7d">按月统计出入站流量，超过阈值可自动关机。一键安装探针，查看电信、联通、移动三网延迟与丢包。</p>
-          </article>
-          <article class="feature">
-            <div class="feature-icon" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg></div>
-            <h3 data-i18n="feat.f8t">多渠道通知</h3>
-            <p data-i18n="feat.f8d">支持 Telegram、Bark、钉钉和飞书。开机结果、每日账号巡检和费用检查都可以推送。</p>
-          </article>
-          <article class="feature">
-            <div class="feature-icon" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
-            <h3 data-i18n="feat.f9t">私钥本地存储</h3>
-            <p data-i18n="feat.f9d">API 私钥保存在本机 H2 数据库，不上传任何远端。登录支持 TOTP 二次验证、OAuth、Turnstile 和异常 IP 封禁。</p>
-          </article>
+        <div class="cap-grid">
+          <a class="cap-card tenancy" href="#screenshots" data-shot="tab-s2">
+            <div class="cap-visual" aria-hidden="true"><div class="cap-diagram"><div class="tenant-sample"><b></b><i></i><em></em></div><div class="tenant-sample"><b></b><i></i><em></em></div><div class="tenant-sample"><b></b><i></i><em></em></div></div><span class="cap-category">TENANCY</span></div>
+            <div class="cap-content"><h3><span data-i18n="cap.tenancy">多租户管理</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></h3>
+              <p data-i18n="cap.tenancyDesc">批量导入 OCI 账号，统一查看租户状态、区域订阅与配额。</p></div>
+          </a>
+          <a class="cap-card compute" href="#screenshots" data-shot="tab-s3">
+            <div class="cap-visual" aria-hidden="true"><div class="cap-diagram"><div class="rack-sample"><i></i><b></b></div><div class="rack-sample"><i></i><b></b></div><div class="rack-sample"><i></i><b></b></div></div><span class="cap-category">COMPUTE</span></div>
+            <div class="cap-content"><h3><span data-i18n="cap.compute">实例生命周期</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></h3>
+              <p data-i18n="cap.computeDesc">并发创建 ARM 与 AMD 实例，在面板内完成启停、扩容和远程运维。</p></div>
+          </a>
+          <a class="cap-card monitor" href="#screenshots" data-shot="tab-s1">
+            <div class="cap-visual" aria-hidden="true"><div class="cap-diagram"><div class="plot-sample"><i style="--height:18%"></i><i style="--height:24%"></i><i style="--height:21%"></i><i style="--height:28%"></i><i style="--height:34%"></i><i style="--height:27%"></i><i style="--height:24%"></i><i style="--height:39%"></i><i style="--height:35%"></i><i style="--height:45%"></i><i style="--height:59%"></i><i style="--height:46%"></i><i style="--height:42%"></i><i style="--height:51%"></i><i style="--height:74%"></i><i style="--height:65%"></i><i style="--height:56%"></i><i style="--height:63%"></i><i style="--height:71%"></i><i style="--height:93%"></i><i style="--height:73%"></i><i style="--height:66%"></i><i style="--height:80%"></i><i style="--height:89%"></i></div></div><span class="cap-category">MONITORING</span></div>
+            <div class="cap-content"><h3><span data-i18n="cap.monitor">资源监控</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></h3>
+              <p data-i18n="cap.monitorDesc">跟踪实例流量和主机负载，查看网络延迟与丢包情况。</p></div>
+          </a>
         </div>
       </div>
     </section>
-
-    <!-- ========== Screenshots ========== -->
     <section class="section section-alt" id="screenshots" tabindex="-1" aria-labelledby="shots-title">
       <div class="container">
         <div class="section-head">
-          <h2 id="shots-title" data-i18n="shots.title">界面预览</h2>
+          <div class="chapter-heading"><span class="eyebrow" lang="en">INTERFACE</span>
+          <h2 id="shots-title" data-i18n="shots.title">界面预览</h2></div>
           <p data-i18n="shots.lead">以下截图来自项目 README，界面会随版本持续更新。</p>
         </div>
 
         <div class="tabs">
-          <div class="tablist" id="shotTabs" role="tablist" focusgroup="tablist nomemory" aria-label="界面截图" data-i18n-aria="aria.shots">
-            <button type="button" role="tab" id="tab-s1" aria-selected="true" focusgroupstart data-i18n="shots.t1">系统监控</button>
-            <button type="button" role="tab" id="tab-s2" aria-selected="false" data-i18n="shots.t2">API 管理</button>
-            <button type="button" role="tab" id="tab-s3" aria-selected="false" data-i18n="shots.t3">开机配置</button>
-            <button type="button" role="tab" id="tab-s4" aria-selected="false" data-i18n="shots.t4">快速添加 API</button>
-            <button type="button" role="tab" id="tab-s5" aria-selected="false" data-i18n="shots.t5">账号批量检测</button>
-            <button type="button" role="tab" id="tab-s6" aria-selected="false" data-i18n="shots.t6">系统设置</button>
-            <button type="button" role="tab" id="tab-s7" aria-selected="false" data-i18n="shots.t7">笔记</button>
+          <div class="tablist" id="shotTabs" role="tablist" aria-label="界面截图" data-i18n-aria="aria.shots">
+            <button type="button" role="tab" id="tab-s1" aria-controls="panel-s1" aria-selected="true" data-i18n="shots.t1">系统监控</button>
+            <button type="button" role="tab" id="tab-s2" aria-controls="panel-s2" aria-selected="false" data-i18n="shots.t2">API 管理</button>
+            <button type="button" role="tab" id="tab-s3" aria-controls="panel-s3" aria-selected="false" data-i18n="shots.t3">开机配置</button>
+            <button type="button" role="tab" id="tab-s4" aria-controls="panel-s4" aria-selected="false" data-i18n="shots.t4">快速添加 API</button>
+            <button type="button" role="tab" id="tab-s5" aria-controls="panel-s5" aria-selected="false" data-i18n="shots.t5">账号批量检测</button>
+            <button type="button" role="tab" id="tab-s6" aria-controls="panel-s6" aria-selected="false" data-i18n="shots.t6">系统设置</button>
+            <button type="button" role="tab" id="tab-s7" aria-controls="panel-s7" aria-selected="false" data-i18n="shots.t7">笔记</button>
           </div>
 
+          <div class="gallery-mat">
           <div class="browser">
             <div class="browser-bar">
               <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
@@ -397,32 +197,33 @@
               </button>
             </div>
             <div class="panels">
-              <div role="tabpanel" aria-labelledby="tab-s1" tabindex="0">
-                <img src="./assets/shots/shot-6.png" srcset="./assets/shots/shot-6.png 1440w, ./assets/shots/shot-6-2x.png 2854w" sizes="96vw" width="1440" height="751" loading="lazy" decoding="async" alt="系统监控页：API 数、开机实例数、抢机次数，以及 CPU、内存和系统信息仪表盘" data-i18n-alt="shots.a1">
+              <div role="tabpanel" id="panel-s1" aria-labelledby="tab-s1" tabindex="0">
+                <img src="./assets/shots/shot-6.png" srcset="./assets/shots/shot-6.png 1440w, ./assets/shots/shot-6-2x.png 2854w" sizes="(min-width: 1320px) 1140px, (min-width: 730px) 88vw, 94vw" width="1440" height="751" loading="lazy" decoding="async" alt="系统监控页：API 数、开机实例数、抢机次数，以及 CPU、内存和系统信息仪表盘" data-i18n-alt="shots.a1">
               </div>
-              <div role="tabpanel" aria-labelledby="tab-s2" hidden="until-found">
-                <img src="./assets/shots/shot-1.png" srcset="./assets/shots/shot-1.png 1440w, ./assets/shots/shot-1-2x.png 2846w" sizes="96vw" width="1440" height="691" fetchpriority="low" loading="lazy" decoding="async" alt="API 管理页：租户列表与添加、导入、导出、批量检测等操作" data-i18n-alt="shots.a2">
+              <div role="tabpanel" id="panel-s2" aria-labelledby="tab-s2" hidden="until-found">
+                <img src="./assets/shots/shot-1.png" srcset="./assets/shots/shot-1.png 1440w, ./assets/shots/shot-1-2x.png 2846w" sizes="(min-width: 1320px) 1140px, (min-width: 730px) 88vw, 94vw" width="1440" height="691" fetchpriority="low" loading="lazy" decoding="async" alt="API 管理页：租户列表与添加、导入、导出、批量检测等操作" data-i18n-alt="shots.a2">
               </div>
-              <div role="tabpanel" aria-labelledby="tab-s3" hidden="until-found">
-                <img src="./assets/shots/shot-2.png" srcset="./assets/shots/shot-2.png 1440w, ./assets/shots/shot-2-2x.png 2840w" sizes="96vw" width="1440" height="757" fetchpriority="low" loading="lazy" decoding="async" alt="添加实例页：ARM 与 AMD 配置模板以及部署数量设置" data-i18n-alt="shots.a3">
+              <div role="tabpanel" id="panel-s3" aria-labelledby="tab-s3" hidden="until-found">
+                <img src="./assets/shots/shot-2.png" srcset="./assets/shots/shot-2.png 1440w, ./assets/shots/shot-2-2x.png 2840w" sizes="(min-width: 1320px) 1140px, (min-width: 730px) 88vw, 94vw" width="1440" height="757" fetchpriority="low" loading="lazy" decoding="async" alt="添加实例页：ARM 与 AMD 配置模板以及部署数量设置" data-i18n-alt="shots.a3">
               </div>
-              <div role="tabpanel" aria-labelledby="tab-s4" hidden="until-found">
-                <img src="./assets/shots/shot-4.png" srcset="./assets/shots/shot-4.png 1440w, ./assets/shots/shot-4-2x.png 2864w" sizes="96vw" width="1440" height="723" fetchpriority="low" loading="lazy" decoding="async" alt="快速添加 API 页：粘贴 OCI 配置后自动填写各字段" data-i18n-alt="shots.a4">
+              <div role="tabpanel" id="panel-s4" aria-labelledby="tab-s4" hidden="until-found">
+                <img src="./assets/shots/shot-4.png" srcset="./assets/shots/shot-4.png 1440w, ./assets/shots/shot-4-2x.png 2864w" sizes="(min-width: 1320px) 1140px, (min-width: 730px) 88vw, 94vw" width="1440" height="723" fetchpriority="low" loading="lazy" decoding="async" alt="快速添加 API 页：粘贴 OCI 配置后自动填写各字段" data-i18n-alt="shots.a4">
               </div>
-              <div role="tabpanel" aria-labelledby="tab-s5" hidden="until-found">
-                <img src="./assets/shots/shot-3.png" srcset="./assets/shots/shot-3.png 1440w, ./assets/shots/shot-3-2x.png 2422w" sizes="96vw" width="1440" height="817" fetchpriority="low" loading="lazy" decoding="async" alt="账号批量检测结果：总账号、存活账号与失效账号数量柱状图" data-i18n-alt="shots.a5">
+              <div role="tabpanel" id="panel-s5" aria-labelledby="tab-s5" hidden="until-found">
+                <img src="./assets/shots/shot-3.png" srcset="./assets/shots/shot-3.png 1440w, ./assets/shots/shot-3-2x.png 2422w" sizes="(min-width: 1320px) 1140px, (min-width: 730px) 88vw, 94vw" width="1440" height="817" fetchpriority="low" loading="lazy" decoding="async" alt="账号批量检测结果：总账号、存活账号与失效账号数量柱状图" data-i18n-alt="shots.a5">
               </div>
-              <div role="tabpanel" aria-labelledby="tab-s6" hidden="until-found">
-                <img src="./assets/shots/shot-7.png" srcset="./assets/shots/shot-7.png 1440w, ./assets/shots/shot-7-2x.png 2860w" sizes="96vw" width="1440" height="739" fetchpriority="low" loading="lazy" decoding="async" alt="系统设置页：账号安全、Telegram 通知、GitHub 登录和钉钉通知配置" data-i18n-alt="shots.a6">
+              <div role="tabpanel" id="panel-s6" aria-labelledby="tab-s6" hidden="until-found">
+                <img src="./assets/shots/shot-7.png" srcset="./assets/shots/shot-7.png 1440w, ./assets/shots/shot-7-2x.png 2860w" sizes="(min-width: 1320px) 1140px, (min-width: 730px) 88vw, 94vw" width="1440" height="739" fetchpriority="low" loading="lazy" decoding="async" alt="系统设置页：账号安全、Telegram 通知、GitHub 登录和钉钉通知配置" data-i18n-alt="shots.a6">
               </div>
-              <div role="tabpanel" aria-labelledby="tab-s7" hidden="until-found">
-                <img src="./assets/shots/shot-5.png" srcset="./assets/shots/shot-5.png 1440w, ./assets/shots/shot-5-2x.png 2840w" sizes="96vw" width="1440" height="728" fetchpriority="low" loading="lazy" decoding="async" alt="笔记页：添加速记标题和内容" data-i18n-alt="shots.a7">
+              <div role="tabpanel" id="panel-s7" aria-labelledby="tab-s7" hidden="until-found">
+                <img src="./assets/shots/shot-5.png" srcset="./assets/shots/shot-5.png 1440w, ./assets/shots/shot-5-2x.png 2840w" sizes="(min-width: 1320px) 1140px, (min-width: 730px) 88vw, 94vw" width="1440" height="728" fetchpriority="low" loading="lazy" decoding="async" alt="笔记页：添加速记标题和内容" data-i18n-alt="shots.a7">
               </div>
             </div>
+          </div>
+          </div>
             <div class="browser-foot">
               <p id="shotCaption" data-i18n="shots.a1">系统监控页：API 数、开机实例数、抢机次数，以及 CPU、内存和系统信息仪表盘</p>
             </div>
-          </div>
         </div>
       </div>
     </section>
@@ -431,7 +232,8 @@
     <section class="section" id="quick-start" tabindex="-1" aria-labelledby="start-title">
       <div class="container">
         <div class="section-head">
-          <h2 id="start-title" data-i18n="start.title">三步完成部署</h2>
+          <div class="chapter-heading"><span class="eyebrow" lang="en">DEPLOYMENT</span>
+          <h2 id="start-title" data-i18n="start.title">三步完成部署</h2></div>
           <p data-i18n="start.lead">支持脚本和 Docker 两种方式，任选其一。</p>
         </div>
 
@@ -453,7 +255,7 @@
             </li>
             <li>
               <h3 data-i18n="start.s2t">运行安装命令</h3>
-              <p data-i18n="start.s2d">复制右侧命令到服务器执行。新版本会自动检测并安装 Redis，如本机已有 Redis 请先评估端口冲突。</p>
+              <p data-i18n="start.s2d">复制所选部署方式的命令，在服务器上执行。新版本会自动检测并安装 Redis，如本机已有 Redis 请先评估端口冲突。</p>
             </li>
             <li>
               <h3 data-i18n="start.s3t">打开面板</h3>
@@ -472,15 +274,15 @@
           </ol>
 
           <div class="code-tabs">
-            <div class="tablist tablist-code" id="installTabs" role="tablist" focusgroup="tablist nomemory" aria-label="部署方式" data-i18n-aria="aria.install">
-              <button type="button" role="tab" id="tab-script" aria-selected="true" focusgroupstart data-i18n="start.tScript">脚本部署（推荐）</button>
-              <button type="button" role="tab" id="tab-docker" aria-selected="false">Docker</button>
+            <div class="tablist tablist-code" id="installTabs" role="tablist" aria-label="部署方式" data-i18n-aria="aria.install">
+              <button type="button" role="tab" id="tab-script" aria-controls="panel-script" aria-selected="true" data-i18n="start.tScript">脚本部署（推荐）</button>
+              <button type="button" role="tab" id="tab-docker" aria-controls="panel-docker" aria-selected="false">Docker</button>
             </div>
             <div class="panels">
-              <div role="tabpanel" aria-labelledby="tab-script">
+              <div role="tabpanel" id="panel-script" aria-labelledby="tab-script">
                 <div class="code-block">
                   <div class="code-head">
-                    <span>bash</span>
+                    <span class="shell-prompt"><span aria-hidden="true">❯</span> bash</span>
                     <span class="copy">
                       <button type="button" class="copy-btn" command="--copy" commandfor="codeScript" aria-label="复制脚本部署命令" data-i18n-aria="copy.script">
                         <svg class="i-copy" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
@@ -503,10 +305,10 @@ chmod +x oci-start.sh
 ./oci-start.sh uninstall   <span class="c">#</span> <span class="c" data-i18n="cmd.uninstall">卸载</span></code></pre>
                 </div>
               </div>
-              <div role="tabpanel" aria-labelledby="tab-docker" hidden="until-found">
+              <div role="tabpanel" id="panel-docker" aria-labelledby="tab-docker" hidden="until-found">
                 <div class="code-block">
                   <div class="code-head">
-                    <span>bash</span>
+                    <span class="shell-prompt"><span aria-hidden="true">❯</span> bash</span>
                     <span class="copy">
                       <button type="button" class="copy-btn" command="--copy" commandfor="codeDocker" aria-label="复制 Docker 部署命令" data-i18n-aria="copy.docker">
                         <svg class="i-copy" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
@@ -541,13 +343,15 @@ docker logs -f oci-start   <span class="c">#</span> <span class="c" data-i18n="c
     <section class="section section-alt" id="all-features" tabindex="-1" aria-labelledby="all-title">
       <div class="container">
         <div class="section-head">
-          <h2 id="all-title" data-i18n="all.title">完整功能清单</h2>
+          <div class="chapter-heading"><span class="eyebrow" lang="en">FEATURE INDEX</span>
+          <h2 id="all-title" data-i18n="all.title">完整功能清单</h2></div>
           <p data-i18n="all.lead">按面板菜单分组，列出已经实现的功能。</p>
         </div>
 
         <div class="feature-list">
-          <div class="fl-group">
-            <h3 data-i18n="all.g1">租户与账号</h3>
+          <div class="feature-index-column">
+            <details class="fl-group">
+            <summary><h3 data-i18n="all.g1">租户与账号</h3></summary>
             <ul>
               <li data-i18n="all.g1i1">粘贴配置快速导入，支持创建最小权限专用 API 用户</li>
               <li data-i18n="all.g1i2">账号批量测活，识别免费号、试用号与 PAYG 升级号</li>
@@ -556,9 +360,9 @@ docker logs -f oci-start   <span class="c">#</span> <span class="c" data-i18n="c
               <li data-i18n="all.g1i5">月度流量预警，超过阈值自动关机</li>
               <li data-i18n="all.g1i6">租户备份导出需验证码确认</li>
             </ul>
-          </div>
-          <div class="fl-group">
-            <h3 data-i18n="all.g2">开机任务</h3>
+            </details>
+            <details class="fl-group">
+            <summary><h3 data-i18n="all.g2">开机任务</h3></summary>
             <ul>
               <li data-i18n="all.g2i1">快速开机与自定义配置两种模式</li>
               <li data-i18n="all.g2i2">ARM 与 AMD 多档规格模板，含付费规格</li>
@@ -567,9 +371,9 @@ docker logs -f oci-start   <span class="c">#</span> <span class="c" data-i18n="c
               <li data-i18n="all.g2i5">按区域单价估算每小时与每月费用</li>
               <li data-i18n="all.g2i6">实时任务日志与历史记录</li>
             </ul>
-          </div>
-          <div class="fl-group">
-            <h3 data-i18n="all.g3">实例运维</h3>
+            </details>
+            <details class="fl-group">
+            <summary><h3 data-i18n="all.g3">实例运维</h3></summary>
             <ul>
               <li data-i18n="all.g3i1">启动、停止、终止（可保留启动盘）、改名</li>
               <li data-i18n="all.g3i2">在线调整 CPU 与内存，一键 DD 重装</li>
@@ -578,9 +382,11 @@ docker logs -f oci-start   <span class="c">#</span> <span class="c" data-i18n="c
               <li data-i18n="all.g3i5">批量添加 IPv6，管理附属 VNIC</li>
               <li data-i18n="all.g3i6">Web SSH、SFTP 与 VNC 控制台</li>
             </ul>
+            </details>
           </div>
-          <div class="fl-group">
-            <h3 data-i18n="all.g4">云服务与工具</h3>
+          <div class="feature-index-column">
+            <details class="fl-group">
+            <summary><h3 data-i18n="all.g4">云服务与工具</h3></summary>
             <ul>
               <li data-i18n="all.g4i1">45+ 商业区域地图与历史开机记录</li>
               <li data-i18n="all.g4i2">浏览器直连各区域延迟测试</li>
@@ -589,9 +395,9 @@ docker logs -f oci-start   <span class="c">#</span> <span class="c" data-i18n="c
               <li data-i18n="all.g4i5">VCN 安全列表规则管理</li>
               <li data-i18n="all.g4i6">GCP 实例查看与管理</li>
             </ul>
-          </div>
-          <div class="fl-group">
-            <h3 data-i18n="all.g5">DNS 与监控</h3>
+            </details>
+            <details class="fl-group">
+            <summary><h3 data-i18n="all.g5">DNS 与监控</h3></summary>
             <ul>
               <li data-i18n="all.g5i1">Cloudflare 解析记录同步与编辑</li>
               <li data-i18n="all.g5i2">腾讯云 EdgeOne 解析与加速域名</li>
@@ -599,9 +405,9 @@ docker logs -f oci-start   <span class="c">#</span> <span class="c" data-i18n="c
               <li data-i18n="all.g5i4">一键安装探针，上报 CPU、内存、磁盘与流量</li>
               <li data-i18n="all.g5i5">电信、联通、移动三网延迟与丢包</li>
             </ul>
-          </div>
-          <div class="fl-group">
-            <h3 data-i18n="all.g6">系统与安全</h3>
+            </details>
+            <details class="fl-group">
+            <summary><h3 data-i18n="all.g6">系统与安全</h3></summary>
             <ul>
               <li data-i18n="all.g6i1">HTTP 代理池，可为单个租户绑定代理</li>
               <li data-i18n="all.g6i2">Telegram、Bark、钉钉、飞书通知与每日巡检</li>
@@ -610,6 +416,7 @@ docker logs -f oci-start   <span class="c">#</span> <span class="c" data-i18n="c
               <li data-i18n="all.g6i5">系统日志、宿主机监控、开发者 API Token</li>
               <li data-i18n="all.g6i6">深浅色主题、中英文界面、手机端适配</li>
             </ul>
+            </details>
           </div>
         </div>
       </div>
@@ -619,7 +426,8 @@ docker logs -f oci-start   <span class="c">#</span> <span class="c" data-i18n="c
     <section class="section" id="community" tabindex="-1" aria-labelledby="community-title">
       <div class="container">
         <div class="section-head">
-          <h2 id="community-title" data-i18n="com.title">社区与贡献者</h2>
+          <div class="chapter-heading"><span class="eyebrow" lang="en">OPEN SOURCE</span>
+          <h2 id="community-title" data-i18n="com.title">社区与贡献者</h2></div>
           <p data-i18n="com.lead">OCI-Start 由社区共同维护。欢迎提交 Issue、Pull Request，或者点一个 Star。</p>
         </div>
 
@@ -659,10 +467,11 @@ docker logs -f oci-start   <span class="c">#</span> <span class="c" data-i18n="c
     <section class="section section-alt" id="faq" tabindex="-1" aria-labelledby="faq-title">
       <div class="container">
         <div class="section-head">
-          <h2 id="faq-title" data-i18n="faq.title">常见问题</h2>
+          <div class="chapter-heading"><span class="eyebrow" lang="en">FAQ</span>
+          <h2 id="faq-title" data-i18n="faq.title">常见问题</h2></div>
         </div>
         <div class="faq">
-          <details>
+          <details open>
             <summary data-i18n="faq.q1">OCI-Start 收费吗？</summary>
             <p data-i18n="faq.a1">不收费。项目基于 Apache-2.0 协议开源，可以自由部署和修改。</p>
           </details>
@@ -689,7 +498,6 @@ docker logs -f oci-start   <span class="c">#</span> <span class="c" data-i18n="c
         </div>
       </div>
     </section>
-  </main>
 
   <dialog class="shot-dialog" id="shotDialog" closedby="any" aria-labelledby="shotDialogTitle">
     <div class="shot-dialog-bar">
@@ -709,26 +517,32 @@ docker logs -f oci-start   <span class="c">#</span> <span class="c" data-i18n="c
         </button>
       </div>
     </div>
-    <div class="shot-dialog-body">
-      <img id="shotDialogImg" src="./assets/shots/shot-6-2x.png" width="1440" height="751" decoding="async" alt="">
+    <div class="shot-dialog-body" tabindex="0" role="region" aria-labelledby="shotDialogTitle">
+      <img id="shotDialogImg" loading="lazy" src="./assets/shots/shot-6-2x.png" width="1440" height="751" decoding="async" alt="">
     </div>
     <p class="shot-dialog-caption" id="shotDialogCaption"></p>
   </dialog>
 
+  </main>
+
   <!-- ========== Footer ========== -->
   <footer class="footer">
     <div class="container">
-      <p class="footer-disclaimer" data-i18n="foot.disc">本项目仅用于技术测试、学习与研究。严禁修改功能后引导他人部署以盗取账号信息。使用者须遵守所在地区法律法规及云厂商服务条款，一切后果由使用者自行承担。</p>
+      <div class="footer-mast">
+        <a class="footer-logo" href="#top" aria-label="OCI-Start 首页" data-i18n-aria="aria.home"><img src="./favicon.svg" width="32" height="32" alt="">OCI-Start</a>
       <p class="footer-links">
         <a href="https://github.com/doubleDimple/oci-start" target="_blank" rel="noopener noreferrer">GitHub</a>
         <a href="https://github.com/doubleDimple/oci-start/releases" target="_blank" rel="noopener noreferrer" data-i18n="nav.releases">更新日志</a>
         <a href="https://github.com/doubleDimple/oci-start/issues" target="_blank" rel="noopener noreferrer" data-i18n="foot.issues">Issues</a>
         <a href="https://github.com/doubleDimple/oci-start/blob/master/LICENSE" target="_blank" rel="noopener noreferrer" data-i18n="foot.license">License</a>
       </p>
+      </div>
+      <p class="footer-disclaimer" data-i18n="foot.disc">本项目仅用于技术测试、学习与研究。严禁修改功能后引导他人部署以盗取账号信息。使用者须遵守所在地区法律法规及云厂商服务条款，一切后果由使用者自行承担。</p>
+
       <p class="footer-copy"><span data-i18n="foot.copy">基于 Apache-2.0 协议发布 · Copyright © 2024–present</span> <a href="https://github.com/doubleDimple" target="_blank" rel="noopener noreferrer">doubleDimple</a></p>
     </div>
   </footer>
 
-  <script src="./app.js?v=11" defer></script>
+  <script src="./app.js?v=12" defer></script>
 </body>
 </html>

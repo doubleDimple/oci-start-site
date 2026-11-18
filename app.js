@@ -12,15 +12,14 @@
       "skip": "跳到主要内容",
       "aria.home": "OCI-Start 首页",
       "aria.nav": "主导航",
-      "aria.marquee": "核心能力速览",
       "aria.drawer": "导航菜单",
       "aria.mobileNav": "移动导航",
       "aria.openMenu": "打开导航菜单",
       "aria.closeMenu": "关闭导航菜单",
       "aria.shots": "界面截图",
       "aria.install": "部署方式",
-      "nav.features": "功能",
-      "nav.shots": "截图",
+      "nav.features": "功能概览",
+      "nav.shots": "界面预览",
       "nav.start": "快速开始",
       "nav.all": "功能清单",
       "nav.faq": "常见问题",
@@ -28,39 +27,11 @@
       "nav.releases": "更新日志",
       "theme.toDark": "切换到深色主题",
       "theme.toLight": "切换到浅色主题",
-      "motion.pause": "暂停动态",
-      "motion.play": "恢复动态",
-      "stage.title": "OCI-Start 实时控制台 · :9856",
-      "stage.m1k": "多租户 API",
-      "stage.m2k": "在线实例",
-      "stage.m3k": "并发抢机",
-      "stage.m3v": "3 区域运行中",
-      "stage.m4k": "三网平均延迟",
-      "stage.retry": "重试 #18",
-      "stage.chip1": "私钥本机 H2 存储 · 零远端上传",
-      "stage.chip2": "Cloudflare / EdgeOne 换 IP 自动联动",
-      "stage.log1": "[ap-tokyo-1] A1.Flex (4C/24G) 开机成功 · 已推送 Telegram 与飞书通知",
-      "stage.log2": "[ap-singapore-1] 公网 IPv4 已更换 · Cloudflare DNS 记录自动同步完成",
-      "stage.log3": "[Batch Check] 12 个 OCI 租户巡检完成 · 9 免费号 / 3 PAYG 升级号全部存活",
-      "stage.log4": "[us-sanjose-1] 引导卷在线扩容至 100 GB (20 VPU) · 三网探针上报正常",
-      "mq.m1": "多租户 API 批量测活",
-      "mq.m2": "ARM A1.Flex 并发抢机",
-      "mq.m3": "一键更换公网 IPv4 / IPv6",
-      "mq.m4": "Web SSH & SFTP 终端",
-      "mq.m5": "VNC 救援控制台",
-      "mq.m6": "引导卷扩容 & 0–120 VPU",
-      "mq.m7": "Cloudflare & EdgeOne DNS",
-      "mq.m8": "电信 · 联通 · 移动三网探针",
-      "mq.m9": "Telegram · Bark · 钉钉 · 飞书",
-      "mq.m10": "45+ 甲骨文商业区域测速",
       "hero.release": "查看最新版本",
       "hero.releaseTpl": "最新版本 {v}",
-      "hero.text": "开源的甲骨文云实例管理面板",
-      "hero.tagline": "多租户 API 管理、ARM / AMD 并发开机、换 IP、Web SSH 与 VNC 控制台。部署在你自己的服务器上，私钥不会离开本机。",
-      "hero.start": "快速开始",
-      "hero.shots": "查看截图",
-      "hero.star": "Star on GitHub",
-      "copy.install": "复制安装命令",
+      "hero.tagline": "在自己的服务器上运行 OCI-Start，集中管理多租户、云实例与网络资源。从并发开机到日常监控，私钥始终保存在本机。",
+      "hero.start": "快速部署",
+      "hero.shots": "界面预览",
       "copy.jdk": "复制环境安装命令",
       "copy.url": "复制访问地址",
       "copy.script": "复制脚本部署命令",
@@ -68,29 +39,8 @@
       "copy.ok": "已复制",
       "copy.fail": "复制失败",
       "meta.license": "开源协议",
-      "meta.stars": "Stars",
-      "meta.runtime": "运行环境",
-      "meta.port": "默认端口",
-      "feat.title": "为甲骨文云日常运维而做",
-      "feat.lead": "不用反复登录官方控制台，也不用拼凑各种脚本。常用的 OCI 操作都可以在一个面板里完成。",
-      "feat.f1t": "多租户 API 管理",
-      "feat.f1d": "粘贴配置即可导入多个 OCI 账号。批量测活，识别免费号与升级号，查看配额、账单和审计日志，订阅新区域。",
-      "feat.f2t": "ARM / AMD 并发开机",
-      "feat.f2d": "内置 A1.Flex、E2.1.Micro 等规格模板。多个 API 同时开机，可设置重试间隔和每日时段，成功后推送通知。",
-      "feat.f3t": "实例全生命周期",
-      "feat.f3d": "启动、停止、终止、同步和改名。在线调整 CPU 与内存，扩容引导卷并修改 VPU，一键 DD 重装系统。",
-      "feat.f4t": "IP、IPv6 与网卡",
-      "feat.f4d": "一键更换公网 IPv4，可指定目标网段。添加 IPv6、附属 VNIC，可视化管理安全列表规则。",
-      "feat.f5t": "Web SSH 与 VNC 控制台",
-      "feat.f5d": "浏览器内的 SSH 终端，支持 SFTP 上传下载。实例失联时可直接打开 OCI 控制台连接进行救援。",
-      "feat.f6t": "DNS 解析联动",
-      "feat.f6d": "接入 Cloudflare 与腾讯云 EdgeOne。换 IP 后可直接在面板里更新域名解析记录。",
-      "feat.f7t": "流量与网络质量监控",
-      "feat.f7d": "按月统计出入站流量，超过阈值可自动关机。一键安装探针，查看电信、联通、移动三网延迟与丢包。",
-      "feat.f8t": "多渠道通知",
-      "feat.f8d": "支持 Telegram、Bark、钉钉和飞书。开机结果、每日账号巡检和费用检查都可以推送。",
-      "feat.f9t": "私钥本地存储",
-      "feat.f9d": "API 私钥保存在本机 H2 数据库，不上传任何远端。登录支持 TOTP 二次验证、OAuth、Turnstile 和异常 IP 封禁。",
+      "meta.runtime": "部署方式",
+      "feat.title": "一个面板，管理云上日常",
       "shots.title": "界面预览",
       "shots.lead": "以下截图来自项目 README，界面会随版本持续更新。",
       "shots.t1": "系统监控",
@@ -117,7 +67,7 @@
       "start.s1t": "准备环境",
       "start.s1d": "一台 Linux 服务器，推荐 Debian 或 Ubuntu。脚本方式需要 Java 8 及以上版本。",
       "start.s2t": "运行安装命令",
-      "start.s2d": "复制右侧命令到服务器执行。新版本会自动检测并安装 Redis，如本机已有 Redis 请先评估端口冲突。",
+      "start.s2d": "复制所选部署方式的命令，在服务器上执行。新版本会自动检测并安装 Redis，如本机已有 Redis 请先评估端口冲突。",
       "start.s3t": "打开面板",
       "start.s3d": "浏览器访问下面的地址，使用配置的用户名和密码登录。",
       "start.tScript": "脚本部署（推荐）",
@@ -204,9 +154,22 @@
       "faq.q6": "除了甲骨文云还支持其他云吗？",
       "faq.a6": "核心功能围绕 Oracle Cloud。此外支持导入 GCP 服务账号查看和管理实例，以及纳管任意厂商的 VPS 进行监控。",
       "foot.disc": "本项目仅用于技术测试、学习与研究。严禁修改功能后引导他人部署以盗取账号信息。使用者须遵守所在地区法律法规及云厂商服务条款，一切后果由使用者自行承担。",
-      "foot.issues": "问题反馈",
-      "foot.license": "开源协议",
-      "foot.copy": "基于 Apache-2.0 协议发布 · Copyright © 2024–present"
+      "foot.issues": "Issues",
+      "foot.license": "License",
+      "foot.copy": "基于 Apache-2.0 协议发布 · Copyright © 2024–present",
+      "hero.kicker": "自托管云管理面板",
+      "hero.headline": "掌控你的",
+      "meta.arch": "计算架构",
+      "meta.storage": "私钥存储",
+      "meta.local": "本地 H2",
+      "feat.all": "完整功能清单",
+      "cap.tenancy": "多租户管理",
+      "cap.tenancyDesc": "批量导入 OCI 账号，统一查看租户状态、区域订阅与配额。",
+      "cap.compute": "实例生命周期",
+      "cap.computeDesc": "并发创建 ARM 与 AMD 实例，在面板内完成启停、扩容和远程运维。",
+      "cap.monitor": "资源监控",
+      "cap.monitorDesc": "跟踪实例流量和主机负载，查看网络延迟与丢包情况。",
+      "aria.stack": "计算、网络与存储的分层示意"
     },
     en: {
       "doc.title": "OCI-Start | Open-source Oracle Cloud Instance Management Panel",
@@ -216,7 +179,6 @@
       "skip": "Skip to main content",
       "aria.home": "OCI-Start home",
       "aria.nav": "Main",
-      "aria.marquee": "Key capabilities",
       "aria.drawer": "Navigation menu",
       "aria.mobileNav": "Mobile navigation",
       "aria.openMenu": "Open navigation menu",
@@ -224,7 +186,7 @@
       "aria.shots": "Screenshots",
       "aria.install": "Install method",
       "nav.features": "Features",
-      "nav.shots": "Screenshots",
+      "nav.shots": "Interface",
       "nav.start": "Get Started",
       "nav.all": "All Features",
       "nav.faq": "FAQ",
@@ -232,39 +194,11 @@
       "nav.releases": "Changelog",
       "theme.toDark": "Switch to dark theme",
       "theme.toLight": "Switch to light theme",
-      "motion.pause": "Pause motion",
-      "motion.play": "Play motion",
-      "stage.title": "OCI-Start Live Console · :9856",
-      "stage.m1k": "Tenant APIs",
-      "stage.m2k": "Live Instances",
-      "stage.m3k": "Boot Tasks",
-      "stage.m3v": "3 regions active",
-      "stage.m4k": "Avg Carrier Ping",
-      "stage.retry": "Retry #18",
-      "stage.chip1": "Keys stored in local H2 · zero cloud upload",
-      "stage.chip2": "Auto-syncs Cloudflare & EdgeOne on IP change",
-      "stage.log1": "[ap-tokyo-1] A1.Flex (4C/24G) provisioned · Telegram & Feishu notified",
-      "stage.log2": "[ap-singapore-1] Public IPv4 rotated · Cloudflare A record synced",
-      "stage.log3": "[Batch Check] 12 OCI tenants healthy · 9 Free Tier / 3 PAYG active",
-      "stage.log4": "[us-sanjose-1] Boot volume resized to 100 GB (20 VPU) · Probes online",
-      "mq.m1": "Multi-Tenant Batch Check",
-      "mq.m2": "Concurrent ARM A1.Flex Boot",
-      "mq.m3": "One-Click IPv4 / IPv6 Rotation",
-      "mq.m4": "In-Browser SSH & SFTP",
-      "mq.m5": "VNC Rescue Console",
-      "mq.m6": "Boot Volume & 0–120 VPU",
-      "mq.m7": "Cloudflare & EdgeOne DNS",
-      "mq.m8": "3-Carrier Latency Probes",
-      "mq.m9": "Telegram · Bark · DingTalk · Feishu",
-      "mq.m10": "45+ OCI Region Latency Map",
       "hero.release": "See the latest release",
       "hero.releaseTpl": "Latest release {v}",
-      "hero.text": "Open-source Oracle Cloud instance panel",
-      "hero.tagline": "Multi-tenant API management, concurrent ARM / AMD provisioning, IP rotation, web SSH and VNC console. Runs on your own server, so your private keys never leave it.",
-      "hero.start": "Get Started",
-      "hero.shots": "Screenshots",
-      "hero.star": "Star on GitHub",
-      "copy.install": "Copy install command",
+      "hero.tagline": "Run OCI-Start on your own server. Manage tenants, provision instances and monitor your Oracle Cloud resources in one place. Your private keys stay local.",
+      "hero.start": "Quick start",
+      "hero.shots": "Preview UI",
       "copy.jdk": "Copy JDK install command",
       "copy.url": "Copy panel URL",
       "copy.script": "Copy script install commands",
@@ -272,29 +206,8 @@
       "copy.ok": "Copied",
       "copy.fail": "Copy failed",
       "meta.license": "License",
-      "meta.stars": "Stars",
-      "meta.runtime": "Runtime",
-      "meta.port": "Default port",
-      "feat.title": "Built for everyday Oracle Cloud work",
-      "feat.lead": "No more bouncing between the official console and a pile of scripts. The OCI tasks you do every day live in one panel.",
-      "feat.f1t": "Multi-tenant API management",
-      "feat.f1d": "Paste a config to import OCI accounts. Batch health checks, Free Tier vs. PAYG detection, quotas, billing, audit logs and region subscriptions.",
-      "feat.f2t": "Concurrent ARM / AMD provisioning",
-      "feat.f2d": "Shape templates for A1.Flex, E2.1.Micro and more. Run boot tasks across many APIs with custom retry intervals and daily windows, and get notified on success.",
-      "feat.f3t": "Full instance lifecycle",
-      "feat.f3d": "Start, stop, terminate, sync and rename. Resize CPU and memory online, grow boot volumes, tune VPUs, and reinstall with DD in one click.",
-      "feat.f4t": "IPs, IPv6 and VNICs",
-      "feat.f4d": "Rotate the public IPv4, optionally targeting specific CIDRs. Add IPv6 and secondary VNICs, and edit security list rules visually.",
-      "feat.f5t": "Web SSH and VNC console",
-      "feat.f5d": "An in-browser SSH terminal with SFTP upload and download. When an instance is unreachable, open the OCI console connection to rescue it.",
-      "feat.f6t": "DNS integration",
-      "feat.f6d": "Connects to Cloudflare and Tencent EdgeOne, so you can update DNS records right after rotating an IP.",
-      "feat.f7t": "Traffic and network monitoring",
-      "feat.f7d": "Monthly inbound and outbound traffic with optional auto-shutdown at a threshold. One-click probes report latency and loss for China Telecom, Unicom and Mobile.",
-      "feat.f8t": "Notifications",
-      "feat.f8d": "Telegram, Bark, DingTalk and Feishu. Get boot results, daily account checks and cost checks pushed to you.",
-      "feat.f9t": "Keys stay local",
-      "feat.f9d": "API private keys are stored in a local H2 database and never uploaded anywhere. Login supports TOTP, OAuth, Turnstile and IP banning.",
+      "meta.runtime": "Deployment",
+      "feat.title": "Everyday cloud operations",
       "shots.title": "Screenshots",
       "shots.lead": "These screenshots come from the project README. The UI keeps evolving with each release.",
       "shots.t1": "Monitoring",
@@ -321,7 +234,7 @@
       "start.s1t": "Prepare a server",
       "start.s1d": "Any Linux server; Debian or Ubuntu is recommended. The script install needs Java 8 or later.",
       "start.s2t": "Run the installer",
-      "start.s2d": "Copy the commands on the right to your server. New versions install Redis automatically, so check for port conflicts if Redis is already running.",
+      "start.s2d": "Run the commands for your chosen deployment method on your server. New versions install Redis automatically, so check for port conflicts if Redis is already running.",
       "start.s3t": "Open the panel",
       "start.s3d": "Visit the address below and sign in with the username and password you configured.",
       "start.tScript": "Script (recommended)",
@@ -410,7 +323,20 @@
       "foot.disc": "This project is for testing, learning and research only. Do not modify it to trick others into deploying it and steal their accounts. You must follow local laws and your cloud provider's terms; you are responsible for how you use it.",
       "foot.issues": "Issues",
       "foot.license": "License",
-      "foot.copy": "Released under the Apache-2.0 License · Copyright © 2024–present"
+      "foot.copy": "Released under the Apache-2.0 License · Copyright © 2024–present",
+      "hero.kicker": "Self-hosted console",
+      "hero.headline": "Manage your",
+      "feat.all": "All capabilities",
+      "meta.arch": "Compute architectures",
+      "meta.storage": "Private key storage",
+      "meta.local": "Local H2",
+      "cap.tenancy": "Tenant management",
+      "cap.tenancyDesc": "Import OCI accounts in bulk and review tenant health, region subscriptions and quotas.",
+      "cap.compute": "Instance lifecycle",
+      "cap.computeDesc": "Provision ARM and AMD instances in parallel, resize them and open a remote console.",
+      "cap.monitor": "Resource monitoring",
+      "cap.monitorDesc": "Track instance traffic, host load, network latency and packet loss.",
+      "aria.stack": "A layered illustration of compute, networking and storage"
     }
   };
 
@@ -440,46 +366,6 @@
   var shotCaption = document.getElementById("shotCaption");
   var shotDialog = document.getElementById("shotDialog");
   var shotTabsCtrl = null;
-  var motionBtn = document.getElementById("motionBtn");
-  var motionBtnText = document.getElementById("motionBtnText");
-  var liveLogText = document.getElementById("liveLogText");
-  var motionPaused = false;
-  try {
-    motionPaused = sessionStorage.getItem("oci_motion_paused") === "1";
-  } catch (_) {}
-
-  function syncMotionState() {
-    document.documentElement.toggleAttribute("data-motion-paused", motionPaused);
-    if (motionBtnText) {
-      motionBtnText.textContent = t(motionPaused ? "motion.play" : "motion.pause");
-    }
-  }
-
-  if (motionBtn) {
-    motionBtn.addEventListener("click", function () {
-      motionPaused = !motionPaused;
-      try { sessionStorage.setItem("oci_motion_paused", motionPaused ? "1" : "0"); } catch (_) {}
-      syncMotionState();
-    });
-  }
-  syncMotionState();
-
-  if (liveLogText) {
-    var logIndex = 0;
-    var reducedMotionMq = window.matchMedia("(prefers-reduced-motion: reduce)");
-    setInterval(function () {
-      if (motionPaused || reducedMotionMq.matches || document.hidden) return;
-      logIndex = (logIndex + 1) % 4;
-      var key = "stage.log" + (logIndex + 1);
-      liveLogText.classList.add("is-switching");
-      setTimeout(function () {
-        liveLogText.setAttribute("data-i18n", key);
-        liveLogText.textContent = t(key);
-        liveLogText.classList.remove("is-switching");
-      }, 150);
-    }, 3400);
-  }
-
   function renderRelease() {
     if (releaseText && releaseTag) {
       releaseText.textContent = t("hero.releaseTpl").replace("{v}", releaseTag);
@@ -495,6 +381,7 @@
   var schemeMeta = document.querySelector('meta[name="color-scheme"]');
   var systemDark = window.matchMedia("(prefers-color-scheme: dark)");
   var themeBtn = document.getElementById("themeBtn");
+  var darkStack = document.getElementById("darkStack");
   var lightThemeMeta = document.getElementById("themeColorLight");
   var darkThemeMeta = document.getElementById("themeColorDark");
   var starHistoryImg = document.getElementById("starHistoryImg");
@@ -510,12 +397,14 @@
     var isDark = renderedScheme() === "dark";
     var c = schemeMeta ? schemeMeta.content : "light dark";
     var pinned = c === "light" || c === "dark";
+    document.documentElement.dataset.theme = isDark ? "dark" : "light";
+    darkStack.media = isDark ? "all" : "not all";
 
     if (lightThemeMeta) {
-      lightThemeMeta.content = pinned ? (c === "dark" ? "#1b1b1f" : "#ffffff") : "#ffffff";
+      lightThemeMeta.content = pinned ? (c === "dark" ? "#191b19" : "#f8f8f5") : "#f8f8f5";
     }
     if (darkThemeMeta) {
-      darkThemeMeta.content = pinned ? (c === "dark" ? "#1b1b1f" : "#ffffff") : "#1b1b1f";
+      darkThemeMeta.content = pinned ? (c === "dark" ? "#191b19" : "#f8f8f5") : "#191b19";
     }
     if (starHistoryImg) {
       var targetSrc = "https://star-history.dera.page/svg?repos=doubleDimple/oci-start&type=Date" + (isDark ? "&theme=dark" : "");
@@ -569,17 +458,7 @@
   bindImageFallback("starHistoryImg", "historyFallback");
   syncThemeAssets();
 
-  /* ---------- Sticky header sentinel + Scrollspy ---------- */
-  var nav = document.getElementById("nav");
-  var navSentinel = document.getElementById("navSentinel");
-  if (nav && navSentinel && !(typeof CSS !== "undefined" && CSS.supports("container-type", "scroll-state")) && "IntersectionObserver" in window) {
-    var stickyObs = new IntersectionObserver(function (entries) {
-      var entry = entries[entries.length - 1];
-      nav.classList.toggle("is-stuck", !entry.isIntersecting);
-    });
-    stickyObs.observe(navSentinel);
-  }
-
+  /* ---------- Section navigation ---------- */
   var navLinks = Array.from(document.querySelectorAll('.nav-links a[href^="#"]'));
   function setActiveNavLink(activeLink) {
     navLinks.forEach(function (a) {
@@ -618,218 +497,128 @@
   var drawerOpenBtn = document.getElementById("drawerOpenBtn");
   var drawerCloseBtn = document.getElementById("drawerCloseBtn");
 
-  if (navDrawer && drawerOpenBtn && drawerCloseBtn) {
-    var drawerScroller = navDrawer.querySelector(".nav-drawer-scroller");
-    var drawerSheet = navDrawer.querySelector(".nav-drawer-sheet");
-    var pendingHash = "";
-    var drawerCloseTimer = 0;
-    var isOpeningDrawer = false;
+  function prepareDialog(dialog) {
+    if (!dialog || typeof dialog.showModal === "function") return;
+    dialog.classList.add("fallback-dialog");
+    dialog.setAttribute("role", "dialog");
+    dialog.setAttribute("aria-modal", "true");
+    var backdrop = document.createElement("div");
+    backdrop.className = "dialog-backdrop";
+    backdrop.setAttribute("aria-hidden", "true");
+    var returnFocus;
 
-    function onDrawerOpened() {
-      isOpeningDrawer = false;
-      drawerOpenBtn.setAttribute("aria-expanded", "true");
-    }
+    dialog.showModal = function () {
+      returnFocus = document.activeElement;
+      document.body.appendChild(backdrop);
+      document.body.classList.add("dialog-open");
+      dialog.setAttribute("open", "");
+      dialog.querySelector("[autofocus]").focus();
+    };
 
-    function onDrawerClosed() {
-      clearTimeout(drawerCloseTimer);
-      isOpeningDrawer = false;
-      if (!navDrawer.open) return;
-      navDrawer.close();
-      drawerOpenBtn.setAttribute("aria-expanded", "false");
-      if (pendingHash) {
-        var target = document.querySelector(pendingHash);
-        pendingHash = "";
-        if (target) {
-          target.scrollIntoView({
-            behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth"
-          });
-          try { target.focus({ preventScroll: true }); } catch (_) {}
+    dialog.close = function () {
+      dialog.removeAttribute("open");
+      backdrop.remove();
+      document.body.classList.remove("dialog-open");
+      if (returnFocus) returnFocus.focus({ preventScroll: true });
+      dialog.dispatchEvent(new Event("close"));
+    };
+
+    backdrop.addEventListener("click", dialog.close);
+    dialog.addEventListener("keydown", function (event) {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        dialog.close();
+      } else if (event.key === "Tab") {
+        var controls = dialog.querySelectorAll('a[href], button, [tabindex="0"]');
+        var first = controls[0];
+        var last = controls[controls.length - 1];
+        var next = event.shiftKey ? last : first;
+        if (document.activeElement === (event.shiftKey ? first : last)) {
+          event.preventDefault();
+          next.focus();
         }
       }
-    }
+    });
+  }
 
-    async function openDrawer() {
-      if (navDrawer.open) return;
-      clearTimeout(drawerCloseTimer);
-      pendingHash = "";
-      isOpeningDrawer = true;
+  prepareDialog(navDrawer);
+  prepareDialog(shotDialog);
+
+  if (navDrawer && drawerOpenBtn && drawerCloseBtn) {
+    drawerOpenBtn.addEventListener("click", function () {
       navDrawer.showModal();
       drawerOpenBtn.setAttribute("aria-expanded", "true");
-
-      if (!(typeof CSS !== "undefined" && CSS.supports("scroll-initial-target", "nearest"))) {
-        drawerScroller.scrollTo({ left: drawerScroller.offsetWidth, behavior: "instant" });
-        await new Promise(function (resolve) {
-          requestAnimationFrame(function () { requestAnimationFrame(resolve); });
-        });
-      }
-
-      isOpeningDrawer = false;
-      drawerScroller.scrollTo({ left: 0, behavior: "auto" });
-    }
-
-    function closeDrawer() {
-      if (!navDrawer.open) return;
-      isOpeningDrawer = false;
-      drawerScroller.scrollTo({ left: drawerScroller.offsetWidth, behavior: "auto" });
-      clearTimeout(drawerCloseTimer);
-      drawerCloseTimer = setTimeout(onDrawerClosed, 450);
-    }
-
-    if ("IntersectionObserver" in window && drawerSheet) {
-      var visibleThreshold = Math.min(0.05, 1 / Math.max(1, window.innerWidth));
-      var drawerObs = new IntersectionObserver(function (entries) {
-        var entry = entries[entries.length - 1];
-        if (!entry) return;
-        if (entry.intersectionRatio < visibleThreshold && !isOpeningDrawer) onDrawerClosed();
-        if (entry.intersectionRatio >= 0.99) onDrawerOpened();
-      }, { root: navDrawer, threshold: [visibleThreshold, 1] });
-      drawerObs.observe(drawerSheet);
-    }
-
-    if (!(typeof CSS !== "undefined" && CSS.supports("animation-timeline", "scroll()")) && drawerScroller && drawerSheet) {
-      drawerScroller.addEventListener("scroll", function () {
-        var w = drawerSheet.offsetWidth || 1;
-        var ratio = 1 - Math.min(1, Math.max(0, drawerScroller.scrollLeft / w));
-        navDrawer.style.setProperty("--drawer-backdrop", String(ratio));
-      }, { passive: true });
-    }
-
-    drawerOpenBtn.addEventListener("click", openDrawer);
-    drawerCloseBtn.addEventListener("click", closeDrawer);
-
-    navDrawer.addEventListener("click", function (e) {
-      if (drawerSheet && !drawerSheet.contains(e.target)) closeDrawer();
     });
-
-    navDrawer.addEventListener("cancel", function (e) {
-      if (e.cancelable) {
-        e.preventDefault();
-        closeDrawer();
+    drawerCloseBtn.addEventListener("click", function () { navDrawer.close(); });
+    navDrawer.addEventListener("close", function () {
+      drawerOpenBtn.setAttribute("aria-expanded", "false");
+    });
+    navDrawer.addEventListener("click", function (event) {
+      var link = event.target.closest("a");
+      var rect = navDrawer.getBoundingClientRect();
+      if (link || event.clientX < rect.left || event.clientX > rect.right) navDrawer.close();
+      if (link && link.hash && link.origin === location.origin) {
+        var destination = document.getElementById(link.hash.slice(1));
+        if (destination) destination.focus({ preventScroll: true });
       }
     });
-
-    navDrawer.querySelectorAll('.nav-drawer-list a[href^="#"]').forEach(function (link) {
-      link.addEventListener("click", function (e) {
-        e.preventDefault();
-        pendingHash = link.getAttribute("href") || "";
-        closeDrawer();
-      });
+    var wideNav = window.matchMedia("(min-width: 821px)");
+    wideNav.addEventListener("change", function () {
+      if (wideNav.matches && navDrawer.hasAttribute("open")) navDrawer.close();
     });
-
-    var wideNavMq = window.matchMedia("(min-width: 68.0625em)");
-    function handleWideNav(e) {
-      if (e.matches && navDrawer.open) {
-        clearTimeout(drawerCloseTimer);
-        pendingHash = "";
-        navDrawer.close();
-        drawerOpenBtn.setAttribute("aria-expanded", "false");
-      }
-    }
-    if (wideNavMq.addEventListener) wideNavMq.addEventListener("change", handleWideNav);
   }
 
   /* ---------- Tabs ---------- */
-  var nativeFocusGroup = Object.hasOwn(HTMLElement.prototype, "focusGroup");
-
   function initTabs(list, onSelect) {
     if (!list) return null;
     var tabs = Array.from(list.querySelectorAll('[role="tab"]'));
-    var panels = tabs.map(function (tab) {
-      return document.querySelector('[role="tabpanel"][aria-labelledby="' + tab.id + '"]');
-    });
+    var panels = tabs.map(function (tab) { return document.getElementById(tab.getAttribute("aria-controls")); });
+    var selected = 0;
 
-    function select(tab, focus) {
-      var idx = tabs.indexOf(tab);
-      if (idx < 0) return;
-      tabs.forEach(function (item, i) {
-        var on = item === tab;
-        item.setAttribute("aria-selected", on ? "true" : "false");
-        item.toggleAttribute("focusgroupstart", on);
-        if (!nativeFocusGroup) item.tabIndex = on ? 0 : -1;
+    function selectIndex(index, focus) {
+      selected = (index + tabs.length) % tabs.length;
+      tabs.forEach(function (tab, i) {
+        var active = i === selected;
+        tab.setAttribute("aria-selected", String(active));
+        tab.tabIndex = active ? 0 : -1;
         var panel = panels[i];
-        if (!panel) return;
-        if (on) {
-          panel.hidden = false;
-          panel.setAttribute("tabindex", "0");
+        if (active) {
+          panel.removeAttribute("hidden");
+          panel.tabIndex = 0;
         } else {
-          panel.hidden = "until-found";
+          panel.setAttribute("hidden", "until-found");
           panel.removeAttribute("tabindex");
         }
       });
-      if (focus) tab.focus();
-      try {
-        tab.scrollIntoView({ block: "nearest", inline: "nearest", container: "nearest" });
-      } catch (_) {}
-      if (onSelect) onSelect(idx, tab, panels[idx]);
+      var activeTab = tabs[selected];
+      if (focus) activeTab.focus({ preventScroll: true });
+      if (list.scrollWidth > list.clientWidth) {
+        var offset = activeTab.getBoundingClientRect().left - list.getBoundingClientRect().left;
+        if (offset < 0) list.scrollLeft += offset;
+        if (offset + activeTab.offsetWidth > list.clientWidth) list.scrollLeft += offset + activeTab.offsetWidth - list.clientWidth;
+      }
+      if (onSelect) onSelect(selected, activeTab, panels[selected]);
     }
 
-    tabs.forEach(function (tab, i) {
-      tab.addEventListener("click", function () { select(tab, false); });
-      tab.addEventListener("focus", function () {
-        if (tab.getAttribute("aria-selected") !== "true") select(tab, false);
-      });
-      if (panels[i]) {
-        panels[i].addEventListener("beforematch", function () { select(tab, false); });
+    tabs.forEach(function (tab, index) {
+      tab.addEventListener("click", function () { selectIndex(index, false); });
+      panels[index].addEventListener("beforematch", function () { selectIndex(index, false); });
+    });
+    list.addEventListener("keydown", function (event) {
+      var index = tabs.indexOf(event.target);
+      if (index < 0) return;
+      var next = { ArrowRight: index + 1, ArrowLeft: index - 1, Home: 0, End: tabs.length - 1 };
+      if (Object.prototype.hasOwnProperty.call(next, event.key)) {
+        event.preventDefault();
+        selectIndex(next[event.key], true);
       }
     });
-
-    if (!nativeFocusGroup) {
-      tabs.forEach(function (tab) {
-        tab.tabIndex = tab.getAttribute("aria-selected") === "true" ? 0 : -1;
-      });
-      list.addEventListener("keydown", function (e) {
-        var cur = tabs.indexOf(document.activeElement);
-        if (cur < 0) return;
-        var next = -1;
-        if (e.key === "ArrowRight") next = (cur + 1) % tabs.length;
-        else if (e.key === "ArrowLeft") next = (cur - 1 + tabs.length) % tabs.length;
-        else if (e.key === "Home") next = 0;
-        else if (e.key === "End") next = tabs.length - 1;
-        if (next >= 0) {
-          e.preventDefault();
-          select(tabs[next], true);
-        }
-      });
-    }
-
-    if (typeof CSS !== "undefined" && !CSS.supports("animation-timeline", "scroll()") && "IntersectionObserver" in window) {
-      var start = document.createElement("div");
-      var end = document.createElement("div");
-      [start, end].forEach(function (s) {
-        s.setAttribute("aria-hidden", "true");
-        s.style.cssText = "min-inline-size:1px;min-block-size:1px;flex:none";
-      });
-      list.prepend(start);
-      list.append(end);
-      var obs = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          list.classList.toggle(entry.target === start ? "more-start" : "more-end", !entry.isIntersecting);
-        });
-      }, { root: list, rootMargin: "1px" });
-      obs.observe(start);
-      obs.observe(end);
-    }
-
+    selectIndex(0, false);
     return {
       count: tabs.length,
-      getSelectedIndex: function () {
-        var idx = tabs.findIndex(function (tab) {
-          return tab.getAttribute("aria-selected") === "true";
-        });
-        return idx >= 0 ? idx : 0;
-      },
-      selectIndex: function (index, focus) {
-        if (!tabs.length) return;
-        var normalized = ((index % tabs.length) + tabs.length) % tabs.length;
-        select(tabs[normalized], Boolean(focus));
-      },
-      getItem: function (index) {
-        var normalized = ((index % tabs.length) + tabs.length) % tabs.length;
-        return {
-          tab: tabs[normalized] || null,
-          panel: panels[normalized] || null
-        };
-      }
+      selectIndex: selectIndex,
+      getSelectedIndex: function () { return selected; },
+      getItem: function (i) { return { tab: tabs[i], panel: panels[i] }; }
     };
   }
 
@@ -845,6 +634,12 @@
     syncShotCaption(panel);
   });
   initTabs(document.getElementById("installTabs"));
+  document.querySelectorAll("[data-shot]").forEach(function (link) {
+    link.addEventListener("click", function () {
+      var tab = document.getElementById(link.dataset.shot);
+      if (tab) tab.click();
+    });
+  });
 
   /* ---------- Screenshot Lightbox Dialog ---------- */
   var shotZoomBtn = document.getElementById("shotZoomBtn");
@@ -887,48 +682,10 @@
     if (shotDialogCaption) shotDialogCaption.textContent = captionText;
   }
 
-  var supportsDisplayTransition;
-  function canTransitionDisplay() {
-    if (supportsDisplayTransition !== undefined) return supportsDisplayTransition;
-    if (typeof CSS === "undefined" || !CSS.supports("transition-behavior", "allow-discrete") || !document.body) {
-      return false;
-    }
-    var probe = document.createElement("div");
-    probe.style.cssText = "transition: display 1s allow-discrete !important; display: block;";
-    document.body.appendChild(probe);
-    getComputedStyle(probe).display;
-    probe.style.display = "none";
-    supportsDisplayTransition = getComputedStyle(probe).display === "block";
-    probe.remove();
-    return supportsDisplayTransition;
-  }
-
-  function supportsTopLayerExit() {
-    return typeof CSS !== "undefined" && CSS.supports("overlay", "auto") && canTransitionDisplay();
-  }
-
-  async function closeTopLayer(element) {
-    if (!element || !element.open) return;
-    if (!supportsTopLayerExit()) {
-      element.setAttribute("data-closing", "");
-      var animations = element.getAnimations ? element.getAnimations({ subtree: true }) : [];
-      if (animations.length > 0) {
-        await Promise.race([
-          Promise.allSettled(animations.map(function (a) { return a.finished; })),
-          new Promise(function (resolve) { setTimeout(resolve, 2000); })
-        ]);
-      }
-      if (!element.hasAttribute("data-closing")) return;
-      element.removeAttribute("data-closing");
-    }
-    if (element.open) element.close();
-  }
-
   function openShotDialog() {
     if (!shotDialog || !shotTabsCtrl) return;
-    shotDialog.removeAttribute("data-closing");
     renderShotDialog(shotTabsCtrl.getSelectedIndex());
-    if (!shotDialog.open) shotDialog.showModal();
+    if (!shotDialog.hasAttribute("open")) shotDialog.showModal();
   }
 
   function stepShotDialog(delta) {
@@ -947,7 +704,7 @@
   if (shotDialog) {
     if (shotPrevBtn) shotPrevBtn.addEventListener("click", function () { stepShotDialog(-1); });
     if (shotNextBtn) shotNextBtn.addEventListener("click", function () { stepShotDialog(1); });
-    if (shotCloseBtn) shotCloseBtn.addEventListener("click", function () { closeTopLayer(shotDialog); });
+    if (shotCloseBtn) shotCloseBtn.addEventListener("click", function () { shotDialog.close(); });
 
     shotDialog.addEventListener("keydown", function (e) {
       if (e.key === "ArrowLeft") {
@@ -962,11 +719,11 @@
     shotDialog.addEventListener("cancel", function (e) {
       if (e.cancelable) {
         e.preventDefault();
-        closeTopLayer(shotDialog);
+        shotDialog.close();
       }
     });
 
-    if (!("closedBy" in HTMLDialogElement.prototype)) {
+    if (!("closedBy" in shotDialog)) {
       shotDialog.addEventListener("click", function (event) {
         if (event.target !== shotDialog) return;
         var rect = shotDialog.getBoundingClientRect();
@@ -976,7 +733,7 @@
           rect.left <= event.clientX &&
           event.clientX <= rect.left + rect.width
         );
-        if (!isDialogContent) closeTopLayer(shotDialog);
+        if (!isDialogContent) shotDialog.close();
       });
     }
   }
@@ -1006,15 +763,15 @@
     });
     if (langBtn) {
       langBtn.textContent = lang === "en" ? "中文" : "EN";
+      langBtn.setAttribute("aria-label", lang === "en" ? "切换为中文" : "Switch to English");
       langBtn.setAttribute("lang", lang === "en" ? "zh-CN" : "en");
     }
     renderRelease();
-    syncMotionState();
     if (shotTabsCtrl) {
       var activeIdx = shotTabsCtrl.getSelectedIndex();
       var activeItem = shotTabsCtrl.getItem(activeIdx);
       if (activeItem) syncShotCaption(activeItem.panel);
-      if (shotDialog && shotDialog.open) renderShotDialog(activeIdx);
+      if (shotDialog && shotDialog.hasAttribute("open")) renderShotDialog(activeIdx);
     }
     if (persist !== false) {
       try { localStorage.setItem("oci_site_lang", lang); } catch (_) {}
@@ -1109,7 +866,6 @@
 
   /* ---------- GitHub stats (public API, cached per session) ---------- */
   var navStars = document.getElementById("navStars");
-  var metaStars = document.getElementById("metaStars");
 
   function showStats(data) {
     if (typeof data.stars === "number") {
@@ -1118,7 +874,6 @@
         navStars.textContent = compact;
         navStars.hidden = false;
       }
-      if (metaStars) metaStars.textContent = data.stars.toLocaleString("en");
     }
     if (data.tag) {
       releaseTag = data.tag;

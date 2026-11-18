@@ -10,9 +10,12 @@
 ```text
 oci-start-site/
 ├── assets/
-│   └── shots/shot-1~7.png / -2x.png  # 面板界面截图（来自主项目 README，1x/2x 两档）
-├── index.html                     # 单页：首屏与安装命令、核心功能、界面截图、快速开始、完整功能清单、社区与赞助、FAQ
-├── styles.css                     # 样式（浅色 / 深色主题，主色 #FF6B1F，响应式布局）
+│   ├── fonts/                     # 自托管 Geist 字体与 OFL 许可证
+│   ├── hero/                      # 浅色与深色主题的服务器主视觉
+│   └── shots/                     # 七组真实面板截图，含高清版本
+├── index.html                     # 单页：项目介绍、核心功能、界面截图、快速开始、完整功能清单、社区与赞助、FAQ
+├── styles.css                     # 主题、导航、首屏与响应式布局
+├── sections.css                   # 界面预览、部署步骤、功能清单、社区与 FAQ
 ├── app.js                         # 交互（中英文切换、主题切换、截图与部署方式标签页、复制按钮、GitHub Star 与最新版本号）
 ├── favicon.svg                    # OCI-Start 品牌图标
 ├── _headers                       # Cloudflare Pages 安全与缓存响应头配置
